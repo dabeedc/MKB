@@ -5,7 +5,7 @@ A simple mechanical keyboard builder to help you select components using Java.
 - Keycaps
 - Mechanical Key Switches
 - Plate
-- PCB
+- Printed Circuit Board
 - Case
 
 Using MK Part Picker, plan your build by learning briefly about different components and adding it to a list 
