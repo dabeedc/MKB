@@ -19,3 +19,12 @@ will feel and sound.
 
 This project is important to me because I have built computers and keyboards before; I have always wished that there 
 was a simple application that would allow me to learn about and choose components for my project. 
+
+## User Stories
+- As a user, I want to be able to retrieve information about each component of a keyboard.
+
+- As a user, I want to be able to select a component for my parts list.
+
+- As a user, I want to be able to see my selected components in my parts list.
+
+- As a user, I want to be able to have my parts list rated, giving me an idea about my build.
