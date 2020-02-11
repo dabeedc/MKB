@@ -1,5 +1,10 @@
 package ui;
 
+import model.Keyboard;
+import model.*;
+import model.Components.*;
+import model.Components.Case;
+
 import java.util.Scanner;
 
 // Keyboard builder application
@@ -52,7 +57,41 @@ public class BuilderApp {
     }
 
     private void startBuild() {
-        System.out.println("print statement for startBuild");
+        String selection = "";
+        System.out.println("What size keyboard are you interested in: small, medium, or large?");
+
+        while (!(selection.equals("small") || (selection.equals("medium") || (selection.equals("large"))))) {
+            selection = input.nextLine();
+        }
+        if (selection.equals("small")) {
+            Case.setCaseSize(selection);
+        } else if (selection.equals("medium")) {
+            Case.setCaseSize(selection);
+        } else if (selection.equals("large")) {
+            Case.setCaseSize(selection);
+        }
+        buildCaseMaterial();
+    }
+
+    private void buildCaseMaterial() {
+        String selection = "";
+        System.out.println("Choose a material for your " + Case.getCaseSize() + " keyboard: aluminum or plastic?");
+
+        while (!(selection.equals("aluminum") || (selection.equals("plastic")))) {
+            selection = input.nextLine();
+            Case.setCaseMaterial(selection);
+        }
+        if (selection.equals("aluminum")) {
+            Case.setCaseMaterial(selection);
+        } else if (selection.equals("plastic")) {
+            Case.setCaseMaterial(selection);
+        }
+        buildKeycapsMaterial();
+    }
+
+    private void buildKeycapsMaterial() {
+        System.out.println("THIS IS WHERE I LEFT OFF");
+        // todo asdasdasdasdhjdafsfdhjkjashdfhjfasdhjlasfdhasf
     }
 
     // EFFECTS: displays information menu to user

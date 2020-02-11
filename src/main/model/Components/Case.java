@@ -18,7 +18,7 @@ public class Case {
     }
 
     // EFFECTS: returns the size of the case
-    public String getCaseSize() {
+    public static String getCaseSize() {
         return caseSize;
     }
 
