@@ -57,25 +57,21 @@ public class BuilderApp {
 
     // EFFECTS: displays information menu to user
     private void informationMenu() {
-        giveInformation();
-        System.out.println("\nWhich component would you like to learn about?");
+        System.out.println("\tWhich component would you like to learn about?");
         System.out.println("\tCase");
         System.out.println("\tKeycaps");
         System.out.println("\tPlate");
         System.out.println("\tPCB");
         System.out.println("\tSwitches");
+        System.out.println("\tBack to Main Menu");
+        giveInformation();
     }
 
     // EFFECTS: prompts user to select an information item
     private String giveInformation() {
         String selection = "";
         while (!(selection.equals("case") || selection.equals("keycaps") || selection.equals("plate") ||
-                selection.equals("pcb") || selection.equals("switches"))) {
-            System.out.println("Case");
-            System.out.println("Keycaps");
-            System.out.println("Plate");
-            System.out.println("PCB");
-            System.out.println("Switches");
+                selection.equals("pcb") || selection.equals("switches") || selection.equals("back"))) {
             selection = input.next();
             selection = selection.toLowerCase();
         }
@@ -90,6 +86,8 @@ public class BuilderApp {
             return pcbInfo();
         } else if (selection.equals("switches")) {
             return switchesInfo();
+        } else if (selection.equals("back")) {
+            runBuilder();
         }
         return  null;
     }
