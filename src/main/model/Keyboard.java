@@ -54,10 +54,10 @@ public class Keyboard {
 
     // MODIFIES: this
     // EFFECTS: rates the sound of the keyboard based on the keycaps' properties
-    private static int rateKeycapsSound() {
-        if (Keycaps.getKeycapsMaterial().equals("ABS")) {
+    protected static int rateKeycapsSound() {
+        if (Keycaps.getKeycapsMaterial().equals("abs")) {
             soundRating += 1;
-        } else if (Keycaps.getKeycapsMaterial().equals("PBT")) {
+        } else if (Keycaps.getKeycapsMaterial().equals("pbt")) {
             soundRating -= 1;
         }
         return soundRating;
@@ -65,7 +65,7 @@ public class Keyboard {
 
     // MODIFIES: this
     // EFFECTS: rates the sound of the keyboard based on the plate's properties
-    private static int ratePlateSound() {
+    protected static int ratePlateSound() {
         if (Plate.getPlateMaterial().equals("brass")) {
             soundRating += 2;
         } else if (Plate.getPlateMaterial().equals("aluminum")) {
@@ -78,7 +78,7 @@ public class Keyboard {
 
     // MODIFIES: this
     // EFFECTS: rates the sound of the keyboard based on the switches' properties
-    private static int rateSwitchesSound() {
+    protected static int rateSwitchesSound() {
         if (Switches.isSilentSwitches()) {
             soundRating -= 5;
         }
@@ -94,7 +94,7 @@ public class Keyboard {
 
     // MODIFIES: this
     // EFFECTS: rates the typing feel of the keyboard based on the case's properties
-    private static int rateCaseFeel() {
+    protected static int rateCaseFeel() {
         if (Case.getCaseMaterial().equals("aluminum")) {
             feelRating += 1;
         } else if (Case.getCaseMaterial().equals("plastic")) {
@@ -105,7 +105,7 @@ public class Keyboard {
 
     // MODIFIES: this
     // EFFECTS: rates the typing feel of the keyboard based on the plate's properties
-    private static int ratePlateFeel() {
+    protected static int ratePlateFeel() {
         if (Plate.getPlateMaterial().equals("brass")) {
             feelRating += 2;
         } else if (Plate.getPlateMaterial().equals("aluminum")) {
@@ -118,7 +118,7 @@ public class Keyboard {
 
     // MODIFIES: this
     // EFFECTS: rates the typing feel of the keyboard based on the switches' properties
-    private static int rateSwitchesFeel() {
+    protected static int rateSwitchesFeel() {
         if (Switches.getSwitchType().equals("tactile")) {
             feelRating += 2;
         } else if (Switches.getSwitchType().equals("linear")) {
@@ -131,18 +131,18 @@ public class Keyboard {
 
     // MODIFIES: this
     // EFFECTS: rates the keyboard's weight based on the case's properties
-    private static int rateCaseWeight() {
+    protected static int rateCaseWeight() {
         if (Case.getCaseMaterial().equals("aluminum")) {
             weightRating += 2;
         } else if (Case.getCaseMaterial().equals("plastic")) {
-            weightRating -= 1;
+            weightRating -= 2;
         }
         return weightRating;
     }
 
     // MODIFIES: this
     // EFFECTS: rates the keyboard's weight based on the plate's properties
-    private static int ratePlateWeight() {
+    protected static int ratePlateWeight() {
         if (Plate.getPlateMaterial().equals("brass")) {
             weightRating += 2;
         } else if (Plate.getPlateMaterial().equals("aluminum")) {
