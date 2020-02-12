@@ -228,7 +228,7 @@ public class BuilderApp {
         System.out.println("Sound level: " + soundRating);
         System.out.println("Typing feel: " + feelRating);
         System.out.println("Weight: " + weightRating);
-        runBuilder();
+        stopLoop();
     }
 
     // EFFECTS: displays information menu to user
@@ -263,9 +263,14 @@ public class BuilderApp {
         } else if (selection.equals("switches")) {
             return switchesInfo();
         } else if (selection.equals("back")) {
-            runBuilder();
+            stopLoop();
         }
         return null;
+    }
+
+    // EFFECTS: stops the loop
+    private boolean stopLoop() {
+        return false;
     }
 
     // EFFECTS: gives the user information about the case component
