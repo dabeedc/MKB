@@ -23,8 +23,8 @@ was a simple application that would allow me to learn about and choose component
 ## User Stories
 - As a user, I want to be able to retrieve information about each component of a keyboard.
 
-- As a user, I want to be able to select a component for my parts list.
+- As a user, I want to be able to select a component for my keyboard.
 
-- As a user, I want to be able to see my selected components in my parts list.
+- As a user, I want to be able to see my selected components in my keyboard.
 
-- As a user, I want to be able to have my parts list rated, giving me an idea about my build.
+- As a user, I want to be able to have my keyboard rated, giving me an idea about my build.
