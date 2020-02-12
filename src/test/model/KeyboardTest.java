@@ -40,10 +40,10 @@ class KeyboardTest {
         testKeyboard.keyboardSwitches.setSwitchType("tactile");
         testKeyboard.keyboardCase.setCaseMaterial("aluminum");
         testKeyboard.keyboardPlate.setPlateMaterial("brass");
-        assertEquals(7,testKeyboard.ratePlateWeight());
-        assertEquals(9,testKeyboard.rateCaseWeight());
-        assertEquals(6,testKeyboard.rateSwitchesSound());
-        assertEquals(8,testKeyboard.ratePlateSound());
+        assertEquals(7, testKeyboard.ratePlateWeight());
+        assertEquals(9, testKeyboard.rateCaseWeight());
+        assertEquals(6, testKeyboard.rateSwitchesSound());
+        assertEquals(8, testKeyboard.ratePlateSound());
         assertEquals(9, testKeyboard.rateCaseSound());
         assertEquals(10, testKeyboard.rateKeycapsSound());
     }
@@ -87,124 +87,124 @@ class KeyboardTest {
     @Test
     void testRatePlateSoundBrass() {
         testKeyboard.keyboardPlate.setPlateMaterial("brass");
-        assertEquals(7,testKeyboard.ratePlateSound());
+        assertEquals(7, testKeyboard.ratePlateSound());
     }
 
     @Test
     void testRatePlateSoundAluminum() {
         testKeyboard.keyboardPlate.setPlateMaterial("aluminum");
-        assertEquals(6,testKeyboard.ratePlateSound());
+        assertEquals(6, testKeyboard.ratePlateSound());
     }
 
     @Test
     void testRatePlateSoundPolycarbonate() {
         testKeyboard.keyboardPlate.setPlateMaterial("polycarbonate");
-        assertEquals(4,testKeyboard.ratePlateSound());
+        assertEquals(4, testKeyboard.ratePlateSound());
     }
 
     @Test
     void testRateSwitchesSoundTactile() {
         testKeyboard.keyboardSwitches.setSwitchType("tactile");
-        assertEquals(6,testKeyboard.rateSwitchesSound());
+        assertEquals(6, testKeyboard.rateSwitchesSound());
     }
 
     @Test
     void testRateSwitchesSoundLinear() {
         testKeyboard.keyboardSwitches.setSwitchType("linear");
-        assertEquals(4,testKeyboard.rateSwitchesSound());
+        assertEquals(4, testKeyboard.rateSwitchesSound());
     }
 
     @Test
     void testRateSwitchesSoundClicky() {
         testKeyboard.keyboardSwitches.setSwitchType("clicky");
-        assertEquals(8,testKeyboard.rateSwitchesSound());
+        assertEquals(8, testKeyboard.rateSwitchesSound());
 
     }
 
     @Test
     void testRateSwitchesSoundisSilenced() {
         testKeyboard.keyboardSwitches.setSwitchType("tactile");
-        assertEquals(6,testKeyboard.rateSwitchesSound());
+        assertEquals(6, testKeyboard.rateSwitchesSound());
         testKeyboard.keyboardSwitches.setSilentSwitches(true);
-        assertEquals(2,testKeyboard.rateSwitchesSound());
+        assertEquals(2, testKeyboard.rateSwitchesSound());
     }
 
     @Test
     void testRateCaseFeelAluminum() {
         testKeyboard.keyboardCase.setCaseMaterial("aluminum");
-        assertEquals(6,testKeyboard.rateCaseFeel());
+        assertEquals(6, testKeyboard.rateCaseFeel());
     }
 
     @Test
     void testRateCaseFeelPlastic() {
         testKeyboard.keyboardCase.setCaseMaterial("plastic");
-        assertEquals(4,testKeyboard.rateCaseFeel());
+        assertEquals(4, testKeyboard.rateCaseFeel());
     }
 
     @Test
     void testRatePlateFeelBrass() {
         testKeyboard.keyboardPlate.setPlateMaterial("brass");
-        assertEquals(7,testKeyboard.ratePlateFeel());
+        assertEquals(7, testKeyboard.ratePlateFeel());
     }
 
     @Test
     void testRatePlateFeelAluminum() {
         testKeyboard.keyboardPlate.setPlateMaterial("aluminum");
-        assertEquals(6,testKeyboard.ratePlateFeel());
+        assertEquals(6, testKeyboard.ratePlateFeel());
     }
 
     @Test
     void testRatePlateFeelPolycarbonate() {
         testKeyboard.keyboardPlate.setPlateMaterial("polycarbonate");
-        assertEquals(4,testKeyboard.ratePlateFeel());
+        assertEquals(4, testKeyboard.ratePlateFeel());
 
     }
 
     @Test
     void testRateSwitchesFeelTactile() {
         testKeyboard.keyboardSwitches.setSwitchType("tactile");
-        assertEquals(6,testKeyboard.rateSwitchesFeel());
+        assertEquals(6, testKeyboard.rateSwitchesFeel());
     }
 
     @Test
     void testRateSwitchesFeelLinear() {
         testKeyboard.keyboardSwitches.setSwitchType("linear");
-        assertEquals(4,testKeyboard.rateSwitchesFeel());
+        assertEquals(4, testKeyboard.rateSwitchesFeel());
     }
 
     @Test
     void testRateSwitchesFeelClicky() {
         testKeyboard.keyboardSwitches.setSwitchType("clicky");
-        assertEquals(7,testKeyboard.rateSwitchesFeel());
+        assertEquals(7, testKeyboard.rateSwitchesFeel());
     }
 
     @Test
     void testRateCaseWeightAluminum() {
         testKeyboard.keyboardCase.setCaseMaterial("aluminum");
-        assertEquals(7,testKeyboard.rateCaseWeight());
+        assertEquals(7, testKeyboard.rateCaseWeight());
     }
 
     @Test
     void testRateCaseWeightPlastic() {
         testKeyboard.keyboardCase.setCaseMaterial("plastic");
-        assertEquals(3,testKeyboard.rateCaseWeight());
+        assertEquals(3, testKeyboard.rateCaseWeight());
     }
 
     @Test
     void testRatePlateWeightBrass() {
         testKeyboard.keyboardPlate.setPlateMaterial("brass");
-        assertEquals(7,testKeyboard.ratePlateWeight());
+        assertEquals(7, testKeyboard.ratePlateWeight());
     }
 
     @Test
     void testRatePlateWeightAluminum() {
         testKeyboard.keyboardPlate.setPlateMaterial("aluminum");
-        assertEquals(6,testKeyboard.ratePlateWeight());
+        assertEquals(6, testKeyboard.ratePlateWeight());
     }
 
     @Test
     void testRatePlateWeightPolycarbonate() {
         testKeyboard.keyboardPlate.setPlateMaterial("polycarbonate");
-        assertEquals(4,testKeyboard.ratePlateWeight());
+        assertEquals(4, testKeyboard.ratePlateWeight());
     }
 }
