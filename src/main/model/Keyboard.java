@@ -12,9 +12,9 @@ public class Keyboard {
     public Plate keyboardPlate;
     public PrintedCircuitBoard keyboardPrintedCircuitBoard;
     public Switches keyboardSwitches;
-    static int soundRating = 5;
-    static int feelRating = 5;
-    static int weightRating = 5;
+    public static int soundRating = 5;
+    public static int feelRating = 5;
+    public static int weightRating = 5;
 
     // EFFECTS: constructs a keyboard with case, keycaps, plate, printed circuit board, and switches
     public Keyboard() {
@@ -43,7 +43,7 @@ public class Keyboard {
 
     // MODIFIES: this
     // EFFECTS: rates the sound of the keyboard based on the case's properties
-    private static int rateCaseSound() {
+    protected static int rateCaseSound() {
         if (Case.getCaseMaterial().equals("aluminum")) {
             soundRating += 1;
         } else if (Case.getCaseMaterial().equals("plastic")) {
