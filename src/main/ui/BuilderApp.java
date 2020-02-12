@@ -141,7 +141,7 @@ public class BuilderApp {
         System.out.println("Choose a plate size for your " + Plate.getPlateMaterial() + " plate: small, "
                 + "medium, or large?");
 
-        while (!(selection.equals("small") || (selection.equals("medium")  || (selection.equals("large"))))) {
+        while (!(selection.equals("small") || (selection.equals("medium") || (selection.equals("large"))))) {
             selection = input.nextLine();
             Plate.setPlateSize(selection);
         }
@@ -159,7 +159,7 @@ public class BuilderApp {
         String selection = "";
         System.out.println("Select a PCB size: small, medium or large?");
 
-        while (!(selection.equals("small") || (selection.equals("medium")  || (selection.equals("large"))))) {
+        while (!(selection.equals("small") || (selection.equals("medium") || (selection.equals("large"))))) {
             selection = input.nextLine();
             PrintedCircuitBoard.setPcbSize(selection);
         }
@@ -177,7 +177,7 @@ public class BuilderApp {
         String selection = "";
         System.out.println("What switches would you like to accompany your keyboard: tactile, linear, or clicky?");
 
-        while (!(selection.equals("tactile") || (selection.equals("linear")  || (selection.equals("clicky"))))) {
+        while (!(selection.equals("tactile") || (selection.equals("linear") || (selection.equals("clicky"))))) {
             selection = input.nextLine();
             Switches.setSwitchType(selection);
         }
@@ -228,8 +228,8 @@ public class BuilderApp {
     // EFFECTS: prompts user to select an information item
     private String giveInformation() {
         String selection = "";
-        while (!(selection.equals("case") || selection.equals("keycaps") || selection.equals("plate") ||
-                selection.equals("pcb") || selection.equals("switches") || selection.equals("back"))) {
+        while (!(selection.equals("case") || selection.equals("keycaps") || selection.equals("plate")
+                || selection.equals("pcb") || selection.equals("switches") || selection.equals("back"))) {
             selection = input.next();
             selection = selection.toLowerCase();
         }
@@ -247,7 +247,7 @@ public class BuilderApp {
         } else if (selection.equals("back")) {
             runBuilder();
         }
-        return  null;
+        return null;
     }
 
     private String caseInfo() {
