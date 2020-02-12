@@ -1,4 +1,4 @@
-package model.Components;
+package model.components;
 
 // Represents the keycaps of a keyboard having a material type
 public class Keycaps {

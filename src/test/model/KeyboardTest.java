@@ -24,6 +24,4 @@ class KeyboardTest {
         assertEquals("", testKeyboard.keyboardSwitches.getSwitchType());
         assertFalse(testKeyboard.keyboardSwitches.isSilentSwitches());
     }
-
-
 }

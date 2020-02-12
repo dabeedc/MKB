@@ -1,7 +1,7 @@
 package ui;
 
-import model.Components.*;
-import model.Components.Case;
+import model.components.*;
+import model.components.Case;
 
 import java.util.Scanner;
 

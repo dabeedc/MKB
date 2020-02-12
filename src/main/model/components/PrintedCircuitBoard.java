@@ -1,4 +1,4 @@
-package model.Components;
+package model.components;
 
 // Represents a printed circuit board having a size
 public class PrintedCircuitBoard {

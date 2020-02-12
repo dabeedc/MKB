@@ -1,4 +1,4 @@
-package model.Components;
+package model.components;
 
 // Represents switches having a switch type
 public class Switches {

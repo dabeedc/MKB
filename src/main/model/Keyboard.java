@@ -1,7 +1,7 @@
 package model;
 
-import model.Components.Case;
-import model.Components.*;
+import model.components.Case;
+import model.components.*;
 
 // Represents a fully built keyboard having a case, keycaps, plate, printed circuit board, and switches.
 public class Keyboard {

@@ -1,4 +1,4 @@
-package model.Components;
+package model.components;
 
 // Represents a plate having a material type and size
 public class Plate {

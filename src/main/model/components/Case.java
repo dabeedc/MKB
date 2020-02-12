@@ -1,4 +1,4 @@
-package model.Components;
+package model.components;
 
 // Represents a case that indicates what material it is made out of as well as the size of the case.
 public class Case {
