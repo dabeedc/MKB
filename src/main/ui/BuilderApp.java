@@ -7,6 +7,7 @@ import model.components.Case;
 import java.util.Scanner;
 
 // Keyboard builder application
+// Citation: CPSC210 TellerApp for Scanner use
 public class BuilderApp {
     private Scanner input;
 
@@ -69,6 +70,7 @@ public class BuilderApp {
         System.out.println("Silent? " + Switches.isSilentSwitches());
     }
 
+    // EFFECTS: starts the building process of a keyboard
     private void startBuild() {
         String selection = "";
         System.out.println("What size keyboard are you interested in: small, medium, or large?");
@@ -86,6 +88,7 @@ public class BuilderApp {
         buildCaseMaterial();
     }
 
+    // EFFECTS: Prompts for user input for case material
     private void buildCaseMaterial() {
         String selection = "";
         System.out.println("Choose a case material for your " + Case.getCaseSize() + " keyboard: aluminum or plastic?");
@@ -102,6 +105,7 @@ public class BuilderApp {
         buildKeycapsMaterial();
     }
 
+    // EFFECTS: Prompts for user input for keycaps material
     private void buildKeycapsMaterial() {
         String selection = "";
         System.out.println("Choose a keycap material for your " + Case.getCaseSize() + " " + Case.getCaseMaterial()
@@ -119,6 +123,7 @@ public class BuilderApp {
         buildPlateMaterial();
     }
 
+    // EFFECTS: Prompts for user input for plate material
     private void buildPlateMaterial() {
         String selection = "";
         System.out.println("Choose a plate material for your " + Case.getCaseSize() + " " + Case.getCaseMaterial()
@@ -138,6 +143,7 @@ public class BuilderApp {
         buildPlateSize();
     }
 
+    // EFFECTS: Prompts for user input for plate size
     private void buildPlateSize() {
         String selection = "";
         System.out.println("Choose a plate size for your " + Plate.getPlateMaterial() + " plate: small, "
@@ -157,6 +163,7 @@ public class BuilderApp {
         buildPrintedCircuitBoardSize();
     }
 
+    // EFFECTS: Prompts for user input for PCB size
     private void buildPrintedCircuitBoardSize() {
         String selection = "";
         System.out.println("Select a PCB size: small, medium or large?");
@@ -175,6 +182,7 @@ public class BuilderApp {
         buildSwitchesType();
     }
 
+    // EFFECTS: Prompts for user input for key switch type
     private void buildSwitchesType() {
         String selection = "";
         System.out.println("What switches would you like to accompany your keyboard: tactile, linear, or clicky?");
@@ -193,22 +201,15 @@ public class BuilderApp {
         buildSilentSwitches();
     }
 
+    // EFFECTS: Prompts user for preference of silent switches or not
     private void buildSilentSwitches() {
         String selection = "";
         System.out.println("Do you want your " + Switches.getSwitchType() + " switches to be silent?");
+        selection = input.nextLine();
         boolean b = selection.equals("yes");
-
-        while (!(selection.equals("yes") || (selection.equals("no")))) {
-            selection = input.nextLine();
-            Switches.setSilentSwitches(b);
-        }
-        if (selection.equals("yes")) {
-            Switches.setSilentSwitches(b);
-        } else if (selection.equals("no")) {
-            Switches.setSilentSwitches(b);
-        }
+        Switches.setSilentSwitches(b);
         rateKeyboard();
-    }         //TODO fix silent switch toggle
+    }
 
     // EFFECTS: gives a rating of the keyboard based on typing sound, typing feel, and weight
     private void rateKeyboard() {
@@ -258,35 +259,35 @@ public class BuilderApp {
 
     // EFFECTS: gives the user information about the case component
     private String caseInfo() {
-        System.out.println("THIS IS CASE INFORMATION");
+        System.out.println(Information.CASE_INFO);
         informationMenu();
         return null;
     }
 
     // EFFECTS: gives the user information about the keycaps component
     private String keycapsInfo() {
-        System.out.println("THIS IS KEYCAPS INFORMATION");
+        System.out.println(Information.KEYCAPS_INFO);
         informationMenu();
         return null;
     }
 
     // EFFECTS: gives the user information about the plate component
     private String plateInfo() {
-        System.out.println("THIS IS PLATE INFORMATION");
+        System.out.println(Information.PLATE_INFO);
         informationMenu();
         return null;
     }
 
     // EFFECTS: gives the user information about the printed circuit board component
     private String pcbInfo() {
-        System.out.println("THIS IS PCB INFORMATION");
+        System.out.println(Information.PRINTEDCIRCUITBOARD_INFO);
         informationMenu();
         return null;
     }
 
     // EFFECTS: gives the user information about the switches
     private String switchesInfo() {
-        System.out.println("THIS IS SWITCHES INFORMATION");
+        System.out.println(Information.SWITCHES_INFO);
         informationMenu();
         return null;
     }
