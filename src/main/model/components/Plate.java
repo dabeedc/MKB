@@ -1,6 +1,6 @@
 package model.components;
 
-// Represents a plate having a material type and size
+// Represents a plate of the keyboard having a material type and size
 public class Plate {
     private static String plateMaterial;
     private static String plateSize;

@@ -48,7 +48,7 @@ public class BuilderApp {
         } else if (command.equals("print")) {
             printBuild();
         } else {
-            System.out.println("Selection not valid...");
+            System.out.println("Invalid selection...");
         }
     }
 

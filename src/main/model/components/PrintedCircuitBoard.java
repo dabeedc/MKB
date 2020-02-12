@@ -1,6 +1,6 @@
 package model.components;
 
-// Represents a printed circuit board having a size
+// Represents a printed circuit board within a keyboard having a size
 public class PrintedCircuitBoard {
     private static String pcbSize;
 

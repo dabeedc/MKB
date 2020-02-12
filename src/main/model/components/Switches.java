@@ -1,6 +1,6 @@
 package model.components;
 
-// Represents switches having a switch type
+// Represents switches for the keyboard having a switch type and an indicator for whether or not they are silent
 public class Switches {
     private static String switchType;
     private static boolean silentSwitches;
