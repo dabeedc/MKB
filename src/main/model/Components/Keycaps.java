@@ -11,7 +11,7 @@ public class Keycaps {
 
     // Getters
     // EFFECTS: returns the material of the keycaps
-    public String getKeycapsMaterial() {
+    public static String getKeycapsMaterial() {
         return keycapsMaterial;
     }
 

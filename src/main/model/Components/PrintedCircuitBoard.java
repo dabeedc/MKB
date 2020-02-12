@@ -11,14 +11,14 @@ public class PrintedCircuitBoard {
 
     // Getters
     // EFFECTS: gets the size of the printed circuit board
-    public String getPcbSize() {
+    public static String getPcbSize() {
         return pcbSize;
     }
 
     // Setters
     // MODIFIES: this
     // EFFECTS: sets the size of the printed circuit board
-    public void setPcbSize(String pcbSize) {
+    public static void setPcbSize(String pcbSize) {
         PrintedCircuitBoard.pcbSize = pcbSize;
     }
 }

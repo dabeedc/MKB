@@ -13,7 +13,7 @@ public class Case {
 
     // Getters
     // EFFECTS: returns the material of the case
-    public String getCaseMaterial() {
+    public static String getCaseMaterial() {
         return caseMaterial;
     }
 

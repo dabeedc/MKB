@@ -3,7 +3,7 @@ package model.Components;
 // Represents switches having a switch type
 public class Switches {
     private static String switchType;
-    private boolean silentSwitches;
+    private static boolean silentSwitches;
 
     // EFFECTS: Constructs a keyboard switch with no switchType and a default of non silent switches
     public Switches() {
@@ -13,13 +13,13 @@ public class Switches {
 
     // Getters
     // EFFECTS: returns the switch type
-    public String getSwitchType() {
+    public static String getSwitchType() {
         return switchType;
     }
 
     // EFFECTS: returns true if switches are silent
-    public boolean isSilentSwitches() {
-        return silentSwitches;
+    public static boolean isSilentSwitches() {
+        return Switches.silentSwitches;
     }
 
     // Setters
@@ -31,7 +31,7 @@ public class Switches {
 
     // MODIFIES: this
     // EFFECTS: sets if the switches are silent or not
-    public void setSilentSwitches(boolean silentSwitches) {
-        this.silentSwitches = silentSwitches;
+    public static void setSilentSwitches(boolean silentSwitches) {
+        Switches.silentSwitches = silentSwitches;
     }
 }

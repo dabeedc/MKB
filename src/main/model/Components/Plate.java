@@ -13,12 +13,12 @@ public class Plate {
 
     // Getters
     // EFFECTS: returns the material of the plate
-    public String getPlateMaterial() {
+    public static String getPlateMaterial() {
         return plateMaterial;
     }
 
     // EFFECTS: returns the size of the plate
-    public String getPlateSize() {
+    public static String getPlateSize() {
         return plateSize;
     }
 
