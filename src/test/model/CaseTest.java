@@ -51,7 +51,7 @@ public class CaseTest {
     }
 
     @Test
-    void testCaseComponents() {
+    void testCaseSpecs() {
         assertEquals("", testCase.getCaseMaterial());
         assertEquals("", testCase.getCaseSize());
         setCaseMaterial("aluminum");
