@@ -1,5 +1,6 @@
 package ui;
 
+import model.Keyboard;
 import model.components.*;
 import model.components.Case;
 
@@ -50,6 +51,7 @@ public class BuilderApp {
         }
     }
 
+    // EFFECTS: prints the build to the console
     private void printBuild() {
         System.out.println("\nHere is your completed build:");
         System.out.println("Case Specifications:");
@@ -206,10 +208,14 @@ public class BuilderApp {
             Switches.setSilentSwitches(b);
         }
         rateKeyboard();
-    }
+    }         //TODO fix silent switch toggle
 
+    // EFFECTS: gives a rating of the keyboard based on typing sound, typing feel, and weight
     private void rateKeyboard() {
+        System.out.println("\nOn a scale of 1 to 10: 1 being quiet, soft, and light; 10 being loud, "
+                + "hard, and heavy for the typing sound, feel, and weight, respectively.");
         System.out.println("This is your keyboard rating:");
+        Keyboard.rateTheKeyboard();
         runBuilder();
     }
 
@@ -250,36 +256,40 @@ public class BuilderApp {
         return null;
     }
 
+    // EFFECTS: gives the user information about the case component
     private String caseInfo() {
         System.out.println("THIS IS CASE INFORMATION");
         informationMenu();
         return null;
     }
 
+    // EFFECTS: gives the user information about the keycaps component
     private String keycapsInfo() {
         System.out.println("THIS IS KEYCAPS INFORMATION");
         informationMenu();
         return null;
     }
 
+    // EFFECTS: gives the user information about the plate component
     private String plateInfo() {
         System.out.println("THIS IS PLATE INFORMATION");
         informationMenu();
         return null;
     }
 
+    // EFFECTS: gives the user information about the printed circuit board component
     private String pcbInfo() {
         System.out.println("THIS IS PCB INFORMATION");
         informationMenu();
         return null;
     }
 
+    // EFFECTS: gives the user information about the switches
     private String switchesInfo() {
         System.out.println("THIS IS SWITCHES INFORMATION");
         informationMenu();
         return null;
     }
-
 
     // EFFECTS: displays menu of options to user
     private void displayMenu() {

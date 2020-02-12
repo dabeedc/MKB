@@ -9,7 +9,7 @@ A simple mechanical keyboard builder to help you select components using Java.
 - Case
 
 Using MK Part Picker, plan your build by learning briefly about different components and adding it to a list 
-with a rating for *feel*, *sound*, and *quality* after a compatibility check.
+with a rating for *feel*, *sound*, and *weight* after a compatibility check.
 
 The application will focus on two things: providing information and rating a keyboard build. Beginners interested 
 in building their first keyboard will be able to use this application as a single reference, as it contains information
