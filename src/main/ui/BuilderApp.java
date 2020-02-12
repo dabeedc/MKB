@@ -219,6 +219,12 @@ public class BuilderApp {
                 + "hard, and heavy for the typing sound, feel, and weight of the keyboard, respectively.");
         System.out.println("This is your keyboard rating:");
         Keyboard.rateTheKeyboard();
+        if (soundRating <= 0) {
+            soundRating = 1;
+        }
+        if (soundRating >= 10) {
+            soundRating = 10;
+        }
         System.out.println("Sound level: " + soundRating);
         System.out.println("Typing feel: " + feelRating);
         System.out.println("Weight: " + weightRating);
