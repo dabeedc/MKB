@@ -33,6 +33,22 @@ class KeyboardTest {
     }
 
     @Test
+    void testRateTheKeyboard() {
+        testKeyboard.keyboardCase.setCaseMaterial("aluminum");
+        testKeyboard.keyboardKeycaps.setKeycapsMaterial("abs");
+        testKeyboard.keyboardPlate.setPlateMaterial("brass");
+        testKeyboard.keyboardSwitches.setSwitchType("tactile");
+        testKeyboard.keyboardCase.setCaseMaterial("aluminum");
+        testKeyboard.keyboardPlate.setPlateMaterial("brass");
+        assertEquals(7,testKeyboard.ratePlateWeight());
+        assertEquals(9,testKeyboard.rateCaseWeight());
+        assertEquals(6,testKeyboard.rateSwitchesSound());
+        assertEquals(8,testKeyboard.ratePlateSound());
+        assertEquals(9, testKeyboard.rateCaseSound());
+        assertEquals(10, testKeyboard.rateKeycapsSound());
+    }
+
+    @Test
     void testRateCaseSoundAluminum() {
         assertEquals("", testKeyboard.keyboardCase.getCaseMaterial());
         assertEquals(5, soundRating);
