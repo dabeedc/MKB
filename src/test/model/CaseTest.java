@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Test;
 import static model.components.Case.setCaseMaterial;
 import static model.components.Case.setCaseSize;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public class CaseTest {
     Case testCase;
@@ -15,6 +14,12 @@ public class CaseTest {
     @BeforeEach
     void runBefore() {
         testCase = new Case();
+    }
+
+    @Test
+    void testConstructor() {
+        assertEquals("", testCase.getCaseMaterial());
+        assertEquals("", testCase.getCaseSize());
     }
 
     @Test
