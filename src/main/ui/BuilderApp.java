@@ -6,6 +6,8 @@ import model.components.Case;
 
 import java.util.Scanner;
 
+import static model.Keyboard.*;
+
 // Keyboard builder application
 // Citation: CPSC210 TellerApp for Scanner use
 public class BuilderApp {
@@ -217,6 +219,9 @@ public class BuilderApp {
                 + "hard, and heavy for the typing sound, feel, and weight, respectively.");
         System.out.println("This is your keyboard rating:");
         Keyboard.rateTheKeyboard();
+        System.out.println("Sound level: " + soundRating);
+        System.out.println("Typing feel: " + feelRating);
+        System.out.println("Weight: " + weightRating);
         runBuilder();
     }
 

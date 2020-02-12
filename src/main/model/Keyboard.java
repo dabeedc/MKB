@@ -36,9 +36,6 @@ public class Keyboard {
         rateSwitchesFeel();
         rateCaseWeight();
         ratePlateWeight();
-        System.out.println("Sound level: " + soundRating);
-        System.out.println("Typing feel: " + feelRating);
-        System.out.println("Weight: " + weightRating);
     }
 
     // MODIFIES: this
