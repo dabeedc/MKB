@@ -106,6 +106,14 @@ class KeyboardTest {
     }
 
     @Test
+    void testRateSwitchesSoundisSilenced() {
+        testKeyboard.keyboardSwitches.setSwitchType("tactile");
+        assertEquals(6,testKeyboard.rateSwitchesSound());
+        testKeyboard.keyboardSwitches.setSilentSwitches(true);
+        assertEquals(2,testKeyboard.rateSwitchesSound());
+    }
+
+    @Test
     void testRateCaseFeelAluminum() {
         testKeyboard.keyboardCase.setCaseMaterial("aluminum");
         assertEquals(6,testKeyboard.rateCaseFeel());
