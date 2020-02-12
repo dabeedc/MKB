@@ -36,6 +36,12 @@ public class Keyboard {
         rateSwitchesFeel();
         rateCaseWeight();
         ratePlateWeight();
+        if (soundRating <= 0) {
+            soundRating = 0;
+        }
+        if (soundRating >= 10) {
+            soundRating = 10;
+        }
     }
 
     // MODIFIES: this

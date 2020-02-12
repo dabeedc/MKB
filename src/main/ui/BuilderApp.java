@@ -110,7 +110,7 @@ public class BuilderApp {
     // EFFECTS: Prompts for user input for keycaps material
     private void buildKeycapsMaterial() {
         String selection = "";
-        System.out.println("Choose a keycap material for your " + Case.getCaseSize() + " " + Case.getCaseMaterial()
+        System.out.println("Choose a keycap material for your " + Case.getCaseSize() + ", " + Case.getCaseMaterial()
                 + " keyboard: PBT or ABS");
 
         while (!(selection.equals("pbt") || (selection.equals("abs")))) {
@@ -128,8 +128,8 @@ public class BuilderApp {
     // EFFECTS: Prompts for user input for plate material
     private void buildPlateMaterial() {
         String selection = "";
-        System.out.println("Choose a plate material for your " + Case.getCaseSize() + " " + Case.getCaseMaterial()
-                + " with " + Keycaps.getKeycapsMaterial() + " keycaps: brass, aluminum, or polycarbonate?");
+        System.out.println("Choose a plate material for your " + Case.getCaseSize() + ", " + Case.getCaseMaterial()
+                + " keyboard: brass, aluminum, or polycarbonate?");
 
         while (!(selection.equals("brass") || (selection.equals("aluminum") || (selection.equals("polycarbonate"))))) {
             selection = input.nextLine();
@@ -148,7 +148,7 @@ public class BuilderApp {
     // EFFECTS: Prompts for user input for plate size
     private void buildPlateSize() {
         String selection = "";
-        System.out.println("Choose a plate size for your " + Plate.getPlateMaterial() + " plate: small, "
+        System.out.println("How large is your " + Plate.getPlateMaterial() + " plate: small, "
                 + "medium, or large?");
 
         while (!(selection.equals("small") || (selection.equals("medium") || (selection.equals("large"))))) {
@@ -187,7 +187,7 @@ public class BuilderApp {
     // EFFECTS: Prompts for user input for key switch type
     private void buildSwitchesType() {
         String selection = "";
-        System.out.println("What switches would you like to accompany your keyboard: tactile, linear, or clicky?");
+        System.out.println("What switches would you like to use in your keyboard: tactile, linear, or clicky?");
 
         while (!(selection.equals("tactile") || (selection.equals("linear") || (selection.equals("clicky"))))) {
             selection = input.nextLine();
@@ -216,7 +216,7 @@ public class BuilderApp {
     // EFFECTS: gives a rating of the keyboard based on typing sound, typing feel, and weight
     private void rateKeyboard() {
         System.out.println("\nOn a scale of 1 to 10: 1 being quiet, soft, and light; 10 being loud, "
-                + "hard, and heavy for the typing sound, feel, and weight, respectively.");
+                + "hard, and heavy for the typing sound, feel, and weight of the keyboard, respectively.");
         System.out.println("This is your keyboard rating:");
         Keyboard.rateTheKeyboard();
         System.out.println("Sound level: " + soundRating);
