@@ -35,3 +35,4 @@ public class Case {
         Case.caseSize = caseSize;
     }
 }
+Test
