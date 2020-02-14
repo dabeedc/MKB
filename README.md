@@ -1,4 +1,4 @@
-# MK Parts Picker
+# MK Parts Picker V1.0
 A simple mechanical keyboard builder to help you select components using Java.
 ## Features
 **Main Components of a Mechanical Keyboard**:
