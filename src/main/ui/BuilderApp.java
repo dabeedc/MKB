@@ -222,30 +222,11 @@ public class BuilderApp {
         System.out.println("\nOn a scale of 1 to 10: 1 being quiet, soft, and light; 10 being loud, "
                 + "hard, and heavy for the typing sound, feel, and weight of the keyboard, respectively.");
         System.out.println("This is your keyboard rating:");
-        rateTheKeyboard();
-        if (keyboard.getSoundRating() <= 0) {
-            keyboard.setSoundRating(1);
-        }
-        if (keyboard.getSoundRating() >= 10) {
-            keyboard.setSoundRating(10);
-        }
+        keyboard.rateTheKeyboard();
         System.out.println("Sound level: " + keyboard.getSoundRating());
         System.out.println("Typing feel: " + keyboard.getFeelRating());
         System.out.println("Weight: " + keyboard.getWeightRating());
         stopLoop();
-    }
-
-    // EFFECTS: returns the rating of the keyboard based on components to console
-    public void rateTheKeyboard() {
-        keyboard.rateCaseSound();
-        keyboard.rateKeycapsSound();
-        keyboard.ratePlateSound();
-        keyboard.rateSwitchesSound();
-        keyboard.rateCaseFeel();
-        keyboard.ratePlateFeel();
-        keyboard.rateSwitchesFeel();
-        keyboard.rateCaseWeight();
-        keyboard.ratePlateWeight();
     }
 
     // EFFECTS: displays information menu to user
@@ -331,6 +312,6 @@ public class BuilderApp {
         System.out.println("\tInformation");
         System.out.println("\tBuild");
         System.out.println("\tPrint");
-        System.out.println("\tor quit");
+        System.out.println("\tQuit");
     }
 }

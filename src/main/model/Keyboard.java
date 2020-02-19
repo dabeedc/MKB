@@ -28,6 +28,25 @@ public class Keyboard {
         weightRating = 5;
     }
 
+    // EFFECTS: returns the rating of the keyboard based on components
+    public void rateTheKeyboard() {
+        rateCaseSound();
+        rateKeycapsSound();
+        ratePlateSound();
+        rateSwitchesSound();
+        rateCaseFeel();
+        ratePlateFeel();
+        rateSwitchesFeel();
+        rateCaseWeight();
+        ratePlateWeight();
+        if (getSoundRating() <= 0) {
+            setSoundRating(1);
+        }
+        if (getSoundRating() >= 10) {
+            setSoundRating(10);
+        }
+    }
+
     // MODIFIES: this
     // EFFECTS: rates the sound of the keyboard based on the case's properties
     public int rateCaseSound() {
