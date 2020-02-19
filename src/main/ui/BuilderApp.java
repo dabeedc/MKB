@@ -20,6 +20,7 @@ public class BuilderApp {
     // MODIFIES: this
     // EFFECTS: processes user input
     private void runBuilder() {
+        keyboard = new Keyboard();
         boolean keepGoing = true;
         String command = null;
         input = new Scanner(System.in);
@@ -73,7 +74,6 @@ public class BuilderApp {
 
     // EFFECTS: starts the building process of a keyboard
     private void startBuild() {
-        keyboard = new Keyboard();
         String selection = "";
         System.out.println("What size keyboard are you interested in: small, medium, or large?");
 
