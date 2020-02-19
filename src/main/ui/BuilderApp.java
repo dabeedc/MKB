@@ -6,12 +6,11 @@ import model.components.Case;
 
 import java.util.Scanner;
 
-import static model.Keyboard.*;
-
 // Keyboard builder application
 // Citation: CPSC210 TellerApp for Scanner use
 public class BuilderApp {
     private Scanner input;
+    private Keyboard keyboard;
 
     // EFFECTS: runs the builder application
     public BuilderApp() {
@@ -58,22 +57,23 @@ public class BuilderApp {
     private void printBuild() {
         System.out.println("\nHere is your completed build:");
         System.out.println("Case Specifications:");
-        System.out.println(Case.getCaseSize());
-        System.out.println(Case.getCaseMaterial());
+        System.out.println(keyboard.getKeyboardCase().getCaseSize());
+        System.out.println(keyboard.getKeyboardCase().getCaseMaterial());
         System.out.println("Keycaps Specifications:");
-        System.out.println(Keycaps.getKeycapsMaterial());
+        System.out.println(keyboard.getKeyboardKeycaps().getKeycapsMaterial());
         System.out.println("Plate Specifications:");
-        System.out.println(Plate.getPlateMaterial());
-        System.out.println(Plate.getPlateSize());
+        System.out.println(keyboard.getKeyboardPlate().getPlateMaterial());
+        System.out.println(keyboard.getKeyboardPlate().getPlateSize());
         System.out.println("PCB Specifications:");
-        System.out.println(PrintedCircuitBoard.getPcbSize());
+        System.out.println(keyboard.getKeyboardPrintedCircuitBoard().getPcbSize());
         System.out.println("Keyswitch Specifications:");
-        System.out.println(Switches.getSwitchType());
-        System.out.println("Silent? " + Switches.isSilentSwitches());
+        System.out.println(keyboard.getKeyboardSwitches().getSwitchType());
+        System.out.println("Silent? " + keyboard.getKeyboardSwitches().isSilentSwitches());
     }
 
     // EFFECTS: starts the building process of a keyboard
     private void startBuild() {
+        keyboard = new Keyboard();
         String selection = "";
         System.out.println("What size keyboard are you interested in: small, medium, or large?");
 
@@ -81,11 +81,11 @@ public class BuilderApp {
             selection = input.nextLine();
         }
         if (selection.equals("small")) {
-            Case.setCaseSize(selection);
+            keyboard.getKeyboardCase().setCaseSize(selection);
         } else if (selection.equals("medium")) {
-            Case.setCaseSize(selection);
+            keyboard.getKeyboardCase().setCaseSize(selection);
         } else if (selection.equals("large")) {
-            Case.setCaseSize(selection);
+            keyboard.getKeyboardCase().setCaseSize(selection);
         }
         buildCaseMaterial();
     }
@@ -93,16 +93,17 @@ public class BuilderApp {
     // EFFECTS: Prompts for user input for case material
     private void buildCaseMaterial() {
         String selection = "";
-        System.out.println("Choose a case material for your " + Case.getCaseSize() + " keyboard: aluminum or plastic?");
+        System.out.println("Choose a case material for your " + keyboard.getKeyboardCase().getCaseSize()
+                + " keyboard: aluminum or plastic?");
 
         while (!(selection.equals("aluminum") || (selection.equals("plastic")))) {
             selection = input.nextLine();
-            Case.setCaseMaterial(selection);
+            keyboard.getKeyboardCase().setCaseMaterial(selection);
         }
         if (selection.equals("aluminum")) {
-            Case.setCaseMaterial(selection);
+            keyboard.getKeyboardCase().setCaseMaterial(selection);
         } else if (selection.equals("plastic")) {
-            Case.setCaseMaterial(selection);
+            keyboard.getKeyboardCase().setCaseMaterial(selection);
         }
         buildKeycapsMaterial();
     }
@@ -110,17 +111,18 @@ public class BuilderApp {
     // EFFECTS: Prompts for user input for keycaps material
     private void buildKeycapsMaterial() {
         String selection = "";
-        System.out.println("Choose a keycap material for your " + Case.getCaseSize() + ", " + Case.getCaseMaterial()
+        System.out.println("Choose a keycap material for your " + keyboard.getKeyboardCase().getCaseSize()
+                + ", " + keyboard.getKeyboardCase().getCaseMaterial()
                 + " keyboard: PBT or ABS");
 
         while (!(selection.equals("pbt") || (selection.equals("abs")))) {
             selection = input.nextLine();
-            Keycaps.setKeycapsMaterial(selection);
+            keyboard.getKeyboardKeycaps().setKeycapsMaterial(selection);
         }
         if (selection.equals("pbt")) {
-            Keycaps.setKeycapsMaterial(selection);
+            keyboard.getKeyboardKeycaps().setKeycapsMaterial(selection);
         } else if (selection.equals("abs")) {
-            Keycaps.setKeycapsMaterial(selection);
+            keyboard.getKeyboardKeycaps().setKeycapsMaterial(selection);
         }
         buildPlateMaterial();
     }
@@ -128,19 +130,20 @@ public class BuilderApp {
     // EFFECTS: Prompts for user input for plate material
     private void buildPlateMaterial() {
         String selection = "";
-        System.out.println("Choose a plate material for your " + Case.getCaseSize() + ", " + Case.getCaseMaterial()
+        System.out.println("Choose a plate material for your "
+                + keyboard.getKeyboardCase().getCaseSize() + ", " + keyboard.getKeyboardCase().getCaseMaterial()
                 + " keyboard: brass, aluminum, or polycarbonate?");
 
         while (!(selection.equals("brass") || (selection.equals("aluminum") || (selection.equals("polycarbonate"))))) {
             selection = input.nextLine();
-            Plate.setPlateMaterial(selection);
+            keyboard.getKeyboardPlate().setPlateMaterial(selection);
         }
         if (selection.equals("brass")) {
-            Plate.setPlateMaterial(selection);
+            keyboard.getKeyboardPlate().setPlateMaterial(selection);
         } else if (selection.equals("aluminum")) {
-            Plate.setPlateMaterial(selection);
+            keyboard.getKeyboardPlate().setPlateMaterial(selection);
         } else if (selection.equals("polycarbonate")) {
-            Plate.setPlateMaterial(selection);
+            keyboard.getKeyboardPlate().setPlateMaterial(selection);
         }
         buildPlateSize();
     }
@@ -148,19 +151,19 @@ public class BuilderApp {
     // EFFECTS: Prompts for user input for plate size
     private void buildPlateSize() {
         String selection = "";
-        System.out.println("How large is your " + Plate.getPlateMaterial() + " plate: small, "
+        System.out.println("How large is your " + keyboard.getKeyboardPlate().getPlateMaterial() + " plate: small, "
                 + "medium, or large?");
 
         while (!(selection.equals("small") || (selection.equals("medium") || (selection.equals("large"))))) {
             selection = input.nextLine();
-            Plate.setPlateSize(selection);
+            keyboard.getKeyboardPlate().setPlateSize(selection);
         }
         if (selection.equals("small")) {
-            Plate.setPlateSize(selection);
+            keyboard.getKeyboardPlate().setPlateSize(selection);
         } else if (selection.equals("medium")) {
-            Plate.setPlateSize(selection);
+            keyboard.getKeyboardPlate().setPlateSize(selection);
         } else if (selection.equals("large")) {
-            Plate.setPlateSize(selection);
+            keyboard.getKeyboardPlate().setPlateSize(selection);
         }
         buildPrintedCircuitBoardSize();
     }
@@ -172,14 +175,14 @@ public class BuilderApp {
 
         while (!(selection.equals("small") || (selection.equals("medium") || (selection.equals("large"))))) {
             selection = input.nextLine();
-            PrintedCircuitBoard.setPcbSize(selection);
+            keyboard.getKeyboardPrintedCircuitBoard().setPcbSize(selection);
         }
         if (selection.equals("small")) {
-            PrintedCircuitBoard.setPcbSize(selection);
+            keyboard.getKeyboardPrintedCircuitBoard().setPcbSize(selection);
         } else if (selection.equals("medium")) {
-            PrintedCircuitBoard.setPcbSize(selection);
+            keyboard.getKeyboardPrintedCircuitBoard().setPcbSize(selection);
         } else if (selection.equals("large")) {
-            PrintedCircuitBoard.setPcbSize(selection);
+            keyboard.getKeyboardPrintedCircuitBoard().setPcbSize(selection);
         }
         buildSwitchesType();
     }
@@ -191,14 +194,14 @@ public class BuilderApp {
 
         while (!(selection.equals("tactile") || (selection.equals("linear") || (selection.equals("clicky"))))) {
             selection = input.nextLine();
-            Switches.setSwitchType(selection);
+            keyboard.getKeyboardSwitches().setSwitchType(selection);
         }
         if (selection.equals("tactile")) {
-            Switches.setSwitchType(selection);
+            keyboard.getKeyboardSwitches().setSwitchType(selection);
         } else if (selection.equals("linear")) {
-            Switches.setSwitchType(selection);
+            keyboard.getKeyboardSwitches().setSwitchType(selection);
         } else if (selection.equals("clicky")) {
-            Switches.setSwitchType(selection);
+            keyboard.getKeyboardSwitches().setSwitchType(selection);
         }
         buildSilentSwitches();
     }
@@ -206,10 +209,11 @@ public class BuilderApp {
     // EFFECTS: Prompts user for preference of silent switches or not
     private void buildSilentSwitches() {
         String selection = "";
-        System.out.println("Do you want your " + Switches.getSwitchType() + " switches to be silent?");
+        System.out.println("Do you want your " + keyboard.getKeyboardSwitches().getSwitchType()
+                + " switches to be silent?");
         selection = input.nextLine();
         boolean b = selection.equals("yes");
-        Switches.setSilentSwitches(b);
+        keyboard.getKeyboardSwitches().setSilentSwitches(b);
         rateKeyboard();
     }
 
@@ -218,16 +222,16 @@ public class BuilderApp {
         System.out.println("\nOn a scale of 1 to 10: 1 being quiet, soft, and light; 10 being loud, "
                 + "hard, and heavy for the typing sound, feel, and weight of the keyboard, respectively.");
         System.out.println("This is your keyboard rating:");
-        Keyboard.rateTheKeyboard();
-        if (soundRating <= 0) {
-            soundRating = 1;
+        keyboard.rateTheKeyboard();
+        if (keyboard.getSoundRating() <= 0) {
+            keyboard.setSoundRating(1);
         }
-        if (soundRating >= 10) {
-            soundRating = 10;
+        if (keyboard.getSoundRating() >= 10) {
+            keyboard.setSoundRating(10);
         }
-        System.out.println("Sound level: " + soundRating);
-        System.out.println("Typing feel: " + feelRating);
-        System.out.println("Weight: " + weightRating);
+        System.out.println("Sound level: " + keyboard.getSoundRating());
+        System.out.println("Typing feel: " + keyboard.getFeelRating());
+        System.out.println("Weight: " + keyboard.getWeightRating());
         stopLoop();
     }
 

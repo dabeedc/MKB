@@ -2,8 +2,8 @@ package model.components;
 
 // Represents a plate of the keyboard having a material type and size
 public class Plate {
-    private static String plateMaterial;
-    private static String plateSize;
+    private String plateMaterial;
+    private String plateSize;
 
     // EFFECTS: Constructs a plate with no plateMaterial and no plateSize
     public Plate() {
@@ -13,25 +13,25 @@ public class Plate {
 
     // Getters
     // EFFECTS: returns the material of the plate
-    public static String getPlateMaterial() {
+    public String getPlateMaterial() {
         return plateMaterial;
     }
 
     // EFFECTS: returns the size of the plate
-    public static String getPlateSize() {
+    public String getPlateSize() {
         return plateSize;
     }
 
     // Setters
     // MODIFIES: this
     // EFFECTS: sets material of the plate
-    public static void setPlateMaterial(String plateMaterial) {
-        Plate.plateMaterial = plateMaterial;
+    public void setPlateMaterial(String plateMaterial) {
+        this.plateMaterial = plateMaterial;
     }
 
     // MODIFIES: this
     // EFFECTS: sets the size of the plate
-    public static void setPlateSize(String plateSize) {
-        Plate.plateSize = plateSize;
+    public void setPlateSize(String plateSize) {
+        this.plateSize = plateSize;
     }
 }
