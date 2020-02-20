@@ -163,7 +163,14 @@ public class BuilderApp {
         while (!(selection.equals("60%") || (selection.equals("75%") || (selection.equals("tkl"))))) {
             selection = choice.nextLine();
             selection = selection.toLowerCase();
+            while (!selection.equals(keyboard.getKeyboardCase().getCaseSize())) {
+                System.out.println("Your case size is: " + keyboard.getKeyboardCase().getCaseSize().toUpperCase()
+                        + ". Please reselect a plate that will fit inside your case: 60%, 75%, or TKL?");
+                selection = choice.nextLine();
+                selection = selection.toLowerCase();
+            }
         }
+
         if (selection.equals("60%")) {
             keyboard.getKeyboardPlate().setPlateSize(selection);
         } else if (selection.equals("75%")) {
@@ -182,6 +189,12 @@ public class BuilderApp {
         while (!(selection.equals("60%") || (selection.equals("75%") || (selection.equals("tkl"))))) {
             selection = choice.nextLine();
             selection = selection.toLowerCase();
+            while (!selection.equals(keyboard.getKeyboardCase().getCaseSize())) {
+                System.out.println("Your plate size is: " + keyboard.getKeyboardPlate().getPlateSize().toUpperCase()
+                        + ". Please reselect a PCB that fits your plate: 60%, 75%, or TKL?");
+                selection = choice.nextLine();
+                selection = selection.toLowerCase();
+            }
         }
         if (selection.equals("60%")) {
             keyboard.getKeyboardPrintedCircuitBoard().setPcbSize(selection);
