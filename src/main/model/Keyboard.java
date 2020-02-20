@@ -30,7 +30,7 @@ public class Keyboard {
 
     // MODIFIES: this
     // EFFECTS: returns the rating of the keyboard based on components
-    public void rateTheKeyboard() {
+    public void rateKeyboard() {
         rateCaseSound();
         rateKeycapsSound();
         ratePlateSound();

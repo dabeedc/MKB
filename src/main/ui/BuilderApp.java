@@ -51,9 +51,27 @@ public class BuilderApp {
             case "print":
                 printBuild();
                 break;
+            case "rate":
+                printRating();
+                break;
             default:
                 System.out.println("Invalid selection...");
                 break;
+        }
+    }
+
+    // EFFECTS: prints the rating to the console
+    private void printRating() {
+        if (keyboard.getKeyboardCase().getCaseMaterial().equals("")) {
+            System.out.println("\n There is no build to rate! Please return to the menu and "
+                    + "select Build to start your build!");
+        } else {
+            System.out.println("\nOn a scale of 1 to 10: 1 being quiet, soft, and light; 10 being loud, "
+                    + "hard, and heavy for the typing sound, feel, and weight of the keyboard, respectively.");
+            System.out.println("This is your keyboard rating:");
+            System.out.println("Sound level: " + keyboard.getSoundRating());
+            System.out.println("Typing feel: " + keyboard.getFeelRating());
+            System.out.println("Weight: " + keyboard.getWeightRating());
         }
     }
 
@@ -224,7 +242,7 @@ public class BuilderApp {
                 break;
             case "clicky":
                 keyboard.getKeyboardSwitches().setSwitchType(selection);
-                rateKeyboard();
+                keyboardRating();
                 break;
         }
     }
@@ -236,15 +254,15 @@ public class BuilderApp {
         String selection = choice.nextLine();
         boolean b = selection.equals("yes");
         keyboard.getKeyboardSwitches().setSilentSwitches(b);
-        rateKeyboard();
+        keyboardRating();
     }
 
     // EFFECTS: gives a rating of the keyboard based on typing sound, typing feel, and weight
-    private void rateKeyboard() {
+    private void keyboardRating() {
         System.out.println("\nOn a scale of 1 to 10: 1 being quiet, soft, and light; 10 being loud, "
                 + "hard, and heavy for the typing sound, feel, and weight of the keyboard, respectively.");
         System.out.println("This is your keyboard rating:");
-        keyboard.rateTheKeyboard();
+        keyboard.rateKeyboard();
         System.out.println("Sound level: " + keyboard.getSoundRating());
         System.out.println("Typing feel: " + keyboard.getFeelRating());
         System.out.println("Weight: " + keyboard.getWeightRating());
@@ -329,6 +347,7 @@ public class BuilderApp {
         System.out.println("\tInformation");
         System.out.println("\tBuild");
         System.out.println("\tPrint");
+        System.out.println("\tRate");
         System.out.println("\tQuit");
     }
 }
