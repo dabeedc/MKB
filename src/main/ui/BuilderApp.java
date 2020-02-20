@@ -41,14 +41,19 @@ public class BuilderApp {
     // MODIFIES: this
     // EFFECTS: processes user command
     private void processCommand(String command) {
-        if (command.equals("information")) {
-            informationMenu();
-        } else if (command.equals("build")) {
-            startBuild();
-        } else if (command.equals("print")) {
-            printBuild();
-        } else {
-            System.out.println("Invalid selection...");
+        switch (command) {
+            case "information":
+                informationMenu();
+                break;
+            case "build":
+                startBuild();
+                break;
+            case "print":
+                printBuild();
+                break;
+            default:
+                System.out.println("Invalid selection...");
+                break;
         }
     }
 
@@ -83,12 +88,12 @@ public class BuilderApp {
             selection = choice.nextLine();
             selection = selection.toLowerCase();
         }
-        if (selection.equals("60%")) {
-            keyboard.getKeyboardCase().setCaseSize(selection);
-        } else if (selection.equals("75%")) {
-            keyboard.getKeyboardCase().setCaseSize(selection);
-        } else if (selection.equals("tkl")) {
-            keyboard.getKeyboardCase().setCaseSize(selection);
+        switch (selection) {
+            case "60%":
+            case "75%":
+            case "tkl":
+                keyboard.getKeyboardCase().setCaseSize(selection);
+                break;
         }
         buildCaseMaterial();
     }
@@ -104,12 +109,12 @@ public class BuilderApp {
             selection = choice.nextLine();
             selection = selection.toLowerCase();
         }
-        if (selection.equals("aluminum")) {
-            keyboard.getKeyboardCase().setCaseMaterial(selection);
-        } else if (selection.equals("plastic")) {
-            keyboard.getKeyboardCase().setCaseMaterial(selection);
-        } else if (selection.equals("polycarbonate")) {
-            keyboard.getKeyboardCase().setCaseMaterial(selection);
+        switch (selection) {
+            case "aluminum":
+            case "plastic":
+            case "polycarbonate":
+                keyboard.getKeyboardCase().setCaseMaterial(selection);
+                break;
         }
         buildKeycapsMaterial();
     }
@@ -124,11 +129,7 @@ public class BuilderApp {
             selection = choice.nextLine();
             selection = selection.toLowerCase();
         }
-        if (selection.equals("pbt")) {
-            keyboard.getKeyboardKeycaps().setKeycapsMaterial(selection);
-        } else if (selection.equals("abs")) {
-            keyboard.getKeyboardKeycaps().setKeycapsMaterial(selection);
-        }
+        keyboard.getKeyboardKeycaps().setKeycapsMaterial(selection);
         buildPlateMaterial();
     }
 
@@ -144,12 +145,12 @@ public class BuilderApp {
             selection = choice.nextLine();
             selection = selection.toLowerCase();
         }
-        if (selection.equals("brass")) {
-            keyboard.getKeyboardPlate().setPlateMaterial(selection);
-        } else if (selection.equals("aluminum")) {
-            keyboard.getKeyboardPlate().setPlateMaterial(selection);
-        } else if (selection.equals("polycarbonate")) {
-            keyboard.getKeyboardPlate().setPlateMaterial(selection);
+        switch (selection) {
+            case "brass":
+            case "aluminum":
+            case "polycarbonate":
+                keyboard.getKeyboardPlate().setPlateMaterial(selection);
+                break;
         }
         buildPlateSize();
     }
@@ -171,12 +172,12 @@ public class BuilderApp {
             }
         }
 
-        if (selection.equals("60%")) {
-            keyboard.getKeyboardPlate().setPlateSize(selection);
-        } else if (selection.equals("75%")) {
-            keyboard.getKeyboardPlate().setPlateSize(selection);
-        } else if (selection.equals("tkl")) {
-            keyboard.getKeyboardPlate().setPlateSize(selection);
+        switch (selection) {
+            case "60%":
+            case "75%":
+            case "tkl":
+                keyboard.getKeyboardPlate().setPlateSize(selection);
+                break;
         }
         buildPrintedCircuitBoardSize();
     }
@@ -196,12 +197,12 @@ public class BuilderApp {
                 selection = selection.toLowerCase();
             }
         }
-        if (selection.equals("60%")) {
-            keyboard.getKeyboardPrintedCircuitBoard().setPcbSize(selection);
-        } else if (selection.equals("75%")) {
-            keyboard.getKeyboardPrintedCircuitBoard().setPcbSize(selection);
-        } else if (selection.equals("tkl")) {
-            keyboard.getKeyboardPrintedCircuitBoard().setPcbSize(selection);
+        switch (selection) {
+            case "60%":
+            case "75%":
+            case "tkl":
+                keyboard.getKeyboardPrintedCircuitBoard().setPcbSize(selection);
+                break;
         }
         buildSwitchesType();
     }
@@ -215,24 +216,24 @@ public class BuilderApp {
             selection = choice.nextLine();
             selection = selection.toLowerCase();
         }
-        if (selection.equals("tactile")) {
-            keyboard.getKeyboardSwitches().setSwitchType(selection);
-            buildSilentSwitches();
-        } else if (selection.equals("linear")) {
-            keyboard.getKeyboardSwitches().setSwitchType(selection);
-            buildSilentSwitches();
-        } else if (selection.equals("clicky")) {
-            keyboard.getKeyboardSwitches().setSwitchType(selection);
-            rateKeyboard();
+        switch (selection) {
+            case "tactile":
+            case "linear":
+                keyboard.getKeyboardSwitches().setSwitchType(selection);
+                buildSilentSwitches();
+                break;
+            case "clicky":
+                keyboard.getKeyboardSwitches().setSwitchType(selection);
+                rateKeyboard();
+                break;
         }
     }
 
     // EFFECTS: Prompts user for preference of silent switches or not
     private void buildSilentSwitches() {
-        String selection = "";
         System.out.println("Do you want your " + keyboard.getKeyboardSwitches().getSwitchType()
                 + " switches to be silent?");
-        selection = choice.nextLine();
+        String selection = choice.nextLine();
         boolean b = selection.equals("yes");
         keyboard.getKeyboardSwitches().setSilentSwitches(b);
         rateKeyboard();
@@ -247,7 +248,6 @@ public class BuilderApp {
         System.out.println("Sound level: " + keyboard.getSoundRating());
         System.out.println("Typing feel: " + keyboard.getFeelRating());
         System.out.println("Weight: " + keyboard.getWeightRating());
-        stopLoop();
     }
 
     // EFFECTS: displays information menu to user
@@ -271,25 +271,21 @@ public class BuilderApp {
             selection = selection.toLowerCase();
         }
 
-        if (selection.equals("case")) {
-            return caseInfo();
-        } else if (selection.equals("keycaps")) {
-            return keycapsInfo();
-        } else if (selection.equals("plate")) {
-            return plateInfo();
-        } else if (selection.equals("pcb")) {
-            return pcbInfo();
-        } else if (selection.equals("switches")) {
-            return switchesInfo();
-        } else if (selection.equals("back")) {
-            stopLoop();
+        switch (selection) {
+            case "case":
+                return caseInfo();
+            case "keycaps":
+                return keycapsInfo();
+            case "plate":
+                return plateInfo();
+            case "pcb":
+                return pcbInfo();
+            case "switches":
+                return switchesInfo();
+            case "back":
+                break;
         }
         return null;
-    }
-
-    // EFFECTS: stops the loop
-    private boolean stopLoop() {
-        return false;
     }
 
     // EFFECTS: gives the user information about the case component
