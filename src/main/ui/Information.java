@@ -5,7 +5,8 @@ public class Information {
             + "keyboard. It makes direct contact with \nthe plate, hence the material of these two components "
             + "will be a factor in typing feel and typing sound. \nCases are made with a variety of materials, "
             + "but more popular: aluminum, polycarbonate, and plastic \n(polyurethane or polypropylene). Cases "
-            + "also come in a variety of sizes to accommodate printed circuit \nboards: 60%, TKL, and full sized.\n";
+            + "also come in a variety of sizes to accommodate printed circuit \nboards, most commonly for customs: "
+            + "60%, 75%, and TKL.\n";
 
     public static final String KEYCAPS_INFO = "\nKeycaps are generally made of plastics and they fit on top of the "
             + "key switches so the user may input \ncharacters and symbols onto the computer. The most popular keycap"
@@ -30,6 +31,9 @@ public class Information {
             + " name from utilizing mechanical key \nswitches. These switches are made from a variety of plastics"
             + " including nylon, pom, or polycarbonate \nand house a spring, metal contact leaf, and a stem containing"
             + " a slider. Key switches dictate the majority \nof the typing feel as they are constructed different"
-            + " from one another. The stem can provide a linear, \ntactile, or clicky experience. Dampeners are"
-            + " also utilized in silent switches to reduce keystroke noise.\n";
+            + " from one another. The stem can provide a linear, \ntactile, or clicky experience. Linear switches"
+            + " provide a smooth key travel and has no audible sound, tactile \nswitches have a tactile bump with "
+            + " no audible sound, and clicky switches have a tactile bump along with \nan audible sound. Dampeners are"
+            + " utilized in tactile or linear switches which makes them silent switches \nby further"
+            + " reducing keystroke noise\n";
 }
