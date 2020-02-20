@@ -40,7 +40,7 @@ class KeyboardTest {
     }
 
     @Test
-    void restRateTheKeyboard() {
+    void testRateTheKeyboard() {
         testKeyboard.getKeyboardCase().setCaseMaterial("aluminum");
         testKeyboard.getKeyboardKeycaps().setKeycapsMaterial("abs");
         testKeyboard.getKeyboardPlate().setPlateMaterial("brass");
@@ -49,7 +49,19 @@ class KeyboardTest {
         assertEquals(10,testKeyboard.getSoundRating());
         assertEquals(10,testKeyboard.getFeelRating());
         assertEquals(9,testKeyboard.getWeightRating());
+    }
 
+    @Test
+    void testRateTheKeyboardSilent() {
+        testKeyboard.getKeyboardCase().setCaseMaterial("aluminum");
+        testKeyboard.getKeyboardKeycaps().setKeycapsMaterial("pbt");
+        testKeyboard.getKeyboardPlate().setPlateMaterial("plastic");
+        testKeyboard.getKeyboardSwitches().setSwitchType("linear");
+        testKeyboard.getKeyboardSwitches().setSilentSwitches(true);
+        testKeyboard.rateTheKeyboard();
+        assertEquals(1,testKeyboard.getSoundRating());
+        assertEquals(5,testKeyboard.getFeelRating());
+        assertEquals(7,testKeyboard.getWeightRating());
     }
 
 

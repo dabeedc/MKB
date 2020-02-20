@@ -28,6 +28,7 @@ public class Keyboard {
         weightRating = 5;
     }
 
+    // MODIFIES: this
     // EFFECTS: returns the rating of the keyboard based on components
     public void rateTheKeyboard() {
         rateCaseSound();
@@ -159,43 +160,50 @@ public class Keyboard {
         return weightRating;
     }
 
+    // Getters
+    // EFFECTS: returns the sound rating of the keyboard
     public int getSoundRating() {
         return soundRating;
     }
 
-    public void setSoundRating(int soundRating) {
-        this.soundRating = soundRating;
-    }
-
+    // EFFECTS: returns the feel rating of the keyboard
     public int getFeelRating() {
         return feelRating;
     }
 
+    // EFFECTS: returns the weight rating of the keyboard
     public int getWeightRating() {
         return weightRating;
     }
 
+    // EFFECTS: returns the keyboard Case
     public Case getKeyboardCase() {
         return keyboardCase;
     }
 
-
+    // EFFECTS: returns the keyboard Keycaps
     public Keycaps getKeyboardKeycaps() {
         return keyboardKeycaps;
     }
 
-
+    // EFFECTS: returns the keyboard Plate
     public Plate getKeyboardPlate() {
         return keyboardPlate;
     }
 
-
+    // EFFECTS: returns the keyboard PrintedCircuitBoard
     public PrintedCircuitBoard getKeyboardPrintedCircuitBoard() {
         return keyboardPrintedCircuitBoard;
     }
 
-
+    // EFFECTS: returns the keyboard Switches
     public Switches getKeyboardSwitches() {
         return keyboardSwitches;
+    }
+
+    // Setters
+    // EFFECTS: sets the given sound rating
+    public void setSoundRating(int soundRating) {
+        this.soundRating = soundRating;
     }
 }
