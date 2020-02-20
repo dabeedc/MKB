@@ -75,6 +75,15 @@ class KeyboardTest {
     }
 
     @Test
+    void testRateCaseSoundPolycarbonate() {
+        assertEquals("", testKeyboard.getKeyboardCase().getCaseMaterial());
+        assertEquals(5, testKeyboard.getSoundRating());
+        testKeyboard.getKeyboardCase().setCaseMaterial("polycarbonate");
+        assertEquals("polycarbonate", testKeyboard.getKeyboardCase().getCaseMaterial());
+        assertEquals(5, testKeyboard.rateCaseSound());
+    }
+
+    @Test
     void testRateCaseSoundPlastic() {
         assertEquals("", testKeyboard.getKeyboardCase().getCaseMaterial());
         assertEquals(5, testKeyboard.getSoundRating());
