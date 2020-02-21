@@ -1,10 +1,14 @@
 package model;
 
-import model.components.Case;
 import model.components.*;
 
+import persistence.Reader;
+import persistence.Saveable;
+
+import java.io.PrintWriter;
+
 // Represents a fully built keyboard having a case, keycaps, plate, printed circuit board, and switches.
-public class Keyboard {
+public class Keyboard implements Saveable {
     private Case keyboardCase;
     private Keycaps keyboardKeycaps;
     private Plate keyboardPlate;
@@ -27,6 +31,21 @@ public class Keyboard {
         feelRating = 5;
         weightRating = 5;
     }
+
+//    // EFFECTS: Constructor used only when constructing a keyboard stored in file
+//    public Keyboard(String varA, String caseSize, String keyboardPlate,
+//                    PrintedCircuitBoard keyboardPrintedCircuitBoard,
+//                    Switches keyboardSwitches, int soundRating, int feelRating, int weightRating) {
+//        this.keyboardCase.getCaseMaterial() = caseMaterial;
+//        this.keyboardCase.getCaseSize() = caseMaterial;
+//        this.keyboardKeycaps = caseSize;
+//        this.keyboardPlate = keyboardPlate;
+//        this.keyboardPrintedCircuitBoard = keyboardPrintedCircuitBoard;
+//        this.keyboardSwitches = keyboardSwitches;
+//        this.soundRating = soundRating;
+//        this.feelRating = feelRating;
+//        this.weightRating = weightRating;
+//    } //todo
 
     // MODIFIES: this
     // EFFECTS: returns the rating of the keyboard based on components
@@ -206,4 +225,46 @@ public class Keyboard {
     public void setSoundRating(int soundRating) {
         this.soundRating = soundRating;
     }
+
+    @Override
+    public void save(PrintWriter printWriter) {
+        printWriter.print(keyboardCase);
+        printWriter.print(Reader.DELIMITER);
+        printWriter.print(keyboardPlate);
+        printWriter.print(Reader.DELIMITER);
+        printWriter.print(keyboardKeycaps);
+        printWriter.print(Reader.DELIMITER);
+        printWriter.print(keyboardPlate);
+        printWriter.print(Reader.DELIMITER);
+        printWriter.print(keyboardPrintedCircuitBoard);
+        printWriter.print(Reader.DELIMITER);
+        printWriter.print(keyboardSwitches);
+        printWriter.print(Reader.DELIMITER);
+        printWriter.print(soundRating);
+        printWriter.print(Reader.DELIMITER);
+        printWriter.print(feelRating);
+        printWriter.print(Reader.DELIMITER);
+        printWriter.print(weightRating);
+//        printWriter.print(keyboardCase.getCaseMaterial());
+//        printWriter.print(Reader.DELIMITER);
+//        printWriter.print(keyboardCase.getCaseSize());
+//        printWriter.print(Reader.DELIMITER);
+//        printWriter.print(keyboardKeycaps.getKeycapsMaterial());
+//        printWriter.print(Reader.DELIMITER);
+//        printWriter.print(keyboardPlate.getPlateMaterial());
+//        printWriter.print(Reader.DELIMITER);
+//        printWriter.print(keyboardPlate.getPlateSize());
+//        printWriter.print(Reader.DELIMITER);
+//        printWriter.println(keyboardPrintedCircuitBoard.getPcbSize());
+//        printWriter.print(Reader.DELIMITER);
+//        printWriter.println(keyboardSwitches.getSwitchType());
+//        printWriter.print(Reader.DELIMITER);
+//        printWriter.println(keyboardSwitches.isSilentSwitches());
+//        printWriter.print(Reader.DELIMITER);
+//        printWriter.println(soundRating);
+//        printWriter.print(Reader.DELIMITER);
+//        printWriter.println(feelRating);
+//        printWriter.print(Reader.DELIMITER);
+//        printWriter.println(weightRating);
+    } //todo
 }

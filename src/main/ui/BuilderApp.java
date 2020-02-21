@@ -1,7 +1,13 @@
 package ui;
 
 import model.Keyboard;
+import persistence.Reader;
+import persistence.Writer;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.Scanner;
 
 // Keyboard builder application
@@ -9,6 +15,7 @@ import java.util.Scanner;
 public class BuilderApp {
     private Scanner choice;
     private Keyboard keyboard;
+    private static final String ACCOUNTS_FILE = "./data/keyboard.txt";
 
     // EFFECTS: runs the builder application
     public BuilderApp() {
@@ -54,47 +61,28 @@ public class BuilderApp {
             case "rate":
                 printRating();
                 break;
+            case "save":
+                saveKeyboard();
+                break;
+            case "load":
+                loadKeyboard();
+                break;
             default:
                 System.out.println("Invalid selection...");
                 break;
         }
     }
 
-    // EFFECTS: prints the rating to the console
-    private void printRating() {
-        if (keyboard.getKeyboardCase().getCaseMaterial().equals("")) {
-            System.out.println("\n There is no build to rate! Please return to the menu and "
-                    + "select Build to start your build!");
-        } else {
-            System.out.println("\nOn a scale of 1 to 10: 1 being quiet, soft, and light; 10 being loud, "
-                    + "hard, and heavy for the typing sound, feel, and weight of the keyboard, respectively.");
-            System.out.println("This is your keyboard rating:");
-            System.out.println("Sound level: " + keyboard.getSoundRating());
-            System.out.println("Typing feel: " + keyboard.getFeelRating());
-            System.out.println("Weight: " + keyboard.getWeightRating());
-        }
-    }
-
-    // EFFECTS: prints the build to the console
-    private void printBuild() {
-        if (keyboard.getKeyboardCase().getCaseMaterial().equals("")) {
-            System.out.println("\n No build found! Please return to the menu and select Build to start your build!");
-        } else {
-            System.out.println("\nHere is your completed build:");
-            System.out.println("Case Specifications:");
-            System.out.println(keyboard.getKeyboardCase().getCaseSize());
-            System.out.println(keyboard.getKeyboardCase().getCaseMaterial());
-            System.out.println("Keycaps Specifications:");
-            System.out.println(keyboard.getKeyboardKeycaps().getKeycapsMaterial());
-            System.out.println("Plate Specifications:");
-            System.out.println(keyboard.getKeyboardPlate().getPlateMaterial());
-            System.out.println(keyboard.getKeyboardPlate().getPlateSize());
-            System.out.println("PCB Specifications:");
-            System.out.println(keyboard.getKeyboardPrintedCircuitBoard().getPcbSize());
-            System.out.println("Keyswitch Specifications:");
-            System.out.println(keyboard.getKeyboardSwitches().getSwitchType());
-            System.out.println("Silent? " + keyboard.getKeyboardSwitches().isSilentSwitches());
-        }
+    // EFFECTS: displays menu of options to user
+    private void displayMenu() {
+        System.out.println("\nWelcome to MK Parts Picker! What would you like to do?");
+        System.out.println("\tInformation");
+        System.out.println("\tBuild");
+        System.out.println("\tPrint");
+        System.out.println("\tRate");
+        System.out.println("\tSave");
+        System.out.println("\tLoad");
+        System.out.println("\tQuit");
     }
 
     // EFFECTS: starts the building process of a keyboard
@@ -306,6 +294,43 @@ public class BuilderApp {
         return null;
     }
 
+    // EFFECTS: prints the build to the console
+    private void printBuild() {
+        if (keyboard.getKeyboardCase().getCaseMaterial().equals("")) {
+            System.out.println("\n No build found! Please return to the menu and select Build to start your build!");
+        } else {
+            System.out.println("\nHere is your completed build:");
+            System.out.println("Case Specifications:");
+            System.out.println(keyboard.getKeyboardCase().getCaseSize());
+            System.out.println(keyboard.getKeyboardCase().getCaseMaterial());
+            System.out.println("Keycaps Specifications:");
+            System.out.println(keyboard.getKeyboardKeycaps().getKeycapsMaterial());
+            System.out.println("Plate Specifications:");
+            System.out.println(keyboard.getKeyboardPlate().getPlateMaterial());
+            System.out.println(keyboard.getKeyboardPlate().getPlateSize());
+            System.out.println("PCB Specifications:");
+            System.out.println(keyboard.getKeyboardPrintedCircuitBoard().getPcbSize());
+            System.out.println("Keyswitch Specifications:");
+            System.out.println(keyboard.getKeyboardSwitches().getSwitchType());
+            System.out.println("Silent? " + keyboard.getKeyboardSwitches().isSilentSwitches());
+        }
+    }
+
+    // EFFECTS: prints the rating to the console
+    private void printRating() {
+        if (keyboard.getKeyboardCase().getCaseMaterial().equals("")) {
+            System.out.println("\n There is no build to rate! Please return to the menu and "
+                    + "select Build to start your build!");
+        } else {
+            System.out.println("\nOn a scale of 1 to 10: 1 being quiet, soft, and light; 10 being loud, "
+                    + "hard, and heavy for the typing sound, feel, and weight of the keyboard, respectively.");
+            System.out.println("This is your keyboard rating:");
+            System.out.println("Sound level: " + keyboard.getSoundRating());
+            System.out.println("Typing feel: " + keyboard.getFeelRating());
+            System.out.println("Weight: " + keyboard.getWeightRating());
+        }
+    }
+
     // EFFECTS: gives the user information about the case component
     private String caseInfo() {
         System.out.println(Information.CASE_INFO);
@@ -341,13 +366,29 @@ public class BuilderApp {
         return null;
     }
 
-    // EFFECTS: displays menu of options to user
-    private void displayMenu() {
-        System.out.println("\nWelcome to MK Parts Picker! What would you like to do?");
-        System.out.println("\tInformation");
-        System.out.println("\tBuild");
-        System.out.println("\tPrint");
-        System.out.println("\tRate");
-        System.out.println("\tQuit");
+    // MODIFIES: this
+    // EFFECTS: loads accounts from ACCOUNTS_FILE, if that file exists;
+    // otherwise initializes accounts with default values
+    private void loadKeyboard() {
+        try {
+            keyboard = (Keyboard) Reader.getKeyboardParts(new File(ACCOUNTS_FILE));
+        } catch (IOException e) {
+            startBuild();
+        }
+    }
+
+    // EFFECTS: saves state of chequing and savings accounts to ACCOUNTS_FILE
+    private void saveKeyboard() {
+        try {
+            Writer writer = new Writer(new File(ACCOUNTS_FILE));
+            writer.write(keyboard);
+            writer.close();
+            System.out.println("Keyboard saved to file " + ACCOUNTS_FILE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to save keyboard to " + ACCOUNTS_FILE);
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+            // this is due to a programming error
+        }
     }
 }
