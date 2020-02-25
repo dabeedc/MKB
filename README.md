@@ -1,4 +1,4 @@
-# MK Parts Picker V1.0
+# MK Parts Picker V2.2
 A simple mechanical keyboard builder to help you select components using Java.
 ## Features
 **Main Components of a Mechanical Keyboard**:
@@ -28,3 +28,7 @@ was a simple application that would allow me to learn about and choose component
 - As a user, I want to be able to see my selected components in my keyboard.
 
 - As a user, I want to be able to have my keyboard rated, giving me an idea about my build.
+
+- As a user, I want to be able to save my keyboard build to a file
+
+- As a user, I want to be able to optionally load my keyboard build fsrom file when the program start

@@ -26,12 +26,12 @@ public class Case {
     // MODIFIES: this
     // EFFECTS: sets the material of the case
     public void setCaseMaterial(String caseMaterial) {
-        Case.caseMaterial = caseMaterial;
+        this.caseMaterial = caseMaterial;
     }
 
     // MODIFIES: this
     // EFFECTS: sets the size of the case
     public void setCaseSize(String caseSize) {
-        Case.caseSize = caseSize;
+        this.caseSize = caseSize;
     }
 }

@@ -1,0 +1,1 @@
+model.components.Case@7f31245a,model.components.Plate@6d6f6e28,model.components.Keycaps@135fbaa4,model.components.Plate@6d6f6e28,model.components.PrintedCircuitBoard@45ee12a7,model.components.Switches@330bedb4,5,5,5
