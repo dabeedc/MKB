@@ -20,6 +20,7 @@ public class ReaderTest {
 
     @Test
     void testParseKeyboardFile() {
+        Reader testReader  = new Reader();
         try {
             List<Object> keyboards = Reader.getKeyboardParts(new File("./data/testKeyboardFile1.txt"));
             testKeyboard = (Keyboard) keyboards.get(0);
