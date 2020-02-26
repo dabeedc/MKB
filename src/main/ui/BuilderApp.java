@@ -368,8 +368,7 @@ public class BuilderApp {
     }
 
     // MODIFIES: this
-    // EFFECTS: loads accounts from ACCOUNTS_FILE, if that file exists;
-    // otherwise initializes accounts with default values
+    // EFFECTS: loads keyboard from ACCOUNTS_FILE, if that file exists; otherwise initializes keyboard build
     private void loadKeyboard() {
         try {
             List<Object> keyboards = Reader.getKeyboardParts(new File(ACCOUNTS_FILE));
@@ -380,7 +379,7 @@ public class BuilderApp {
         }
     }
 
-    // EFFECTS: saves state of chequing and savings accounts to ACCOUNTS_FILE
+    // EFFECTS: saves built keyboard to ACCOUNTS_FILE
     private void saveKeyboard() {
         try {
             Writer writer = new Writer(new File(ACCOUNTS_FILE));
@@ -391,7 +390,6 @@ public class BuilderApp {
             System.out.println("Unable to save keyboard to " + ACCOUNTS_FILE);
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
-            // this is due to a programming error
         }
     }
 }
