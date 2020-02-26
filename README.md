@@ -31,4 +31,4 @@ was a simple application that would allow me to learn about and choose component
 
 - As a user, I want to be able to save my keyboard build to a file
 
-- As a user, I want to be able to optionally load my keyboard build fsrom file when the program start
+- As a user, I want to be able to optionally load my keyboard build from file when the program starts

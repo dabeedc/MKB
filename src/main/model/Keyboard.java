@@ -1,7 +1,6 @@
 package model;
 
 import model.components.*;
-
 import persistence.Reader;
 import persistence.Saveable;
 
@@ -32,20 +31,27 @@ public class Keyboard implements Saveable {
         weightRating = 5;
     }
 
-//    // EFFECTS: Constructor used only when constructing a keyboard stored in file
-//    public Keyboard(String varA, String caseSize, String keyboardPlate,
-//                    PrintedCircuitBoard keyboardPrintedCircuitBoard,
-//                    Switches keyboardSwitches, int soundRating, int feelRating, int weightRating) {
-//        this.keyboardCase.getCaseMaterial() = caseMaterial;
-//        this.keyboardCase.getCaseSize() = caseMaterial;
-//        this.keyboardKeycaps = caseSize;
-//        this.keyboardPlate = keyboardPlate;
-//        this.keyboardPrintedCircuitBoard = keyboardPrintedCircuitBoard;
-//        this.keyboardSwitches = keyboardSwitches;
-//        this.soundRating = soundRating;
-//        this.feelRating = feelRating;
-//        this.weightRating = weightRating;
-//    } //todo
+    // EFFECTS: Constructor used only when constructing a keyboard stored in file
+    public Keyboard(String caseMat, String caseSize, String keycapMat, String plateMat, String plateSize,
+                    String pcbSize, String keySwitch, String silentSwitch, String soundRating, String feelRating,
+                    String weightRating) {
+        keyboardCase = new Case();
+        keyboardKeycaps = new Keycaps();
+        keyboardPlate = new Plate();
+        keyboardPrintedCircuitBoard = new PrintedCircuitBoard();
+        keyboardSwitches = new Switches();
+        this.keyboardCase.setCaseMaterial(caseMat);
+        this.keyboardCase.setCaseSize(caseSize);
+        this.keyboardKeycaps.setKeycapsMaterial(keycapMat);
+        this.keyboardPlate.setPlateMaterial(plateMat);
+        this.keyboardPlate.setPlateSize(plateSize);
+        this.keyboardPrintedCircuitBoard.setPcbSize(pcbSize);
+        this.keyboardSwitches.setSwitchType(keySwitch);
+        this.keyboardSwitches.setSilentSwitches(Boolean.parseBoolean(silentSwitch));
+        this.soundRating = Integer.parseInt(soundRating);
+        this.feelRating = Integer.parseInt(feelRating);
+        this.weightRating = Integer.parseInt(weightRating);
+    }
 
     // MODIFIES: this
     // EFFECTS: returns the rating of the keyboard based on components
@@ -228,43 +234,26 @@ public class Keyboard implements Saveable {
 
     @Override
     public void save(PrintWriter printWriter) {
-        printWriter.print(keyboardCase);
+        printWriter.print(keyboardCase.getCaseMaterial());
         printWriter.print(Reader.DELIMITER);
-        printWriter.print(keyboardPlate);
+        printWriter.print(keyboardCase.getCaseSize());
         printWriter.print(Reader.DELIMITER);
-        printWriter.print(keyboardKeycaps);
+        printWriter.print(keyboardKeycaps.getKeycapsMaterial());
         printWriter.print(Reader.DELIMITER);
-        printWriter.print(keyboardPlate);
+        printWriter.print(keyboardPlate.getPlateMaterial());
         printWriter.print(Reader.DELIMITER);
-        printWriter.print(keyboardPrintedCircuitBoard);
+        printWriter.print(keyboardPlate.getPlateSize());
         printWriter.print(Reader.DELIMITER);
-        printWriter.print(keyboardSwitches);
+        printWriter.print(keyboardPrintedCircuitBoard.getPcbSize());
+        printWriter.print(Reader.DELIMITER);
+        printWriter.print(keyboardSwitches.getSwitchType());
+        printWriter.print(Reader.DELIMITER);
+        printWriter.print(keyboardSwitches.isSilentSwitches());
         printWriter.print(Reader.DELIMITER);
         printWriter.print(soundRating);
         printWriter.print(Reader.DELIMITER);
         printWriter.print(feelRating);
         printWriter.print(Reader.DELIMITER);
         printWriter.print(weightRating);
-//        printWriter.print(keyboardCase.getCaseMaterial());
-//        printWriter.print(Reader.DELIMITER);
-//        printWriter.print(keyboardCase.getCaseSize());
-//        printWriter.print(Reader.DELIMITER);
-//        printWriter.print(keyboardKeycaps.getKeycapsMaterial());
-//        printWriter.print(Reader.DELIMITER);
-//        printWriter.print(keyboardPlate.getPlateMaterial());
-//        printWriter.print(Reader.DELIMITER);
-//        printWriter.print(keyboardPlate.getPlateSize());
-//        printWriter.print(Reader.DELIMITER);
-//        printWriter.println(keyboardPrintedCircuitBoard.getPcbSize());
-//        printWriter.print(Reader.DELIMITER);
-//        printWriter.println(keyboardSwitches.getSwitchType());
-//        printWriter.print(Reader.DELIMITER);
-//        printWriter.println(keyboardSwitches.isSilentSwitches());
-//        printWriter.print(Reader.DELIMITER);
-//        printWriter.println(soundRating);
-//        printWriter.print(Reader.DELIMITER);
-//        printWriter.println(feelRating);
-//        printWriter.print(Reader.DELIMITER);
-//        printWriter.println(weightRating);
-    } //todo
+    }
 }
