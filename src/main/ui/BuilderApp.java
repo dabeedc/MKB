@@ -8,10 +8,11 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.util.List;
 import java.util.Scanner;
 
 // Keyboard builder application
-// Citation: CPSC210 TellerApp for Scanner use
+// Citation: CPSC210 TellerApp for Scanner use and persistence
 public class BuilderApp {
     private Scanner choice;
     private Keyboard keyboard;
@@ -371,7 +372,9 @@ public class BuilderApp {
     // otherwise initializes accounts with default values
     private void loadKeyboard() {
         try {
-            keyboard = (Keyboard) Reader.getKeyboardParts(new File(ACCOUNTS_FILE));
+            List<Object> keyboards = Reader.getKeyboardParts(new File(ACCOUNTS_FILE));
+            keyboard = (Keyboard) keyboards.get(0);
+            System.out.println("Keyboard loaded from " + ACCOUNTS_FILE);
         } catch (IOException e) {
             startBuild();
         }

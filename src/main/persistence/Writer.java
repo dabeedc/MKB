@@ -6,6 +6,7 @@ import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 
 // A writer that can write account data to a file
+// Citation: CPSC210 TellerApp
 public class Writer {
     private PrintWriter printWriter;
 

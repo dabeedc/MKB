@@ -10,6 +10,7 @@ import java.util.Arrays;
 import java.util.List;
 
 // A reader that can read account data from a file
+// Citation: CPSC210 TellerApp
 public class Reader {
     public static final String DELIMITER = ",";
 
@@ -52,28 +53,17 @@ public class Reader {
     // EFFECTS: returns an account constructed from components
     private static Keyboard parseKeyboard(List<String> components) {
         String caseMat = components.get(0);
-        String varB = components.get(1);
-        String varC = components.get(2);
-        String varD = components.get(3);
-        String varE = components.get(4);
-        String varF = components.get(5);
-        String varG = components.get(6);
-        String varH = components.get(7);
-        int varI = Integer.parseInt(components.get(8));
-        int varJ = Integer.parseInt(components.get(9));
-        int varK = Integer.parseInt(components.get(10));
-        return new Keyboard();
-//        String caseMat = components.get(0);
-//        String varB = components.get(1);
-//        String varC = components.get(2);
-//        String varD = components.get(3);
-//        String varE = components.get(4);
-//        String varF = components.get(5);
-//        String varG = components.get(6);
-//        String varH = components.get(7);
-//        int varI = Integer.parseInt(components.get(8));
-//        int varJ = Integer.parseInt(components.get(9));
-//        int varK = Integer.parseInt(components.get(10));
-//        return new Keyboard(caseMat, varB, varC, varD, varE, varF, varG, varH, varI, varJ, varK);
-    } //todo
+        String caseSize = components.get(1);
+        String keycapMat = components.get(2);
+        String plateMat = components.get(3);
+        String plateSize = components.get(4);
+        String pcbSize = components.get(5);
+        String keySwitch = components.get(6);
+        String silentSwitch = components.get(7);
+        String soundRating = components.get(8);
+        String feelRating = components.get(9);
+        String weightRating = components.get(10);
+        return new Keyboard(caseMat,caseSize, keycapMat, plateMat, plateSize, pcbSize, keySwitch, silentSwitch,
+                soundRating, feelRating, weightRating);
+    }
 }
