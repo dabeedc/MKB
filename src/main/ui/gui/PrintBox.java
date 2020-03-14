@@ -7,14 +7,12 @@ import javafx.scene.control.*;
 import javafx.geometry.*;
 
 // Represents an alert box that alerts the user
-public class AlertBox {
+public class PrintBox {
 
-    // EFFECTS: Displays the alert box to user
-    public void displayAlert(String title, String message) {
+    // EFFECTS: Displays the alert box to  user
+    public void displayPrint(String title, String message) {
         Stage window = new Stage();
 
-        //Block events to other windows
-        window.initModality(Modality.APPLICATION_MODAL);
         window.setTitle(title);
         window.setMinWidth(350);
 
@@ -33,7 +31,6 @@ public class AlertBox {
         window.setScene(scene);
         window.showAndWait();
     }
-
 
 
 

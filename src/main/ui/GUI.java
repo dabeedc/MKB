@@ -17,8 +17,7 @@ import javafx.stage.Stage;
 import model.Keyboard;
 import persistence.Reader;
 import persistence.Writer;
-import ui.gui.AlertBox;
-import ui.gui.ExitConfirmationBox;
+import ui.gui.*;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -30,11 +29,13 @@ import java.util.List;
 // Keyboard builder application
 // EFFECTS: starts the GUI class
 public class GUI extends Application {
-    private Keyboard keyboard;
+    private Keyboard keyboard = new Keyboard(); //todo keyboard placeholder
     private static final String ACCOUNTS_FILE = "./data/keyboard.txt";
 
-    // Stage
-    Stage window;
+    // Stages and Scenes
+    Stage mainWindow;
+    Scene menuScene;
+    InformationMenu infoWindow;
 
     //Buttons
     Button buttonInfo;
@@ -42,8 +43,12 @@ public class GUI extends Application {
     Button buttonPrint;
     Button buttonRate;
 
-    // Menus
+    // Menu Bar
     Menu fileMenu = new Menu("_File");
+
+    // Dialog Boxes
+    AlertBox alert = new AlertBox();
+
 
     // EFFECTS: runs the builder application
     public static void main(String[] args) {
@@ -52,72 +57,79 @@ public class GUI extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        window = primaryStage;
+        mainWindow = primaryStage;
+        infoWindow = new InformationMenu();
         displayMainMenu();
     }
 
     // EFFECTS: closes the builder application
     private void closeProgram() {
         ExitConfirmationBox closeProgramBox = new ExitConfirmationBox();
-        Boolean answerToExit = closeProgramBox.displayConfirmation("Confirm Exit", "Are you sure you "
-                + "want to quit?");
-        if (answerToExit)
-            window.close();
+//        Boolean answerToExit = closeProgramBox.displayConfirmation("Confirm Exit", "Are you sure you "
+//                + "want to quit?");
+//        if (answerToExit)
+// todo commented just to allow closing of program quicker
+        mainWindow.close();
     }
 
     private void displayMainMenu() {
-        AlertBox alert = new AlertBox();
         Text header = TextBuilder.create().text("Welcome to MK Parts Picker...").build();
+        keyboard.getKeyboardCase().setCaseMaterial("brass"); //todo keyboard placeholder
 
-        window.setTitle("Mechanical Keyboard Parts Picker");
-        window.setOnCloseRequest(event -> {
+        mainWindow.setTitle("Mechanical Keyboard Parts Picker");
+        mainWindow.setOnCloseRequest(event -> {
             event.consume();
             closeProgram();
         });
 
         buttonInfo = new Button(" _Information ");
-        buttonInfo.setOnAction(e -> alert.displayAlert("Message", "\n     No build found! "
-                + "Please return to the menu and select Build to start your build!     \n"));
+        buttonInfo.setOnAction(event -> infoWindow.displayInformationMenu());
         buttonBuild = new Button("      _Build      ");
-        buttonBuild.setOnAction(e -> alert.displayAlert("Message", "\n     No build found! "
-                + "Please return to the menu and select Build to start your build!     \n"));
+        buttonBuild.setOnAction(event -> displayBuildMenu());
         buttonPrint = new Button("      _Print      ");
-        buttonPrint.setOnAction(e -> alert.displayAlert("Message", "\n     No build found! "
-                + "Please return to the menu and select Build to start your build!     \n"));
+        buttonPrint.setOnAction(event -> displayPrint());
         buttonRate = new Button("      _Rate      ");
-        buttonRate.setOnAction(e -> alert.displayAlert("Message", "\n     No build found! "
-                + "Please return to the menu and select Build to start your build!     \n"));
+        buttonRate.setOnAction(event -> displayRate());
 
-        VBox menuLayout = new VBox(30);
-        menuLayout.setPadding(new Insets(0,-50,0,75));
-        menuLayout.getChildren().addAll(buttonInfo, buttonBuild, buttonPrint, buttonRate);
-        menuLayout.setAlignment(Pos.CENTER);
+        VBox buttonMenuLayout = new VBox(30);
+        buttonMenuLayout.setPadding(new Insets(0, -50, 0, 75));
+        buttonMenuLayout.getChildren().addAll(buttonInfo, buttonBuild, buttonPrint, buttonRate);
+        buttonMenuLayout.setAlignment(Pos.CENTER);
 
         BorderPane mainMenuLayout = new BorderPane();
         mainMenuLayout.setTop(displayMenuBar());
         mainMenuLayout.setCenter(header);
-        mainMenuLayout.setLeft(menuLayout);
+        mainMenuLayout.setLeft(buttonMenuLayout);
 
-        Scene scene = new Scene(mainMenuLayout, 800, 450);
-        window.setScene(scene);
-        window.show();
-
-    }
-
-    private void displayInformationMenu() {
-
+        menuScene = new Scene(mainMenuLayout, 800, 450);
+        mainWindow.setScene(menuScene);
+        mainWindow.show();
     }
 
     private void displayBuildMenu() {
-
+        System.out.println("This is the build button clicked");
     }
 
     private void displayPrint() {
-        // if no build, display no build found.. else show print statement
+        if (keyboard.getKeyboardCase().getCaseMaterial().equals("")) {
+            alert.displayAlert("Message", "\n     No build found! "
+                    + "Please return to the menu and select Build to start your build!     \n");
+        } else {
+            PrintBox rateBox = new PrintBox();
+            rateBox.displayPrint("Keyboard Specifications", "Here is your build");
+        }
     }
 
     private void displayRate() {
-
+        if (keyboard.getKeyboardCase().getCaseMaterial().equals("")) {
+            alert.displayAlert("Message", "\n     No build found! "
+                    + "Please return to the menu and select Build to start your build!     \n");
+        } else {
+            RateBox rateBox = new RateBox();
+            rateBox.displayRating("Keyboard Rating", " On a scale from 1 to 10: 1 being quiet, soft, and"
+                    + "light; 10 being loud hard, and heavy for the typing sound, feel, and weight of the "
+                    + "keyboard, respectively.");
+        }
     }
 
     public Node displayMenuBar() {
@@ -148,12 +160,11 @@ public class GUI extends Application {
         AlertBox saveFailedAlert = new AlertBox();
         try {
             Writer writer = new Writer(new File(ACCOUNTS_FILE));
-            keyboard = new Keyboard();
             writer.write(keyboard);
             writer.close();
-            saveAlert.displayAlert("Save Successful!","Keyboard saved to file " + ACCOUNTS_FILE);
+            saveAlert.displayAlert("Save Successful!", "Keyboard saved to file " + ACCOUNTS_FILE);
         } catch (FileNotFoundException e) {
-            saveFailedAlert.displayAlert("Save Unsuccessful!","Unable to save keyboard to file "
+            saveFailedAlert.displayAlert("Save Unsuccessful!", "Unable to save keyboard to file "
                     + ACCOUNTS_FILE);
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
@@ -167,34 +178,11 @@ public class GUI extends Application {
         try {
             List<Object> keyboards = Reader.getKeyboardParts(new File(ACCOUNTS_FILE));
             keyboard = (Keyboard) keyboards.get(0);
-            loadAlert.displayAlert("Load Successful!","Keyboard loaded from " + ACCOUNTS_FILE);
+            loadAlert.displayAlert("Load Successful!", "Keyboard loaded from " + ACCOUNTS_FILE);
         } catch (IOException e) {
             displayMainMenu();
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 }
