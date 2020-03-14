@@ -1,1 +1,1 @@
-polycarbonate,60%,abs,brass,60%,60%,tactile,false,9,9,7
+,,,,,,,false,5,5,5
