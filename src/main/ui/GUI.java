@@ -15,13 +15,16 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextBuilder;
 import javafx.stage.Stage;
 import model.Keyboard;
+import persistence.Reader;
 import persistence.Writer;
 import ui.gui.AlertBox;
 import ui.gui.ExitConfirmationBox;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.util.List;
 
 
 // Keyboard builder application
@@ -133,7 +136,7 @@ public class GUI extends Application {
         menubar.getMenus().addAll(fileMenu);
 
         save.setOnAction(event -> saveKeyboard());
-//        load.setOnAction();
+        load.setOnAction(event -> loadKeyboard());
         exit.setOnAction(event -> closeProgram());
 
         return menubar;
@@ -156,6 +159,34 @@ public class GUI extends Application {
             e.printStackTrace();
         }
     }
+
+    // MODIFIES: this
+    // EFFECTS: loads keyboard from ACCOUNTS_FILE, if that file exists; otherwise initializes keyboard build
+    private void loadKeyboard() {
+        AlertBox loadAlert = new AlertBox();
+        try {
+            List<Object> keyboards = Reader.getKeyboardParts(new File(ACCOUNTS_FILE));
+            keyboard = (Keyboard) keyboards.get(0);
+            loadAlert.displayAlert("Load Successful!","Keyboard loaded from " + ACCOUNTS_FILE);
+        } catch (IOException e) {
+            displayMainMenu();
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
