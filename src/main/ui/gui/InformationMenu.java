@@ -4,11 +4,13 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextBuilder;
 import javafx.stage.Stage;
+import ui.Information;
 
 // Represents an alert box that alerts the user
 public class InformationMenu {
@@ -20,6 +22,11 @@ public class InformationMenu {
 
     Scene infoScene;
 
+    TextField textField = new TextField();
+
+    String text = "Please click on what you would like to learn more about";
+    Text infoHeader = TextBuilder.create().text(text).build();
+
     // EFFECTS: Displays the information menu to user
     public void displayInformationMenu() {
         Stage window = new Stage();
@@ -27,16 +34,17 @@ public class InformationMenu {
         window.setTitle("Information");
         window.setMinWidth(350);
 
-        caseInfo = new Button(" Case ");
-        caseInfo.setOnAction(event -> System.out.println("Clicked Case Button"));
+        caseInfo = new Button("         Case        ");
+        caseInfo.setOnAction(event -> infoHeader.setText(Information.CASE_INFO));
         keycapsInfo = new Button("      Keycaps      ");
-        keycapsInfo.setOnAction(event -> System.out.println("Clicked Keycaps Button"));
-        plateInfo = new Button("      Plate      ");
-        plateInfo.setOnAction(event -> System.out.println("Clicked Plate Button"));
-        pcbInfo = new Button("      PCB      ");
-        pcbInfo.setOnAction(event -> System.out.println("Clicked PCB Button"));
-        switchesInfo = new Button("      Switches      ");
-        switchesInfo.setOnAction(event -> System.out.println("Clicked Switches Button"));
+        keycapsInfo.setOnAction(event -> infoHeader.setText(Information.KEYCAPS_INFO));
+        plateInfo = new Button("         Plate         ");
+        plateInfo.setOnAction(event -> infoHeader.setText(Information.PLATE_INFO));
+        pcbInfo = new Button("          PCB          ");
+        pcbInfo.setOnAction(event -> infoHeader.setText(Information.PRINTEDCIRCUITBOARD_INFO));
+        switchesInfo = new Button("       Switches       ");
+        switchesInfo.setOnAction(event -> infoHeader.setText(Information.SWITCHES_INFO));
+
         Button closeButton = new Button("Close this window");
         closeButton.setOnAction(e -> window.close());
 
@@ -45,17 +53,32 @@ public class InformationMenu {
         infoButtonsLayout.getChildren().addAll(caseInfo, keycapsInfo, plateInfo, pcbInfo, switchesInfo, closeButton);
         infoButtonsLayout.setAlignment(Pos.CENTER);
 
-        Text infoHeader = TextBuilder.create().text("Welcome to MK Parts Picker...").build();
         BorderPane infoMenuLayout = new BorderPane();
         infoMenuLayout.setCenter(infoHeader);
         infoMenuLayout.setLeft(infoButtonsLayout);
 
         //Display window and wait for it to be closed before returning
-        infoScene = new Scene(infoMenuLayout, 600,350);
+        infoScene = new Scene(infoMenuLayout, 600, 350);
         window.setScene(infoScene);
         window.showAndWait();
     }
 
+//    private void changeText() {
+//        switch () {
+//            case caseInfo:
+//                infoHeader.setText(Information.CASE_INFO);
+//            case keycapsInfo:
+//                infoHeader.setText(Information.KEYCAPS_INFO);
+//            case plateInfo:
+//                infoHeader.setText(Information.PLATE_INFO);
+//            case pcbInfo:
+//                infoHeader.setText(Information.PRINTEDCIRCUITBOARD_INFO);
+//            case switchesInfo:
+//                infoHeader.setText(Information.SWITCHES_INFO);
+//
+//        }
+//
+//    }
 
 }
 //
