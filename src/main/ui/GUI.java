@@ -127,7 +127,7 @@ public class GUI extends Application {
         } else {
             RateBox rateBox = new RateBox();
             rateBox.displayRating("Keyboard Rating", " On a scale from 1 to 10: 1 being quiet, soft, and"
-                    + "light; 10 being loud hard, and heavy for the typing sound, feel, and weight of the "
+                    + " light; 10 being loud, hard, and heavy for the typing sound, feel, and weight of the "
                     + "keyboard, respectively.");
         }
     }
