@@ -24,7 +24,7 @@ public class InformationMenu {
 
     TextField textField = new TextField();
 
-    String text = "What would you like to learn about?";
+    String text = "Please click on what you would like to learn more about";
     Text infoHeader = TextBuilder.create().text(text).build();
 
     // EFFECTS: Displays the information menu to user
@@ -49,7 +49,7 @@ public class InformationMenu {
         closeButton.setOnAction(e -> window.close());
 
         VBox infoButtonsLayout = new VBox(30);
-        infoButtonsLayout.setPadding(new Insets(0,-20,0,25));
+        infoButtonsLayout.setPadding(new Insets(25));
         infoButtonsLayout.getChildren().addAll(caseInfo, keycapsInfo, plateInfo, pcbInfo, switchesInfo, closeButton);
         infoButtonsLayout.setAlignment(Pos.CENTER);
 
@@ -58,7 +58,7 @@ public class InformationMenu {
         infoMenuLayout.setLeft(infoButtonsLayout);
 
         //Display window and wait for it to be closed before returning
-        infoScene = new Scene(infoMenuLayout, 750, 350);
+        infoScene = new Scene(infoMenuLayout, 600, 350);
         window.setScene(infoScene);
         window.showAndWait();
     }
