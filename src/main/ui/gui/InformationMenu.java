@@ -49,7 +49,8 @@ public class InformationMenu {
         closeButton.setOnAction(e -> window.close());
 
         VBox infoButtonsLayout = new VBox(30);
-        infoButtonsLayout.setPadding(new Insets(25));
+
+        infoButtonsLayout.setPadding(new Insets(0, -20, 0, 25));
         infoButtonsLayout.getChildren().addAll(caseInfo, keycapsInfo, plateInfo, pcbInfo, switchesInfo, closeButton);
         infoButtonsLayout.setAlignment(Pos.CENTER);
 
@@ -62,5 +63,4 @@ public class InformationMenu {
         window.setScene(infoScene);
         window.showAndWait();
     }
-}
 
