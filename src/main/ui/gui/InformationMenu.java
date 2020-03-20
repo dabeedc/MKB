@@ -49,7 +49,7 @@ public class InformationMenu {
         closeButton.setOnAction(e -> window.close());
 
         VBox infoButtonsLayout = new VBox(30);
-        infoButtonsLayout.setPadding(new Insets(0,-20,0,25));
+        infoButtonsLayout.setPadding(new Insets(0, -20, 0, 25));
         infoButtonsLayout.getChildren().addAll(caseInfo, keycapsInfo, plateInfo, pcbInfo, switchesInfo, closeButton);
         infoButtonsLayout.setAlignment(Pos.CENTER);
 
@@ -63,38 +63,4 @@ public class InformationMenu {
         window.showAndWait();
     }
 
-//    private void changeText() {
-//        switch () {
-//            case caseInfo:
-//                infoHeader.setText(Information.CASE_INFO);
-//            case keycapsInfo:
-//                infoHeader.setText(Information.KEYCAPS_INFO);
-//            case plateInfo:
-//                infoHeader.setText(Information.PLATE_INFO);
-//            case pcbInfo:
-//                infoHeader.setText(Information.PRINTEDCIRCUITBOARD_INFO);
-//            case switchesInfo:
-//                infoHeader.setText(Information.SWITCHES_INFO);
-//
-//        }
-//
-//    }
-
 }
-//
-//    private void displayInformationMenu() {
-//        Text infoHeader = TextBuilder.create().text("Welcome to MK Parts Picker...").build();
-//        infoWindow.setTitle("Information");
-//        infoWindow.setOnCloseRequest(event -> {
-//            event.consume();
-//            closeProgram();
-//        });
-//
-//        BorderPane infoMenuLayout = new BorderPane();
-//        infoMenuLayout.setCenter(infoHeader);
-//
-//
-//        infoScene = new Scene(infoMenuLayout, 800, 450);
-//        infoWindow.setScene(infoScene);
-//        infoWindow.show();
-//    }
