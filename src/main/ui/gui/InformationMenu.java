@@ -62,5 +62,4 @@ public class InformationMenu {
         window.setScene(infoScene);
         window.showAndWait();
     }
-
 }
