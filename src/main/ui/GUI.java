@@ -39,7 +39,7 @@ public class GUI extends Application {
     private InformationMenu infoWindow;
 
 
-    //Buttons
+    // Buttons
     private Button buttonInfo;
     private Button buttonBuild;
     private Button buttonPrint;
@@ -57,6 +57,7 @@ public class GUI extends Application {
 
     // Dialog Boxes
     private AlertBox alert = new AlertBox();
+    CheckBox wantSilent = new CheckBox("Silent");
 
 
     // EFFECTS: runs the builder application
@@ -157,6 +158,14 @@ public class GUI extends Application {
         ChoiceBox<String> switchTypeChoice = new ChoiceBox<>();
         switchTypeChoice.getItems().addAll("Tactile", "Linear", "Clicky");
         switchTypeChoice.setValue("Tactile");
+        switchTypeChoice.getSelectionModel().selectedItemProperty().addListener((v, oldValue, newValue)
+                -> {
+            dropDownMenuLayout.getChildren().remove(wantSilent);
+            if (newValue.equals("Tactile") || newValue.equals("Linear")) {
+                System.out.println("I am tactile");
+                dropDownMenuLayout.getChildren().add(wantSilent);
+            }
+        });
 
         buttonCase = new Button(" _Case ");
         buttonCase.setOnAction(event -> {
