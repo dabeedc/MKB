@@ -186,7 +186,7 @@ public class GUI extends Application {
 
         });
         buttonConfirmation = new Button("    _Confirm Build    ");
-        buttonConfirmation.setOnAction(event -> mainWindow.close());
+        buttonConfirmation.setOnAction(event -> mainWindow.setScene(menuScene));
 
         componentButtonsLayout.getChildren().addAll(buttonCase, buttonKeycaps, buttonPlate, buttonPcb, buttonSwitches,
                 buttonConfirmation);
