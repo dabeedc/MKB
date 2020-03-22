@@ -63,7 +63,7 @@ public class GUI extends Application {
     ChoiceBox<String> pcbSizeChoice = new ChoiceBox<>();
     ChoiceBox<String> switchTypeChoice = new ChoiceBox<>();
 
-    ImageView ImageView = null;
+    ImageView imageView = null;
     private static final String MENU_IMAGE = "data/Photos/mainImage.jpg";
     private static final String CASE_IMAGE = "data/Photos/caseImage.jpg";
     private static final String KEYCAPS_IMAGE = "data/Photos/keycapsImage.jpg";
@@ -121,7 +121,7 @@ public class GUI extends Application {
 
         BorderPane mainMenuLayout = new BorderPane();
         mainMenuLayout.setTop(displayMenuBar());
-        mainMenuLayout.setCenter(ImageView);
+        mainMenuLayout.setCenter(imageView);
         mainMenuLayout.setLeft(buttonMenuLayout);
 
         menuScene = new Scene(mainMenuLayout, SCENE_WIDTH, SCENE_HEIGHT);
@@ -132,7 +132,7 @@ public class GUI extends Application {
     public void getImage(String image) {
         try {
             Image menuImage = new Image(new FileInputStream(image));
-            ImageView = new ImageView(menuImage);
+            imageView = new ImageView(menuImage);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -184,28 +184,28 @@ public class GUI extends Application {
         buttonCase = new Button(" _Case ");
         buttonCase.setOnAction(event -> {
             getImage(CASE_IMAGE);
-            buildMenuLayout.setCenter(ImageView);
+            buildMenuLayout.setCenter(imageView);
             dropDownMenuLayout.getChildren().clear();
             dropDownMenuLayout.getChildren().addAll(caseSizeChoice, caseMaterialChoice);
         });
         buttonKeycaps = new Button("   _Keycaps   ");
         buttonKeycaps.setOnAction(event -> {
             getImage(KEYCAPS_IMAGE);
-            buildMenuLayout.setCenter(ImageView);
+            buildMenuLayout.setCenter(imageView);
             dropDownMenuLayout.getChildren().clear();
             dropDownMenuLayout.getChildren().add(keycapsMaterialChoice);
         });
         buttonPlate = new Button("      _Plate      ");
         buttonPlate.setOnAction(event -> {
             getImage(PLATE_IMAGE);
-            buildMenuLayout.setCenter(ImageView);
+            buildMenuLayout.setCenter(imageView);
             dropDownMenuLayout.getChildren().clear();
             dropDownMenuLayout.getChildren().addAll(plateMaterialChoice, plateSizeChoice);
         });
         buttonPcb = new Button("    _Printed Circuit Board    ");
         buttonPcb.setOnAction(event -> {
             getImage(PCB_IMAGE);
-            buildMenuLayout.setCenter(ImageView);
+            buildMenuLayout.setCenter(imageView);
             dropDownMenuLayout.getChildren().clear();
             dropDownMenuLayout.getChildren().add(pcbSizeChoice);
 
@@ -213,7 +213,7 @@ public class GUI extends Application {
         buttonSwitches = new Button("      _Switches      ");
         buttonSwitches.setOnAction(event -> {
             getImage(SWITCHES_IMAGE);
-            buildMenuLayout.setCenter(ImageView);
+            buildMenuLayout.setCenter(imageView);
             dropDownMenuLayout.getChildren().clear();
             dropDownMenuLayout.getChildren().add(switchTypeChoice);
 
