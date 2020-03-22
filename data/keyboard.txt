@@ -1,1 +1,1 @@
-Aluminum,60%,ABS,Brass,60%,60%,Clicky,false,10,10,9
+Polycarbonate,60%,PBT,Polycarbonate,60%,60%,Linear,true,1,3,4

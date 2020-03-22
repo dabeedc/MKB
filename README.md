@@ -32,3 +32,18 @@ was a simple application that would allow me to learn about and choose component
 - As a user, I want to be able to save my keyboard build to a file
 
 - As a user, I want to be able to optionally load my keyboard build from file when the program starts
+
+## Instructions for Grader
+- You can generate the first required event by clicking the "Build" button, which allows you to select components to 
+add to Keyboard through dropdown menus.
+
+- You can generate the second required event by clicking the "Print" button, which shows you all of the components 
+chosen for the keyboard.
+
+- You can locate my visual component by running the GUI: a visual component is seen at the main menu. Also, a visual 
+component is shown to the user during the build process (when you select each component, a photo appears to aid your 
+choices).
+
+- You can save the state of my application by clicking "File" in the menu bar at the main menu.
+
+- You can reload the state of my application by clicking "File" in the menu bar at the main menu.

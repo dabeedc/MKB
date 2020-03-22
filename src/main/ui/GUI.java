@@ -150,84 +150,6 @@ public class GUI extends Application {
         return imageView;
     }
 
-    public void caseInput() {
-        buttonCase = new Button(" _Case ");
-        buttonCase.setOnAction(event -> {
-            getImage(CASE_IMAGE);
-            buildMenuLayout.setCenter(imageView);
-            dropDownMenuLayout.getChildren().clear();
-            dropDownMenuLayout.getChildren().addAll(caseSizeChoice, caseMaterialChoice);
-
-            caseSizeChoice.getItems().addAll("60%", "75%", "TKL");
-            caseSizeChoice.setValue("60%");
-
-            caseMaterialChoice.getItems().addAll("Aluminum", "Plastic", "Polycarbonate");
-            caseMaterialChoice.setValue("Aluminum");
-        });
-    }
-
-    public void keycapsInput() {
-        buttonKeycaps = new Button("   _Keycaps   ");
-        buttonKeycaps.setOnAction(event -> {
-            getImage(KEYCAPS_IMAGE);
-            buildMenuLayout.setCenter(imageView);
-            dropDownMenuLayout.getChildren().clear();
-            dropDownMenuLayout.getChildren().add(keycapsMaterialChoice);
-        });
-
-        keycapsMaterialChoice.getItems().addAll("ABS", "PBT");
-        keycapsMaterialChoice.setValue("ABS");
-    }
-
-    public void plateInput() {
-        buttonPlate = new Button("      _Plate      ");
-        buttonPlate.setOnAction(event -> {
-            getImage(PLATE_IMAGE);
-            buildMenuLayout.setCenter(imageView);
-            dropDownMenuLayout.getChildren().clear();
-            dropDownMenuLayout.getChildren().addAll(plateMaterialChoice, plateSizeChoice);
-        });
-
-        plateMaterialChoice.getItems().addAll("Brass", "Aluminum", "Polycarbonate");
-        plateMaterialChoice.setValue("Brass");
-
-        plateSizeChoice.getItems().addAll("60%", "75%", "TKL");
-        plateSizeChoice.setValue("60%");
-    }
-
-    public void pcbInput() {
-        buttonPcb = new Button("    _Printed Circuit Board    ");
-        buttonPcb.setOnAction(event -> {
-            getImage(PCB_IMAGE);
-            buildMenuLayout.setCenter(imageView);
-            dropDownMenuLayout.getChildren().clear();
-            dropDownMenuLayout.getChildren().add(pcbSizeChoice);
-        });
-
-        pcbSizeChoice.getItems().addAll("60%", "75%", "TKL");
-        pcbSizeChoice.setValue("60%");
-    }
-
-    public void switchesInput() {
-        buttonSwitches = new Button("      _Switches      ");
-        buttonSwitches.setOnAction(event -> {
-            getImage(SWITCHES_IMAGE);
-            buildMenuLayout.setCenter(imageView);
-            dropDownMenuLayout.getChildren().clear();
-            dropDownMenuLayout.getChildren().add(switchTypeChoice);
-        });
-
-        switchTypeChoice.getItems().addAll("Clicky", "Linear", "Tactile");
-        switchTypeChoice.setValue("Clicky");
-        switchTypeChoice.getSelectionModel().selectedItemProperty().addListener((v, oldValue, newValue)
-                -> {
-            dropDownMenuLayout.getChildren().remove(wantSilent);
-            if (newValue.equals("Tactile") || newValue.equals("Linear")) {
-                dropDownMenuLayout.getChildren().add(wantSilent);
-            }
-        });
-    }
-
     // EFFECTS: displays the build menu to the user to select components of the keyboard
     private void displayBuildScene() {
         buildScene = new Scene(buildMenuLayout, SCENE_WIDTH, SCENE_HEIGHT);
@@ -240,7 +162,6 @@ public class GUI extends Application {
         buildMenuLayout.setBottom(componentButtonsLayout);
 
         dropDownMenuLayout.setPadding(new Insets(150, 0, 50, 50));
-
 
         caseInput();
         keycapsInput();
@@ -275,6 +196,89 @@ public class GUI extends Application {
                 mainWindow.setScene(menuScene);
             }
         }
+    }
+
+    // EFFECTS: Handles all of the case's inputs in the build menu
+    public void caseInput() {
+        buttonCase = new Button(" _Case ");
+        buttonCase.setOnAction(event -> {
+            getImage(CASE_IMAGE);
+            buildMenuLayout.setCenter(imageView);
+            dropDownMenuLayout.getChildren().clear();
+            dropDownMenuLayout.getChildren().addAll(caseSizeChoice, caseMaterialChoice);
+
+            caseSizeChoice.getItems().addAll("60%", "75%", "TKL");
+            caseSizeChoice.setValue("60%");
+
+            caseMaterialChoice.getItems().addAll("Aluminum", "Plastic", "Polycarbonate");
+            caseMaterialChoice.setValue("Aluminum");
+        });
+    }
+
+    // EFFECTS: Handles all of the keycaps' inputs in the build menu
+    public void keycapsInput() {
+        buttonKeycaps = new Button("   _Keycaps   ");
+        buttonKeycaps.setOnAction(event -> {
+            getImage(KEYCAPS_IMAGE);
+            buildMenuLayout.setCenter(imageView);
+            dropDownMenuLayout.getChildren().clear();
+            dropDownMenuLayout.getChildren().add(keycapsMaterialChoice);
+        });
+
+        keycapsMaterialChoice.getItems().addAll("ABS", "PBT");
+        keycapsMaterialChoice.setValue("ABS");
+    }
+
+    // EFFECTS: Handles all of the plate's inputs in the build menu
+    public void plateInput() {
+        buttonPlate = new Button("      _Plate      ");
+        buttonPlate.setOnAction(event -> {
+            getImage(PLATE_IMAGE);
+            buildMenuLayout.setCenter(imageView);
+            dropDownMenuLayout.getChildren().clear();
+            dropDownMenuLayout.getChildren().addAll(plateMaterialChoice, plateSizeChoice);
+        });
+
+        plateMaterialChoice.getItems().addAll("Brass", "Aluminum", "Polycarbonate");
+        plateMaterialChoice.setValue("Brass");
+
+        plateSizeChoice.getItems().addAll("60%", "75%", "TKL");
+        plateSizeChoice.setValue("60%");
+    }
+
+    // EFFECTS: Handles all of the pcb's inputs in the build menu
+    public void pcbInput() {
+        buttonPcb = new Button("    _Printed Circuit Board    ");
+        buttonPcb.setOnAction(event -> {
+            getImage(PCB_IMAGE);
+            buildMenuLayout.setCenter(imageView);
+            dropDownMenuLayout.getChildren().clear();
+            dropDownMenuLayout.getChildren().add(pcbSizeChoice);
+        });
+
+        pcbSizeChoice.getItems().addAll("60%", "75%", "TKL");
+        pcbSizeChoice.setValue("60%");
+    }
+
+    // EFFECTS: Handles all of the switches' inputs in the build menu
+    public void switchesInput() {
+        buttonSwitches = new Button("      _Switches      ");
+        buttonSwitches.setOnAction(event -> {
+            getImage(SWITCHES_IMAGE);
+            buildMenuLayout.setCenter(imageView);
+            dropDownMenuLayout.getChildren().clear();
+            dropDownMenuLayout.getChildren().add(switchTypeChoice);
+        });
+
+        switchTypeChoice.getItems().addAll("Clicky", "Linear", "Tactile");
+        switchTypeChoice.setValue("Clicky");
+        switchTypeChoice.getSelectionModel().selectedItemProperty().addListener((v, oldValue, newValue)
+                -> {
+            dropDownMenuLayout.getChildren().remove(wantSilent);
+            if (newValue.equals("Tactile") || newValue.equals("Linear")) {
+                dropDownMenuLayout.getChildren().add(wantSilent);
+            }
+        });
     }
 
     // EFFECTS: Compiles the keyboard with the choices found in the choice boxes
@@ -314,7 +318,7 @@ public class GUI extends Application {
     private void displayPrint() {
         try {
             PrintBox rateBox = new PrintBox();
-            rateBox.displayPrint("Keyboard Specifications", "Here is your keyboard\n\n"
+            rateBox.displayPrint("Keyboard Specifications", "Here is your keyboard!\n\n"
                     + "Case Specifications: \n   " + keyboard.getKeyboardCase().getCaseSize() + "\n   "
                     + keyboard.getKeyboardCase().getCaseMaterial() + "\n\n" + "Keycaps Specifications: \n   "
                     + keyboard.getKeyboardKeycaps().getKeycapsMaterial() + "\n\nPlate Specifications: \n   "

@@ -27,10 +27,10 @@ class KeyboardTest {
 
     @Test
     void testIndividualRating() {
-        testKeyboard.getKeyboardCase().setCaseMaterial("aluminum");
-        testKeyboard.getKeyboardKeycaps().setKeycapsMaterial("abs");
-        testKeyboard.getKeyboardPlate().setPlateMaterial("brass");
-        testKeyboard.getKeyboardSwitches().setSwitchType("tactile");
+        testKeyboard.getKeyboardCase().setCaseMaterial("Aluminum");
+        testKeyboard.getKeyboardKeycaps().setKeycapsMaterial("ABS");
+        testKeyboard.getKeyboardPlate().setPlateMaterial("Brass");
+        testKeyboard.getKeyboardSwitches().setSwitchType("Tactile");
         assertEquals(7, testKeyboard.ratePlateWeight());
         assertEquals(9, testKeyboard.rateCaseWeight());
         assertEquals(6, testKeyboard.rateSwitchesSound());
@@ -41,10 +41,10 @@ class KeyboardTest {
 
     @Test
     void testRateKeyboard() {
-        testKeyboard.getKeyboardCase().setCaseMaterial("aluminum");
-        testKeyboard.getKeyboardKeycaps().setKeycapsMaterial("abs");
-        testKeyboard.getKeyboardPlate().setPlateMaterial("brass");
-        testKeyboard.getKeyboardSwitches().setSwitchType("tactile");
+        testKeyboard.getKeyboardCase().setCaseMaterial("Aluminum");
+        testKeyboard.getKeyboardKeycaps().setKeycapsMaterial("ABS");
+        testKeyboard.getKeyboardPlate().setPlateMaterial("Brass");
+        testKeyboard.getKeyboardSwitches().setSwitchType("Tactile");
         testKeyboard.rateKeyboard();
         assertEquals(10,testKeyboard.getSoundRating());
         assertEquals(10,testKeyboard.getFeelRating());
@@ -53,10 +53,10 @@ class KeyboardTest {
 
     @Test
     void testRateKeyboardSilent() {
-        testKeyboard.getKeyboardCase().setCaseMaterial("aluminum");
-        testKeyboard.getKeyboardKeycaps().setKeycapsMaterial("pbt");
-        testKeyboard.getKeyboardPlate().setPlateMaterial("plastic");
-        testKeyboard.getKeyboardSwitches().setSwitchType("linear");
+        testKeyboard.getKeyboardCase().setCaseMaterial("Aluminum");
+        testKeyboard.getKeyboardKeycaps().setKeycapsMaterial("PBT");
+        testKeyboard.getKeyboardPlate().setPlateMaterial("Plastic");
+        testKeyboard.getKeyboardSwitches().setSwitchType("Linear");
         testKeyboard.getKeyboardSwitches().setSilentSwitches(true);
         testKeyboard.rateKeyboard();
         assertEquals(1,testKeyboard.getSoundRating());
@@ -69,8 +69,8 @@ class KeyboardTest {
     void testRateCaseSoundAluminum() {
         assertEquals("", testKeyboard.getKeyboardCase().getCaseMaterial());
         assertEquals(5, testKeyboard.getSoundRating());
-        testKeyboard.getKeyboardCase().setCaseMaterial("aluminum");
-        assertEquals("aluminum", testKeyboard.getKeyboardCase().getCaseMaterial());
+        testKeyboard.getKeyboardCase().setCaseMaterial("Aluminum");
+        assertEquals("Aluminum", testKeyboard.getKeyboardCase().getCaseMaterial());
         assertEquals(6, testKeyboard.rateCaseSound());
     }
 
@@ -78,8 +78,8 @@ class KeyboardTest {
     void testRateCaseSoundPolycarbonate() {
         assertEquals("", testKeyboard.getKeyboardCase().getCaseMaterial());
         assertEquals(5, testKeyboard.getSoundRating());
-        testKeyboard.getKeyboardCase().setCaseMaterial("polycarbonate");
-        assertEquals("polycarbonate", testKeyboard.getKeyboardCase().getCaseMaterial());
+        testKeyboard.getKeyboardCase().setCaseMaterial("Polycarbonate");
+        assertEquals("Polycarbonate", testKeyboard.getKeyboardCase().getCaseMaterial());
         assertEquals(5, testKeyboard.rateCaseSound());
     }
 
@@ -87,8 +87,8 @@ class KeyboardTest {
     void testRateCaseSoundPlastic() {
         assertEquals("", testKeyboard.getKeyboardCase().getCaseMaterial());
         assertEquals(5, testKeyboard.getSoundRating());
-        testKeyboard.getKeyboardCase().setCaseMaterial("plastic");
-        assertEquals("plastic", testKeyboard.getKeyboardCase().getCaseMaterial());
+        testKeyboard.getKeyboardCase().setCaseMaterial("Plastic");
+        assertEquals("Plastic", testKeyboard.getKeyboardCase().getCaseMaterial());
         assertEquals(4, testKeyboard.rateCaseSound());
     }
 
@@ -96,8 +96,8 @@ class KeyboardTest {
     void testRateKeycapsSoundABS() {
         assertEquals("", testKeyboard.getKeyboardKeycaps().getKeycapsMaterial());
         assertEquals(5, testKeyboard.getSoundRating());
-        testKeyboard.getKeyboardKeycaps().setKeycapsMaterial("abs");
-        assertEquals("abs", testKeyboard.getKeyboardKeycaps().getKeycapsMaterial());
+        testKeyboard.getKeyboardKeycaps().setKeycapsMaterial("ABS");
+        assertEquals("ABS", testKeyboard.getKeyboardKeycaps().getKeycapsMaterial());
         assertEquals(6, testKeyboard.rateKeycapsSound());
     }
 
@@ -105,51 +105,51 @@ class KeyboardTest {
     void testRateKeycapsSoundPBT() {
         assertEquals("", testKeyboard.getKeyboardKeycaps().getKeycapsMaterial());
         assertEquals(5, testKeyboard.getSoundRating());
-        testKeyboard.getKeyboardKeycaps().setKeycapsMaterial("pbt");
-        assertEquals("pbt", testKeyboard.getKeyboardKeycaps().getKeycapsMaterial());
+        testKeyboard.getKeyboardKeycaps().setKeycapsMaterial("PBT");
+        assertEquals("PBT", testKeyboard.getKeyboardKeycaps().getKeycapsMaterial());
         assertEquals(4, testKeyboard.rateKeycapsSound());
     }
 
     @Test
     void testRatePlateSoundBrass() {
-        testKeyboard.getKeyboardPlate().setPlateMaterial("brass");
+        testKeyboard.getKeyboardPlate().setPlateMaterial("Brass");
         assertEquals(7, testKeyboard.ratePlateSound());
     }
 
     @Test
     void testRatePlateSoundAluminum() {
-        testKeyboard.getKeyboardPlate().setPlateMaterial("aluminum");
+        testKeyboard.getKeyboardPlate().setPlateMaterial("Aluminum");
         assertEquals(6, testKeyboard.ratePlateSound());
     }
 
     @Test
     void testRatePlateSoundPolycarbonate() {
-        testKeyboard.getKeyboardPlate().setPlateMaterial("polycarbonate");
+        testKeyboard.getKeyboardPlate().setPlateMaterial("Polycarbonate");
         assertEquals(4, testKeyboard.ratePlateSound());
     }
 
     @Test
     void testRateSwitchesSoundTactile() {
-        testKeyboard.getKeyboardSwitches().setSwitchType("tactile");
+        testKeyboard.getKeyboardSwitches().setSwitchType("Tactile");
         assertEquals(6, testKeyboard.rateSwitchesSound());
     }
 
     @Test
     void testRateSwitchesSoundLinear() {
-        testKeyboard.getKeyboardSwitches().setSwitchType("linear");
+        testKeyboard.getKeyboardSwitches().setSwitchType("Linear");
         assertEquals(4, testKeyboard.rateSwitchesSound());
     }
 
     @Test
     void testRateSwitchesSoundClicky() {
-        testKeyboard.getKeyboardSwitches().setSwitchType("clicky");
+        testKeyboard.getKeyboardSwitches().setSwitchType("Clicky");
         assertEquals(8, testKeyboard.rateSwitchesSound());
 
     }
 
     @Test
     void testRateSwitchesSoundisSilenced() {
-        testKeyboard.getKeyboardSwitches().setSwitchType("tactile");
+        testKeyboard.getKeyboardSwitches().setSwitchType("Tactile");
         assertEquals(6, testKeyboard.rateSwitchesSound());
         testKeyboard.getKeyboardSwitches().setSilentSwitches(true);
         assertEquals(2, testKeyboard.rateSwitchesSound());
@@ -157,80 +157,80 @@ class KeyboardTest {
 
     @Test
     void testRateCaseFeelAluminum() {
-        testKeyboard.getKeyboardCase().setCaseMaterial("aluminum");
+        testKeyboard.getKeyboardCase().setCaseMaterial("Aluminum");
         assertEquals(6, testKeyboard.rateCaseFeel());
     }
 
     @Test
     void testRateCaseFeelPlastic() {
-        testKeyboard.getKeyboardCase().setCaseMaterial("plastic");
+        testKeyboard.getKeyboardCase().setCaseMaterial("Plastic");
         assertEquals(4, testKeyboard.rateCaseFeel());
     }
 
     @Test
     void testRatePlateFeelBrass() {
-        testKeyboard.getKeyboardPlate().setPlateMaterial("brass");
+        testKeyboard.getKeyboardPlate().setPlateMaterial("Brass");
         assertEquals(7, testKeyboard.ratePlateFeel());
     }
 
     @Test
     void testRatePlateFeelAluminum() {
-        testKeyboard.getKeyboardPlate().setPlateMaterial("aluminum");
+        testKeyboard.getKeyboardPlate().setPlateMaterial("Aluminum");
         assertEquals(6, testKeyboard.ratePlateFeel());
     }
 
     @Test
     void testRatePlateFeelPolycarbonate() {
-        testKeyboard.getKeyboardPlate().setPlateMaterial("polycarbonate");
+        testKeyboard.getKeyboardPlate().setPlateMaterial("Polycarbonate");
         assertEquals(4, testKeyboard.ratePlateFeel());
 
     }
 
     @Test
     void testRateSwitchesFeelTactile() {
-        testKeyboard.getKeyboardSwitches().setSwitchType("tactile");
+        testKeyboard.getKeyboardSwitches().setSwitchType("Tactile");
         assertEquals(7, testKeyboard.rateSwitchesFeel());
     }
 
     @Test
     void testRateSwitchesFeelLinear() {
-        testKeyboard.getKeyboardSwitches().setSwitchType("linear");
+        testKeyboard.getKeyboardSwitches().setSwitchType("Linear");
         assertEquals(4, testKeyboard.rateSwitchesFeel());
     }
 
     @Test
     void testRateSwitchesFeelClicky() {
-        testKeyboard.getKeyboardSwitches().setSwitchType("clicky");
+        testKeyboard.getKeyboardSwitches().setSwitchType("Clicky");
         assertEquals(7, testKeyboard.rateSwitchesFeel());
     }
 
     @Test
     void testRateCaseWeightAluminum() {
-        testKeyboard.getKeyboardCase().setCaseMaterial("aluminum");
+        testKeyboard.getKeyboardCase().setCaseMaterial("Aluminum");
         assertEquals(7, testKeyboard.rateCaseWeight());
     }
 
     @Test
     void testRateCaseWeightPlastic() {
-        testKeyboard.getKeyboardCase().setCaseMaterial("plastic");
+        testKeyboard.getKeyboardCase().setCaseMaterial("Plastic");
         assertEquals(3, testKeyboard.rateCaseWeight());
     }
 
     @Test
     void testRatePlateWeightBrass() {
-        testKeyboard.getKeyboardPlate().setPlateMaterial("brass");
+        testKeyboard.getKeyboardPlate().setPlateMaterial("Brass");
         assertEquals(7, testKeyboard.ratePlateWeight());
     }
 
     @Test
     void testRatePlateWeightAluminum() {
-        testKeyboard.getKeyboardPlate().setPlateMaterial("aluminum");
+        testKeyboard.getKeyboardPlate().setPlateMaterial("Aluminum");
         assertEquals(6, testKeyboard.ratePlateWeight());
     }
 
     @Test
     void testRatePlateWeightPolycarbonate() {
-        testKeyboard.getKeyboardPlate().setPlateMaterial("polycarbonate");
+        testKeyboard.getKeyboardPlate().setPlateMaterial("Polycarbonate");
         assertEquals(4, testKeyboard.ratePlateWeight());
     }
 
@@ -244,8 +244,8 @@ class KeyboardTest {
     @Test
     void testGetFeelRating() {
         assertEquals(5,testKeyboard.getFeelRating());
-        testKeyboard.getKeyboardPlate().setPlateMaterial("brass");
-        assertEquals("brass",testKeyboard.getKeyboardPlate().getPlateMaterial());
+        testKeyboard.getKeyboardPlate().setPlateMaterial("Brass");
+        assertEquals("Brass",testKeyboard.getKeyboardPlate().getPlateMaterial());
         testKeyboard.rateKeyboard();
         assertEquals(7,testKeyboard.getFeelRating());
     }
@@ -253,8 +253,8 @@ class KeyboardTest {
     @Test
     void testGetSoundRating() {
         assertEquals(5,testKeyboard.getSoundRating());
-        testKeyboard.getKeyboardPlate().setPlateMaterial("brass");
-        assertEquals("brass",testKeyboard.getKeyboardPlate().getPlateMaterial());
+        testKeyboard.getKeyboardPlate().setPlateMaterial("Brass");
+        assertEquals("Brass",testKeyboard.getKeyboardPlate().getPlateMaterial());
         testKeyboard.rateKeyboard();
         assertEquals(7,testKeyboard.getSoundRating());
     }
@@ -262,8 +262,8 @@ class KeyboardTest {
     @Test
     void testGetWeightRating() {
         assertEquals(5,testKeyboard.getWeightRating());
-        testKeyboard.getKeyboardPlate().setPlateMaterial("brass");
-        assertEquals("brass",testKeyboard.getKeyboardPlate().getPlateMaterial());
+        testKeyboard.getKeyboardPlate().setPlateMaterial("Brass");
+        assertEquals("Brass",testKeyboard.getKeyboardPlate().getPlateMaterial());
         testKeyboard.rateKeyboard();
         assertEquals(7,testKeyboard.getWeightRating());
     }
