@@ -242,24 +242,29 @@ public class GUI extends Application {
         if (wantSilent.isSelected()) {
             keyboard.getKeyboardSwitches().setSilentSwitches(true);
         }
-        compileKeyboard();
-
     }
-
-    private void compileKeyboard() {
-
-    }
-
-
 
 
     private void displayPrint() {
-        if (keyboard.getKeyboardCase().getCaseMaterial().equals("")) {
-            alert.displayAlert("Message", "\n     No build found! "
-                    + "Please return to the menu and select Build to start your build!     \n");
-        } else {
-            PrintBox rateBox = new PrintBox();
-            rateBox.displayPrint("Keyboard Specifications", "Here is your build");
+        try {
+            if (keyboard.getKeyboardCase().getCaseMaterial().equals("")) {
+                alert.displayAlert("Message", "\n     No build found! "
+                        + "Please return to the menu and select Build to start your build!     \n");
+            } else {
+                PrintBox rateBox = new PrintBox();
+                rateBox.displayPrint("Keyboard Specifications", "Here is your keyboard\n\n"
+                        + "Case Specifications: \n   " + keyboard.getKeyboardCase().getCaseSize() + "\n   "
+                        + keyboard.getKeyboardCase().getCaseMaterial() + "\n\n" + "Keycaps Specifications: \n   "
+                        + keyboard.getKeyboardKeycaps().getKeycapsMaterial() + "\n\nPlate Specifications: \n   "
+                        + keyboard.getKeyboardPlate().getPlateMaterial() + "\n   "
+                        + keyboard.getKeyboardPlate().getPlateSize() + "\n\nPCB Specifications: \n   "
+                        + keyboard.getKeyboardPrintedCircuitBoard().getPcbSize() + "\n\nKey Switch Specifications: \n   "
+                        + keyboard.getKeyboardSwitches().getSwitchType());
+            }
+        } catch (NullPointerException e) {
+            AlertBox printFailedAlert = new AlertBox();
+            printFailedAlert.displayAlert("Print Unsuccessful!", "There is no build to show! "
+                    + "Please load a keyboard or start a build.");
         }
     }
 
