@@ -1,1 +1,1 @@
-brass,,,,,,,false,5,5,5
+Aluminum,60%,ABS,Brass,60%,60%,Tactile,false,5,5,5

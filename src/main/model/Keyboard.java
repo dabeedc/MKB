@@ -53,6 +53,7 @@ public class Keyboard implements Saveable {
         this.weightRating = Integer.parseInt(weightRating);
     }
 
+
     // MODIFIES: this
     // EFFECTS: returns the rating of the keyboard based on components
     public void rateKeyboard() {

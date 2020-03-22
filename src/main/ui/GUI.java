@@ -27,7 +27,8 @@ import java.util.List;
 // Keyboard builder application
 // EFFECTS: starts the GUI class
 public class GUI extends Application {
-    private Keyboard keyboard = new Keyboard(); //todo keyboard placeholder
+    //    private Keyboard keyboard = new Keyboard(); //todo keyboard placeholder
+    private Keyboard keyboard;
     private static final String ACCOUNTS_FILE = "./data/keyboard.txt";
     private static final int SCENE_WIDTH = 800;
     private static final int SCENE_HEIGHT = 450;
@@ -58,7 +59,13 @@ public class GUI extends Application {
     // Dialog Boxes
     private AlertBox alert = new AlertBox();
     CheckBox wantSilent = new CheckBox("Silent");
-
+    ChoiceBox<String> caseSizeChoice = new ChoiceBox<>();
+    ChoiceBox<String> caseMaterialChoice = new ChoiceBox<>();
+    ChoiceBox<String> keycapsMaterialChoice = new ChoiceBox<>();
+    ChoiceBox<String> plateMaterialChoice = new ChoiceBox<>();
+    ChoiceBox<String> plateSizeChoice = new ChoiceBox<>();
+    ChoiceBox<String> pcbSizeChoice = new ChoiceBox<>();
+    ChoiceBox<String> switchTypeChoice = new ChoiceBox<>();
 
     // EFFECTS: runs the builder application
     public static void main(String[] args) {
@@ -84,7 +91,7 @@ public class GUI extends Application {
 
     private void displayMainMenu() {
         Text header = TextBuilder.create().text("Welcome to MK Parts Picker...").build();
-        keyboard.getKeyboardCase().setCaseMaterial("brass"); //todo keyboard placeholder
+//        keyboard.getKeyboardCase().setCaseMaterial("brass"); //todo keyboard placeholder
 
         mainWindow.setTitle("Mechanical Keyboard Parts Picker");
         mainWindow.setOnCloseRequest(event -> {
@@ -95,7 +102,10 @@ public class GUI extends Application {
         buttonInfo = new Button(" _Information ");
         buttonInfo.setOnAction(event -> infoWindow.displayInformationMenu());
         buttonBuild = new Button("      _Build      ");
-        buttonBuild.setOnAction(event -> displayBuildScene());
+        buttonBuild.setOnAction(event -> {
+            keyboard = new Keyboard();
+            displayBuildScene();
+        });
         buttonPrint = new Button("      _Print      ");
         buttonPrint.setOnAction(event -> displayPrint());
         buttonRate = new Button("      _Rate      ");
@@ -130,32 +140,25 @@ public class GUI extends Application {
 
         dropDownMenuLayout.setPadding(new Insets(150, 0, 50, 50));
 
-        ChoiceBox<String> caseSizeChoice = new ChoiceBox<>();
         caseSizeChoice.getItems().addAll("60%", "75%", "TKL");
         caseSizeChoice.setValue("60%");
 
-        ChoiceBox<String> caseMaterialChoice = new ChoiceBox<>();
         caseMaterialChoice.getItems().addAll("Aluminum", "Plastic", "Polycarbonate");
         caseMaterialChoice.setValue("Aluminum");
 
-        ChoiceBox<String> keycapsMaterialChoice = new ChoiceBox<>();
         keycapsMaterialChoice.getItems().addAll("ABS", "PBT");
         keycapsMaterialChoice.setValue("ABS");
 
 
-        ChoiceBox<String> plateMaterialChoice = new ChoiceBox<>();
         plateMaterialChoice.getItems().addAll("Brass", "Aluminum", "Polycarbonate");
         plateMaterialChoice.setValue("Brass");
 
-        ChoiceBox<String> plateSizeChoice = new ChoiceBox<>();
         plateSizeChoice.getItems().addAll("60%", "75%", "TKL");
         plateSizeChoice.setValue("60%");
 
-        ChoiceBox<String> pcbSizeChoice = new ChoiceBox<>();
         pcbSizeChoice.getItems().addAll("60%", "75%", "TKL");
         pcbSizeChoice.setValue("60%");
 
-        ChoiceBox<String> switchTypeChoice = new ChoiceBox<>();
         switchTypeChoice.getItems().addAll("Tactile", "Linear", "Clicky");
         switchTypeChoice.setValue("Tactile");
         switchTypeChoice.getSelectionModel().selectedItemProperty().addListener((v, oldValue, newValue)
@@ -200,7 +203,7 @@ public class GUI extends Application {
             Boolean answerToCompleteBuild = finishBuildBox.displayConfirmation("Confirm Build",
                     "Is this your finished build? ");
             if (answerToCompleteBuild) {
-
+                parseKeyboard();
                 mainWindow.setScene(menuScene);
             }
         });
@@ -210,6 +213,45 @@ public class GUI extends Application {
         componentButtonsLayout.setPadding(new Insets(0, 0, 20, 0));
         componentButtonsLayout.setAlignment(Pos.CENTER);
     }
+
+    private void getChoice(ChoiceBox<String> choiceBox) {
+        String caseSize = caseSizeChoice.getValue();
+        String caseMaterial = caseMaterialChoice.getValue();
+        String keycapsMaterial = keycapsMaterialChoice.getValue();
+        String plateMaterial = plateMaterialChoice.getValue();
+        String plateSize = plateSizeChoice.getValue();
+        String pcbSize = pcbSizeChoice.getValue();
+        String switchType = switchTypeChoice.getValue();
+        keyboard.getKeyboardCase().setCaseSize(caseSize);
+        keyboard.getKeyboardCase().setCaseMaterial(caseMaterial);
+        keyboard.getKeyboardKeycaps().setKeycapsMaterial(keycapsMaterial);
+        keyboard.getKeyboardPlate().setPlateSize(plateSize);
+        keyboard.getKeyboardPlate().setPlateMaterial(plateMaterial);
+        keyboard.getKeyboardPrintedCircuitBoard().setPcbSize(pcbSize);
+        keyboard.getKeyboardSwitches().setSwitchType(switchType);
+    }
+
+    private void parseKeyboard() {
+        getChoice(caseSizeChoice);
+        getChoice(caseMaterialChoice);
+        getChoice(keycapsMaterialChoice);
+        getChoice(plateMaterialChoice);
+        getChoice(plateSizeChoice);
+        getChoice(pcbSizeChoice);
+        getChoice(switchTypeChoice);
+        if (wantSilent.isSelected()) {
+            keyboard.getKeyboardSwitches().setSilentSwitches(true);
+        }
+        compileKeyboard();
+
+    }
+
+    private void compileKeyboard() {
+
+    }
+
+
+
 
     private void displayPrint() {
         if (keyboard.getKeyboardCase().getCaseMaterial().equals("")) {
@@ -274,6 +316,9 @@ public class GUI extends Application {
             saveAlert.displayAlert("Save Successful!", "Keyboard saved to file " + ACCOUNTS_FILE);
         } catch (FileNotFoundException e) {
             saveFailedAlert.displayAlert("Save Unsuccessful!", "Unable to save keyboard to file "
+                    + ACCOUNTS_FILE);
+        } catch (NullPointerException e) {
+            saveFailedAlert.displayAlert("Save Unsuccessful!", "No keyboard found to save to file  "
                     + ACCOUNTS_FILE);
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
