@@ -63,6 +63,14 @@ public class GUI extends Application {
     ChoiceBox<String> pcbSizeChoice = new ChoiceBox<>();
     ChoiceBox<String> switchTypeChoice = new ChoiceBox<>();
 
+    ImageView menuImageView = null;
+    private static final String MENU_IMAGE = "data/Photos/mainImage.jpg";
+    private static final String CASE_IMAGE = "data/Photos/tobs.jpg";
+    private static final String KEYCAPS_IMAGE = "data/Photos/tobs.jpg";
+    private static final String PLATE_IMAGE = "data/Photos/tobs.jpg";
+    private static final String PCB_IMAGE = "data/Photos/tobs.jpg";
+    private static final String SWITCHES_IMAGE = "data/Photos/tobs.jpg";
+
     // EFFECTS: runs the builder application
     public static void main(String[] args) {
         launch(args);
@@ -85,14 +93,17 @@ public class GUI extends Application {
         mainWindow.close();
     }
 
-    private void displayMainMenu() {
-        ImageView imageView = null;
+    public void getImage(String image) {
         try {
-            Image image = new Image(new FileInputStream("data/Photos/mainImage.jpg"));
-            imageView = new ImageView(image);
+            Image menuImage = new Image(new FileInputStream(image));
+            menuImageView = new ImageView(menuImage);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+    }
+
+    private void displayMainMenu() {
+        getImage(MENU_IMAGE);
 
         mainWindow.setTitle("Mechanical Keyboard Parts Picker");
         mainWindow.setOnCloseRequest(event -> {
@@ -119,7 +130,7 @@ public class GUI extends Application {
 
         BorderPane mainMenuLayout = new BorderPane();
         mainMenuLayout.setTop(displayMenuBar());
-        mainMenuLayout.setCenter(imageView);
+        mainMenuLayout.setCenter(menuImageView);
         mainMenuLayout.setLeft(buttonMenuLayout);
 
         menuScene = new Scene(mainMenuLayout, SCENE_WIDTH, SCENE_HEIGHT);
