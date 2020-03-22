@@ -159,13 +159,12 @@ public class GUI extends Application {
         pcbSizeChoice.getItems().addAll("60%", "75%", "TKL");
         pcbSizeChoice.setValue("60%");
 
-        switchTypeChoice.getItems().addAll("Tactile", "Linear", "Clicky");
-        switchTypeChoice.setValue("Tactile");
+        switchTypeChoice.getItems().addAll("Clicky", "Linear", "Tactile");
+        switchTypeChoice.setValue("Clicky");
         switchTypeChoice.getSelectionModel().selectedItemProperty().addListener((v, oldValue, newValue)
                 -> {
             dropDownMenuLayout.getChildren().remove(wantSilent);
             if (newValue.equals("Tactile") || newValue.equals("Linear")) {
-                System.out.println("I am tactile");
                 dropDownMenuLayout.getChildren().add(wantSilent);
             }
         });
@@ -247,20 +246,15 @@ public class GUI extends Application {
 
     private void displayPrint() {
         try {
-            if (keyboard.getKeyboardCase().getCaseMaterial().equals("")) {
-                alert.displayAlert("Message", "\n     No build found! "
-                        + "Please return to the menu and select Build to start your build!     \n");
-            } else {
-                PrintBox rateBox = new PrintBox();
-                rateBox.displayPrint("Keyboard Specifications", "Here is your keyboard\n\n"
-                        + "Case Specifications: \n   " + keyboard.getKeyboardCase().getCaseSize() + "\n   "
-                        + keyboard.getKeyboardCase().getCaseMaterial() + "\n\n" + "Keycaps Specifications: \n   "
-                        + keyboard.getKeyboardKeycaps().getKeycapsMaterial() + "\n\nPlate Specifications: \n   "
-                        + keyboard.getKeyboardPlate().getPlateMaterial() + "\n   "
-                        + keyboard.getKeyboardPlate().getPlateSize() + "\n\nPCB Specifications: \n   "
-                        + keyboard.getKeyboardPrintedCircuitBoard().getPcbSize() + "\n\nKey Switch Specifications: \n   "
-                        + keyboard.getKeyboardSwitches().getSwitchType());
-            }
+            PrintBox rateBox = new PrintBox();
+            rateBox.displayPrint("Keyboard Specifications", "Here is your keyboard\n\n"
+                    + "Case Specifications: \n   " + keyboard.getKeyboardCase().getCaseSize() + "\n   "
+                    + keyboard.getKeyboardCase().getCaseMaterial() + "\n\n" + "Keycaps Specifications: \n   "
+                    + keyboard.getKeyboardKeycaps().getKeycapsMaterial() + "\n\nPlate Specifications: \n   "
+                    + keyboard.getKeyboardPlate().getPlateMaterial() + "\n   "
+                    + keyboard.getKeyboardPlate().getPlateSize() + "\n\nPCB Specifications: \n   "
+                    + keyboard.getKeyboardPrintedCircuitBoard().getPcbSize() + "\n\nKey Switch Specifications: \n   "
+                    + keyboard.getKeyboardSwitches().getSwitchType());
         } catch (NullPointerException e) {
             AlertBox printFailedAlert = new AlertBox();
             printFailedAlert.displayAlert("Print Unsuccessful!", "There is no build to show! "
@@ -269,14 +263,17 @@ public class GUI extends Application {
     }
 
     private void displayRate() {
-        if (keyboard.getKeyboardCase().getCaseMaterial().equals("")) {
-            alert.displayAlert("Message", "\n     No build found! "
-                    + "Please return to the menu and select Build to start your build!     \n");
-        } else {
+        try {
             RateBox rateBox = new RateBox();
-            rateBox.displayRating("Keyboard Rating", " On a scale from 1 to 10: 1 being quiet, soft, and"
-                    + " light; 10 being loud, hard, and heavy for the typing sound, feel, and weight of the "
-                    + "keyboard, respectively.");
+            rateBox.displayRating("Keyboard Rating", "On a scale from 1 to 10: 1 being quiet, soft, and"
+                    + " light; 10 being loud, hard, \nand heavy for the typing sound, feel, and weight of the "
+                    + "keyboard, respectively. \n\nThis is your keyboard's rating:\nSound Level: "
+                    + keyboard.getSoundRating() + "\nTyping Feel: " + keyboard.getFeelRating() + "\nWeight: "
+                    + keyboard.getWeightRating());
+        } catch (NullPointerException e) {
+            AlertBox rateFailedAlert = new AlertBox();
+            rateFailedAlert.displayAlert("Rate Unsuccessful!", "There is no build to rate! "
+                    + "Please load a keyboard or start a build.");
         }
     }
 
