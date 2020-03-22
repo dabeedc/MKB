@@ -33,14 +33,15 @@ public class GUI extends Application {
     private static final String PLATE_IMAGE = "data/Photos/plateImage.jpg";
     private static final String PCB_IMAGE = "data/Photos/pcbImage.jpg";
     private static final String SWITCHES_IMAGE = "data/Photos/switchesImage.gif";
-    BorderPane buildMenuLayout = new BorderPane();
-    VBox dropDownMenuLayout = new VBox(5);
+
     // Stages and Scenes
     private Stage mainWindow;
     private Scene menuScene;
     private Scene buildScene;
     private InformationMenu infoWindow;
-
+    BorderPane buildMenuLayout = new BorderPane();
+    VBox dropDownMenuLayout = new VBox(5);
+    VBox buttonMenuLayout = new VBox(30);
 
     // Buttons
     private Button buttonInfo = new Button(" _Information ");
@@ -59,7 +60,6 @@ public class GUI extends Application {
     private Menu helpMenu = new Menu("_Help");
 
     // Dialog Boxes
-    private AlertBox alert = new AlertBox();
     CheckBox wantSilent = new CheckBox("Silent");
     ChoiceBox<String> caseSizeChoice = new ChoiceBox<>();
     ChoiceBox<String> caseMaterialChoice = new ChoiceBox<>();
@@ -71,7 +71,6 @@ public class GUI extends Application {
 
     ImageView imageView = null;
 
-    VBox buttonMenuLayout = new VBox(30);
 
     // EFFECTS: runs the GUI application
     public static void main(String[] args) {
@@ -187,7 +186,6 @@ public class GUI extends Application {
             repeatBuild.displayAlert("Build Completed", "Build is already complete, please restart to "
                     + "start a new build.");
         }
-
     }
 
     // MODIFIES: keyboard
@@ -215,7 +213,6 @@ public class GUI extends Application {
             nullBuildAlert.displayAlert("No selections!", "No components have been selected yet, try"
                     + " starting with a case!");
         }
-
     }
 
     // EFFECTS: Handles all of the case's inputs in the build menu
