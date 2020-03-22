@@ -203,6 +203,7 @@ public class GUI extends Application {
                     "Is this your finished build? ");
             if (answerToCompleteBuild) {
                 parseKeyboard();
+                keyboard.rateKeyboard();
                 mainWindow.setScene(menuScene);
             }
         });
@@ -242,7 +243,6 @@ public class GUI extends Application {
             keyboard.getKeyboardSwitches().setSilentSwitches(true);
         }
     }
-
 
     private void displayPrint() {
         try {
