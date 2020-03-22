@@ -20,7 +20,6 @@ import ui.gui.*;
 import java.io.*;
 import java.util.List;
 
-
 // Keyboard builder application
 // EFFECTS: starts the GUI class
 public class GUI extends Application {
@@ -72,11 +71,12 @@ public class GUI extends Application {
     ImageView imageView = null;
 
 
-    // EFFECTS: runs the builder application
+    // EFFECTS: runs the GUI application
     public static void main(String[] args) {
         launch(args);
     }
 
+    // EFFECTS: starts the GUI by setting initial stage
     @Override
     public void start(Stage primaryStage) {
         mainWindow = primaryStage;
@@ -94,6 +94,8 @@ public class GUI extends Application {
         mainWindow.close();
     }
 
+
+    // EFFECTS: displays the main menu where the user can interact with various buttons
     private void displayMainMenu() {
         getImage(MENU_IMAGE);
 
@@ -130,6 +132,7 @@ public class GUI extends Application {
         mainWindow.show();
     }
 
+    // EFFECTS: receives the image at a certain file input stream specified
     public void getImage(String image) {
         try {
             Image menuImage = new Image(new FileInputStream(image));
@@ -139,6 +142,7 @@ public class GUI extends Application {
         }
     }
 
+    // EFFECTS: placeholder image for the build scene
     public Node imageHolder() {
         try {
             Image holderImage = new Image(new FileInputStream("data/Photos/infoImage.jpg"));
@@ -149,6 +153,7 @@ public class GUI extends Application {
         return imageView;
     }
 
+    // EFFECTS: displays the build menu to the user to select components of the keyboard
     private void displayBuildScene() {
         BorderPane buildMenuLayout = new BorderPane();
         buildScene = new Scene(buildMenuLayout, SCENE_WIDTH, SCENE_HEIGHT);
@@ -238,6 +243,8 @@ public class GUI extends Application {
         componentButtonsLayout.setAlignment(Pos.CENTER);
     }
 
+    // EFFECTS: Checks whether the sizes are compatible and alerts the user to reselect if it's not
+    // MODIFIES: keyboard
     private void checkCompatibility() {
         if (!caseSizeChoice.getValue().equals(plateSizeChoice.getValue())
                 || !pcbSizeChoice.getValue().equals(plateSizeChoice.getValue())
@@ -257,6 +264,8 @@ public class GUI extends Application {
         }
     }
 
+    // EFFECTS: Compiles the keyboard with the choices found in the choice boxes
+    // MODIFIES: keyboard
     private void getChoice(ChoiceBox<String> choiceBox) {
         String caseSize = caseSizeChoice.getValue();
         String caseMaterial = caseMaterialChoice.getValue();
@@ -274,6 +283,7 @@ public class GUI extends Application {
         keyboard.getKeyboardSwitches().setSwitchType(switchType);
     }
 
+    // EFFECTS: Retrieves the data from each choicebox and checks whether or not silentCheckBox is true or false
     private void parseKeyboard() {
         getChoice(caseSizeChoice);
         getChoice(caseMaterialChoice);
@@ -287,6 +297,7 @@ public class GUI extends Application {
         }
     }
 
+    // EFFECTS: Prints the build to a dialog box, if available, else tells the user to load or start a build
     private void displayPrint() {
         try {
             PrintBox rateBox = new PrintBox();
@@ -306,6 +317,7 @@ public class GUI extends Application {
         }
     }
 
+    // EFFECTS: Prints the rating to a dialog box, if available, else tells the user to load or start a build
     private void displayRate() {
         try {
             RateBox rateBox = new RateBox();
@@ -321,6 +333,7 @@ public class GUI extends Application {
         }
     }
 
+    // EFFECTS: Displays the top menu bar with menu items save, load, and exit
     public Node displayMenuBar() {
         // Menu Items
         MenuItem save = new MenuItem("Save Keyboard");
@@ -342,6 +355,7 @@ public class GUI extends Application {
         return menuBarFile;
     }
 
+    // EFFECTS: an information menu item for when the build starts, so you can look at information while building
     public Node displayHelpMenu() {
         MenuItem help = new MenuItem("Information");
         helpMenu.getItems().add(help);
