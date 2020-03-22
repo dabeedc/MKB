@@ -150,52 +150,72 @@ public class GUI extends Application {
         return imageView;
     }
 
-    // EFFECTS: displays the build menu to the user to select components of the keyboard
-    private void displayBuildScene() {
-        buildScene = new Scene(buildMenuLayout, SCENE_WIDTH, SCENE_HEIGHT);
-        mainWindow.setScene(buildScene);
 
+    // EFFECTS: sets nodes in the BorderPane found in the build menu
+    public void setBuildMenuLayout() {
         buildMenuLayout.setTop(displayHelpMenu());
         buildMenuLayout.setCenter(imageHolder());
         buildMenuLayout.setLeft(dropDownMenuLayout);
-        HBox componentButtonsLayout = new HBox(25);
-        buildMenuLayout.setBottom(componentButtonsLayout);
+    }
 
-        dropDownMenuLayout.setPadding(new Insets(150, 0, 50, 50));
+    // EFFECTS: displays the build menu to the user to select components of the keyboard
+    private void displayBuildScene() {
+        try {
+            buildScene = new Scene(buildMenuLayout, SCENE_WIDTH, SCENE_HEIGHT);
+            mainWindow.setScene(buildScene);
 
-        caseInput();
-        keycapsInput();
-        plateInput();
-        pcbInput();
-        switchesInput();
-        buttonConfirmation = new Button("    _Confirm Build    ");
-        buttonConfirmation.setOnAction(event -> checkCompatibility());
+            setBuildMenuLayout();
+            HBox componentButtonsLayout = new HBox(25);
+            buildMenuLayout.setBottom(componentButtonsLayout);
 
-        componentButtonsLayout.getChildren().addAll(buttonCase, buttonKeycaps, buttonPlate, buttonPcb, buttonSwitches,
-                buttonConfirmation);
-        componentButtonsLayout.setPadding(new Insets(0, 0, 20, 0));
-        componentButtonsLayout.setAlignment(Pos.CENTER);
+            dropDownMenuLayout.setPadding(new Insets(150, 0, 50, 50));
+
+            caseInput();
+            keycapsInput();
+            plateInput();
+            pcbInput();
+            switchesInput();
+            buttonConfirmation = new Button("    _Confirm Build    ");
+            buttonConfirmation.setOnAction(event -> checkCompatibility());
+
+            componentButtonsLayout.getChildren().addAll(buttonCase, buttonKeycaps, buttonPlate, buttonPcb,
+                    buttonSwitches, buttonConfirmation);
+            componentButtonsLayout.setPadding(new Insets(0, 0, 20, 0));
+            componentButtonsLayout.setAlignment(Pos.CENTER);
+        } catch (IllegalArgumentException e) {
+            AlertBox repeatBuild = new AlertBox();
+            repeatBuild.displayAlert("Build Completed", "Build is already complete, please restart to "
+                    + "start a new build.");
+        }
+
     }
 
     // MODIFIES: keyboard
     // EFFECTS: Checks whether the sizes are compatible and alerts the user to reselect if it's not
     private void checkCompatibility() {
-        if (!caseSizeChoice.getValue().equals(plateSizeChoice.getValue())
-                || !pcbSizeChoice.getValue().equals(plateSizeChoice.getValue())
-                || !caseSizeChoice.getValue().equals(pcbSizeChoice.getValue())) {
-            AlertBox notCompatibleAlert = new AlertBox();
-            notCompatibleAlert.displayAlert("Not Compatible", "Your PCB and plate must be the same "
-                    + "size as your case! Please reselect your sizes!");
-        } else {
-            ExitConfirmationBox finishBuildBox = new ExitConfirmationBox();
-            boolean answerToCompleteBuild = finishBuildBox.displayConfirmation("Confirm Build",
-                    "Is this your finished build? ");
-            if (answerToCompleteBuild) {
-                parseKeyboard();
-                keyboard.rateKeyboard();
-                mainWindow.setScene(menuScene);
+        try {
+            if (!caseSizeChoice.getValue().equals(plateSizeChoice.getValue())
+                    || !pcbSizeChoice.getValue().equals(plateSizeChoice.getValue())
+                    || !caseSizeChoice.getValue().equals(pcbSizeChoice.getValue())) {
+                AlertBox notCompatibleAlert = new AlertBox();
+                notCompatibleAlert.displayAlert("Not Compatible", "Your PCB and plate must be the same "
+                        + "size as your case! Please reselect your sizes!");
+            } else {
+                ExitConfirmationBox finishBuildBox = new ExitConfirmationBox();
+                boolean answerToCompleteBuild = finishBuildBox.displayConfirmation("Confirm Build",
+                        "Is this your finished build? ");
+                if (answerToCompleteBuild) {
+                    parseKeyboard();
+                    keyboard.rateKeyboard();
+                    mainWindow.setScene(menuScene);
+                }
             }
+        } catch (NullPointerException e) {
+            AlertBox nullBuildAlert = new AlertBox();
+            nullBuildAlert.displayAlert("No selections!", "No components have been selected yet, try"
+                    + " starting with a case!");
         }
+
     }
 
     // EFFECTS: Handles all of the case's inputs in the build menu
