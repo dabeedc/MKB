@@ -42,10 +42,10 @@ public class GUI extends Application {
 
 
     // Buttons
-    private Button buttonInfo;
-    private Button buttonBuild;
-    private Button buttonPrint;
-    private Button buttonRate;
+    private Button buttonInfo = new Button(" _Information ");
+    private Button buttonBuild = new Button("      _Build      ");
+    private Button buttonPrint = new Button("      _Print      ");
+    private Button buttonRate = new Button("      _Rate      ");
     private Button buttonCase;
     private Button buttonKeycaps;
     private Button buttonPlate;
@@ -70,6 +70,7 @@ public class GUI extends Application {
 
     ImageView imageView = null;
 
+    VBox buttonMenuLayout = new VBox(30);
 
     // EFFECTS: runs the GUI application
     public static void main(String[] args) {
@@ -105,19 +106,14 @@ public class GUI extends Application {
             closeProgram();
         });
 
-        buttonInfo = new Button(" _Information ");
         buttonInfo.setOnAction(event -> infoWindow.displayInformationMenu());
-        buttonBuild = new Button("      _Build      ");
         buttonBuild.setOnAction(event -> {
             keyboard = new Keyboard();
             displayBuildScene();
         });
-        buttonPrint = new Button("      _Print      ");
         buttonPrint.setOnAction(event -> displayPrint());
-        buttonRate = new Button("      _Rate      ");
         buttonRate.setOnAction(event -> displayRate());
 
-        VBox buttonMenuLayout = new VBox(30);
         buttonMenuLayout.setPadding(new Insets(0, -50, 0, 75));
         buttonMenuLayout.getChildren().addAll(buttonInfo, buttonBuild, buttonPrint, buttonRate);
         buttonMenuLayout.setAlignment(Pos.CENTER);
