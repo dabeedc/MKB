@@ -63,13 +63,13 @@ public class GUI extends Application {
     ChoiceBox<String> pcbSizeChoice = new ChoiceBox<>();
     ChoiceBox<String> switchTypeChoice = new ChoiceBox<>();
 
-    ImageView menuImageView = null;
+    ImageView ImageView = null;
     private static final String MENU_IMAGE = "data/Photos/mainImage.jpg";
-    private static final String CASE_IMAGE = "data/Photos/tobs.jpg";
-    private static final String KEYCAPS_IMAGE = "data/Photos/tobs.jpg";
-    private static final String PLATE_IMAGE = "data/Photos/tobs.jpg";
-    private static final String PCB_IMAGE = "data/Photos/tobs.jpg";
-    private static final String SWITCHES_IMAGE = "data/Photos/tobs.jpg";
+    private static final String CASE_IMAGE = "data/Photos/caseImage.jpg";
+    private static final String KEYCAPS_IMAGE = "data/Photos/keycapsImage.jpg";
+    private static final String PLATE_IMAGE = "data/Photos/plateImage.jpg";
+    private static final String PCB_IMAGE = "data/Photos/pcbImage.jpg";
+    private static final String SWITCHES_IMAGE = "data/Photos/switchesImage.gif";
 
     // EFFECTS: runs the builder application
     public static void main(String[] args) {
@@ -91,15 +91,6 @@ public class GUI extends Application {
 //        if (answerToExit)
 // todo commented just to allow closing of program quicker
         mainWindow.close();
-    }
-
-    public void getImage(String image) {
-        try {
-            Image menuImage = new Image(new FileInputStream(image));
-            menuImageView = new ImageView(menuImage);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
     }
 
     private void displayMainMenu() {
@@ -130,12 +121,21 @@ public class GUI extends Application {
 
         BorderPane mainMenuLayout = new BorderPane();
         mainMenuLayout.setTop(displayMenuBar());
-        mainMenuLayout.setCenter(menuImageView);
+        mainMenuLayout.setCenter(ImageView);
         mainMenuLayout.setLeft(buttonMenuLayout);
 
         menuScene = new Scene(mainMenuLayout, SCENE_WIDTH, SCENE_HEIGHT);
         mainWindow.setScene(menuScene);
         mainWindow.show();
+    }
+
+    public void getImage(String image) {
+        try {
+            Image menuImage = new Image(new FileInputStream(image));
+            ImageView = new ImageView(menuImage);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     private void displayBuildScene() {
@@ -183,27 +183,37 @@ public class GUI extends Application {
 
         buttonCase = new Button(" _Case ");
         buttonCase.setOnAction(event -> {
+            getImage(CASE_IMAGE);
+            buildMenuLayout.setCenter(ImageView);
             dropDownMenuLayout.getChildren().clear();
             dropDownMenuLayout.getChildren().addAll(caseSizeChoice, caseMaterialChoice);
         });
         buttonKeycaps = new Button("   _Keycaps   ");
         buttonKeycaps.setOnAction(event -> {
+            getImage(KEYCAPS_IMAGE);
+            buildMenuLayout.setCenter(ImageView);
             dropDownMenuLayout.getChildren().clear();
             dropDownMenuLayout.getChildren().add(keycapsMaterialChoice);
         });
         buttonPlate = new Button("      _Plate      ");
         buttonPlate.setOnAction(event -> {
+            getImage(PLATE_IMAGE);
+            buildMenuLayout.setCenter(ImageView);
             dropDownMenuLayout.getChildren().clear();
             dropDownMenuLayout.getChildren().addAll(plateMaterialChoice, plateSizeChoice);
         });
         buttonPcb = new Button("    _Printed Circuit Board    ");
         buttonPcb.setOnAction(event -> {
+            getImage(PCB_IMAGE);
+            buildMenuLayout.setCenter(ImageView);
             dropDownMenuLayout.getChildren().clear();
             dropDownMenuLayout.getChildren().add(pcbSizeChoice);
 
         });
         buttonSwitches = new Button("      _Switches      ");
         buttonSwitches.setOnAction(event -> {
+            getImage(SWITCHES_IMAGE);
+            buildMenuLayout.setCenter(ImageView);
             dropDownMenuLayout.getChildren().clear();
             dropDownMenuLayout.getChildren().add(switchTypeChoice);
 
