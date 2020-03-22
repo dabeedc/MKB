@@ -37,13 +37,15 @@ public class GUI extends Application {
     // Stages and Scenes
     private Stage mainWindow;
     private Scene menuScene;
+    private Scene buildScene;
     private InformationMenu infoWindow;
 
+
     // Buttons
-    private Button buttonInfo;
-    private Button buttonBuild;
-    private Button buttonPrint;
-    private Button buttonRate;
+    private Button buttonInfo = new Button(" _Information ");
+    private Button buttonBuild = new Button("      _Build      ");
+    private Button buttonPrint = new Button("      _Print      ");
+    private Button buttonRate = new Button("      _Rate      ");
     private Button buttonCase;
     private Button buttonKeycaps;
     private Button buttonPlate;
@@ -52,29 +54,23 @@ public class GUI extends Application {
     private Button buttonConfirmation;
 
     // Menu Bar
-    private Menu fileMenu;
-    private Menu helpMenu;
+    private Menu fileMenu = new Menu("_File");
+    private Menu helpMenu = new Menu("_Help");
 
     // Dialog Boxes
-    private AlertBox saveAlert;
-    private AlertBox saveFailedAlert;
-    private AlertBox loadAlert;
-    private CheckBox wantSilent = new CheckBox("Silent");
-    private ChoiceBox<String> caseSizeChoice = new ChoiceBox<>();
-    private ChoiceBox<String> caseMaterialChoice = new ChoiceBox<>();
-    private ChoiceBox<String> keycapsMaterialChoice = new ChoiceBox<>();
-    private ChoiceBox<String> plateMaterialChoice = new ChoiceBox<>();
-    private ChoiceBox<String> plateSizeChoice = new ChoiceBox<>();
-    private ChoiceBox<String> pcbSizeChoice = new ChoiceBox<>();
-    private ChoiceBox<String> switchTypeChoice = new ChoiceBox<>();
+    private AlertBox alert = new AlertBox();
+    CheckBox wantSilent = new CheckBox("Silent");
+    ChoiceBox<String> caseSizeChoice = new ChoiceBox<>();
+    ChoiceBox<String> caseMaterialChoice = new ChoiceBox<>();
+    ChoiceBox<String> keycapsMaterialChoice = new ChoiceBox<>();
+    ChoiceBox<String> plateMaterialChoice = new ChoiceBox<>();
+    ChoiceBox<String> plateSizeChoice = new ChoiceBox<>();
+    ChoiceBox<String> pcbSizeChoice = new ChoiceBox<>();
+    ChoiceBox<String> switchTypeChoice = new ChoiceBox<>();
 
-    private ImageView imageView = null;
+    ImageView imageView = null;
 
-    private VBox buttonMenuLayout = new VBox(30);
-    private BorderPane buildMenuLayout = new BorderPane();
-    private VBox dropDownMenuLayout = new VBox(5);
-    private Scene buildScene = new Scene(buildMenuLayout, SCENE_WIDTH, SCENE_HEIGHT);
-    private HBox componentButtonsLayout = new HBox(25);
+    VBox buttonMenuLayout = new VBox(30);
 
     // EFFECTS: runs the GUI application
     public static void main(String[] args) {
@@ -110,17 +106,6 @@ public class GUI extends Application {
             closeProgram();
         });
 
-        mainMenuInterface();
-
-        mainWindow.setScene(menuScene);
-        mainWindow.show();
-    }
-
-    public void mainMenuInterface() {
-        buttonInfo = new Button(" _Information ");
-        buttonBuild = new Button("      _Build      ");
-        buttonPrint = new Button("      _Print      ");
-        buttonRate = new Button("      _Rate      ");
         buttonInfo.setOnAction(event -> infoWindow.displayInformationMenu());
         buttonBuild.setOnAction(event -> {
             keyboard = new Keyboard();
@@ -137,7 +122,10 @@ public class GUI extends Application {
         mainMenuLayout.setTop(displayMenuBar());
         mainMenuLayout.setCenter(imageView);
         mainMenuLayout.setLeft(buttonMenuLayout);
+
         menuScene = new Scene(mainMenuLayout, SCENE_WIDTH, SCENE_HEIGHT);
+        mainWindow.setScene(menuScene);
+        mainWindow.show();
     }
 
     // EFFECTS: receives the image at a certain file input stream specified
@@ -163,21 +151,92 @@ public class GUI extends Application {
 
     // EFFECTS: displays the build menu to the user to select components of the keyboard
     private void displayBuildScene() {
+        BorderPane buildMenuLayout = new BorderPane();
+        buildScene = new Scene(buildMenuLayout, SCENE_WIDTH, SCENE_HEIGHT);
         mainWindow.setScene(buildScene);
+        VBox dropDownMenuLayout = new VBox(5);
 
-        buildMenuLayoutPlacement();
-        setComponentButtonsLayoutPlacement();
+        buildMenuLayout.setTop(displayHelpMenu());
+        buildMenuLayout.setCenter(imageHolder());
+        buildMenuLayout.setLeft(dropDownMenuLayout);
+        HBox componentButtonsLayout = new HBox(25);
+        buildMenuLayout.setBottom(componentButtonsLayout);
 
         dropDownMenuLayout.setPadding(new Insets(150, 0, 50, 50));
 
-        caseInputs();
-        keycapsInput();
-        plateInput();
-        pcbInput();
-        switchesInput();
+        caseSizeChoice.getItems().addAll("60%", "75%", "TKL");
+        caseSizeChoice.setValue("60%");
 
+        caseMaterialChoice.getItems().addAll("Aluminum", "Plastic", "Polycarbonate");
+        caseMaterialChoice.setValue("Aluminum");
+
+        keycapsMaterialChoice.getItems().addAll("ABS", "PBT");
+        keycapsMaterialChoice.setValue("ABS");
+
+
+        plateMaterialChoice.getItems().addAll("Brass", "Aluminum", "Polycarbonate");
+        plateMaterialChoice.setValue("Brass");
+
+        plateSizeChoice.getItems().addAll("60%", "75%", "TKL");
+        plateSizeChoice.setValue("60%");
+
+        pcbSizeChoice.getItems().addAll("60%", "75%", "TKL");
+        pcbSizeChoice.setValue("60%");
+
+        switchTypeChoice.getItems().addAll("Clicky", "Linear", "Tactile");
+        switchTypeChoice.setValue("Clicky");
+        switchTypeChoice.getSelectionModel().selectedItemProperty().addListener((v, oldValue, newValue)
+                -> {
+            dropDownMenuLayout.getChildren().remove(wantSilent);
+            if (newValue.equals("Tactile") || newValue.equals("Linear")) {
+                dropDownMenuLayout.getChildren().add(wantSilent);
+            }
+        });
+
+        buttonCase = new Button(" _Case ");
+        buttonCase.setOnAction(event -> {
+            getImage(CASE_IMAGE);
+            buildMenuLayout.setCenter(imageView);
+            dropDownMenuLayout.getChildren().clear();
+            dropDownMenuLayout.getChildren().addAll(caseSizeChoice, caseMaterialChoice);
+        });
+        buttonKeycaps = new Button("   _Keycaps   ");
+        buttonKeycaps.setOnAction(event -> {
+            getImage(KEYCAPS_IMAGE);
+            buildMenuLayout.setCenter(imageView);
+            dropDownMenuLayout.getChildren().clear();
+            dropDownMenuLayout.getChildren().add(keycapsMaterialChoice);
+        });
+        buttonPlate = new Button("      _Plate      ");
+        buttonPlate.setOnAction(event -> {
+            getImage(PLATE_IMAGE);
+            buildMenuLayout.setCenter(imageView);
+            dropDownMenuLayout.getChildren().clear();
+            dropDownMenuLayout.getChildren().addAll(plateMaterialChoice, plateSizeChoice);
+        });
+        buttonPcb = new Button("    _Printed Circuit Board    ");
+        buttonPcb.setOnAction(event -> {
+            getImage(PCB_IMAGE);
+            buildMenuLayout.setCenter(imageView);
+            dropDownMenuLayout.getChildren().clear();
+            dropDownMenuLayout.getChildren().add(pcbSizeChoice);
+
+        });
+        buttonSwitches = new Button("      _Switches      ");
+        buttonSwitches.setOnAction(event -> {
+            getImage(SWITCHES_IMAGE);
+            buildMenuLayout.setCenter(imageView);
+            dropDownMenuLayout.getChildren().clear();
+            dropDownMenuLayout.getChildren().add(switchTypeChoice);
+
+        });
         buttonConfirmation = new Button("    _Confirm Build    ");
         buttonConfirmation.setOnAction(event -> checkCompatibility());
+
+        componentButtonsLayout.getChildren().addAll(buttonCase, buttonKeycaps, buttonPlate, buttonPcb, buttonSwitches,
+                buttonConfirmation);
+        componentButtonsLayout.setPadding(new Insets(0, 0, 20, 0));
+        componentButtonsLayout.setAlignment(Pos.CENTER);
     }
 
     // EFFECTS: Checks whether the sizes are compatible and alerts the user to reselect if it's not
@@ -234,100 +293,6 @@ public class GUI extends Application {
         }
     }
 
-    // EFFECTS: Sets up the borderpane for the build menu
-    public void buildMenuLayoutPlacement() {
-        buildMenuLayout.setTop(displayHelpMenu());
-        buildMenuLayout.setCenter(imageHolder());
-        buildMenuLayout.setLeft(dropDownMenuLayout);
-        buildMenuLayout.setBottom(componentButtonsLayout);
-    }
-
-    public void setComponentButtonsLayoutPlacement() {
-        componentButtonsLayout.getChildren().addAll(buttonCase, buttonKeycaps, buttonPlate, buttonPcb, buttonSwitches,
-                buttonConfirmation);
-        componentButtonsLayout.setPadding(new Insets(0, 0, 20, 0));
-        componentButtonsLayout.setAlignment(Pos.CENTER);
-    }
-
-    public void caseInputs() {
-        buttonCase = new Button(" _Case ");
-        buttonCase.setOnAction(event -> {
-            getImage(CASE_IMAGE);
-            buildMenuLayout.setCenter(imageView);
-            dropDownMenuLayout.getChildren().clear();
-            dropDownMenuLayout.getChildren().addAll(caseSizeChoice, caseMaterialChoice);
-        });
-
-        caseSizeChoice.getItems().addAll("60%", "75%", "TKL");
-        caseSizeChoice.setValue("60%");
-
-        caseMaterialChoice.getItems().addAll("Aluminum", "Plastic", "Polycarbonate");
-        caseMaterialChoice.setValue("Aluminum");
-    }
-
-    public void keycapsInput() {
-        buttonKeycaps = new Button("   _Keycaps   ");
-        buttonKeycaps.setOnAction(event -> {
-            getImage(KEYCAPS_IMAGE);
-            buildMenuLayout.setCenter(imageView);
-            dropDownMenuLayout.getChildren().clear();
-            dropDownMenuLayout.getChildren().add(keycapsMaterialChoice);
-        });
-
-        keycapsMaterialChoice.getItems().addAll("ABS", "PBT");
-        keycapsMaterialChoice.setValue("ABS");
-    }
-
-    public void plateInput() {
-        buttonPlate = new Button("      _Plate      ");
-        buttonPlate.setOnAction(event -> {
-            getImage(PLATE_IMAGE);
-            buildMenuLayout.setCenter(imageView);
-            dropDownMenuLayout.getChildren().clear();
-            dropDownMenuLayout.getChildren().addAll(plateMaterialChoice, plateSizeChoice);
-        });
-
-        plateMaterialChoice.getItems().addAll("Brass", "Aluminum", "Polycarbonate");
-        plateMaterialChoice.setValue("Brass");
-
-        plateSizeChoice.getItems().addAll("60%", "75%", "TKL");
-        plateSizeChoice.setValue("60%");
-    }
-
-    public void pcbInput() {
-        buttonPcb = new Button("    _Printed Circuit Board    ");
-        buttonPcb.setOnAction(event -> {
-            getImage(PCB_IMAGE);
-            buildMenuLayout.setCenter(imageView);
-            dropDownMenuLayout.getChildren().clear();
-            dropDownMenuLayout.getChildren().add(pcbSizeChoice);
-        });
-
-        pcbSizeChoice.getItems().addAll("60%", "75%", "TKL");
-        pcbSizeChoice.setValue("60%");
-    }
-
-    public void switchesInput() {
-        buttonSwitches = new Button("      _Switches      ");
-        buttonSwitches.setOnAction(event -> {
-            getImage(SWITCHES_IMAGE);
-            buildMenuLayout.setCenter(imageView);
-            dropDownMenuLayout.getChildren().clear();
-            dropDownMenuLayout.getChildren().add(switchTypeChoice);
-
-        });
-
-        switchTypeChoice.getItems().addAll("Clicky", "Linear", "Tactile");
-        switchTypeChoice.setValue("Clicky");
-        switchTypeChoice.getSelectionModel().selectedItemProperty().addListener((v, oldValue, newValue)
-                -> {
-            dropDownMenuLayout.getChildren().remove(wantSilent);
-            if (newValue.equals("Tactile") || newValue.equals("Linear")) {
-                dropDownMenuLayout.getChildren().add(wantSilent);
-            }
-        });
-    }
-
     // EFFECTS: Prints the build to a dialog box, if available, else tells the user to load or start a build
     private void displayPrint() {
         try {
@@ -366,9 +331,6 @@ public class GUI extends Application {
 
     // EFFECTS: Displays the top menu bar with menu items save, load, and exit
     public Node displayMenuBar() {
-        // Menu
-        fileMenu = new Menu("_File");
-
         // Menu Items
         MenuItem save = new MenuItem("Save Keyboard");
         MenuItem load = new MenuItem("Load Keyboard");
@@ -391,10 +353,6 @@ public class GUI extends Application {
 
     // EFFECTS: an information menu item for when the build starts, so you can look at information while building
     public Node displayHelpMenu() {
-        // Menu
-        helpMenu = new Menu("_Help");
-
-        // Menu Item
         MenuItem help = new MenuItem("Information");
         helpMenu.getItems().add(help);
         javafx.scene.control.MenuBar menuBarHelp = new javafx.scene.control.MenuBar();
@@ -405,8 +363,8 @@ public class GUI extends Application {
 
     // EFFECTS: saves built keyboard to ACCOUNTS_FILE
     private void saveKeyboard() {
-        saveAlert = new AlertBox();
-        saveFailedAlert = new AlertBox();
+        AlertBox saveAlert = new AlertBox();
+        AlertBox saveFailedAlert = new AlertBox();
         try {
             Writer writer = new Writer(new File(ACCOUNTS_FILE));
             writer.write(keyboard);
@@ -426,7 +384,7 @@ public class GUI extends Application {
     // MODIFIES: this
     // EFFECTS: loads keyboard from ACCOUNTS_FILE, if that file exists; otherwise initializes keyboard build
     private void loadKeyboard() {
-        loadAlert = new AlertBox();
+        AlertBox loadAlert = new AlertBox();
         try {
             List<Object> keyboards = Reader.getKeyboardParts(new File(ACCOUNTS_FILE));
             keyboard = (Keyboard) keyboards.get(0);

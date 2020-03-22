@@ -14,11 +14,11 @@ import ui.Information;
 
 // Represents an alert box that alerts the user
 public class InformationMenu {
-    Button caseInfo;
-    Button keycapsInfo;
-    Button plateInfo;
-    Button pcbInfo;
-    Button switchesInfo;
+    Button caseInfo = new Button("         Case        ");
+    Button keycapsInfo = new Button("      Keycaps      ");
+    Button plateInfo = new Button("         Plate         ");
+    Button pcbInfo = new Button("          PCB          ");
+    Button switchesInfo = new Button("       Switches       ");
 
     Scene infoScene;
 
@@ -34,15 +34,11 @@ public class InformationMenu {
         window.setTitle("Information");
         window.setMinWidth(800);
 
-        caseInfo = new Button("         Case        ");
         caseInfo.setOnAction(event -> infoHeader.setText(Information.CASE_INFO));
-        keycapsInfo = new Button("      Keycaps      ");
+
         keycapsInfo.setOnAction(event -> infoHeader.setText(Information.KEYCAPS_INFO));
-        plateInfo = new Button("         Plate         ");
         plateInfo.setOnAction(event -> infoHeader.setText(Information.PLATE_INFO));
-        pcbInfo = new Button("          PCB          ");
         pcbInfo.setOnAction(event -> infoHeader.setText(Information.PRINTEDCIRCUITBOARD_INFO));
-        switchesInfo = new Button("       Switches       ");
         switchesInfo.setOnAction(event -> infoHeader.setText(Information.SWITCHES_INFO));
 
         Button closeButton = new Button("Close this window");
