@@ -89,11 +89,11 @@ public class GUI extends Application {
     // EFFECTS: closes the builder application
     private void closeProgram() {
         ExitConfirmationBox closeProgramBox = new ExitConfirmationBox();
-//        Boolean answerToExit = closeProgramBox.displayConfirmation("Confirm Exit", "Are you sure you "
-//                + "want to quit?");
-//        if (answerToExit)
-// todo commented just to allow closing of program quicker
-        mainWindow.close();
+        boolean answerToExit = closeProgramBox.displayConfirmation("Confirm Exit", "Are you sure you "
+                + "want to quit?");
+        if (answerToExit) {
+            mainWindow.close();
+        }
     }
 
 
@@ -177,8 +177,8 @@ public class GUI extends Application {
         componentButtonsLayout.setAlignment(Pos.CENTER);
     }
 
-    // EFFECTS: Checks whether the sizes are compatible and alerts the user to reselect if it's not
     // MODIFIES: keyboard
+    // EFFECTS: Checks whether the sizes are compatible and alerts the user to reselect if it's not
     private void checkCompatibility() {
         if (!caseSizeChoice.getValue().equals(plateSizeChoice.getValue())
                 || !pcbSizeChoice.getValue().equals(plateSizeChoice.getValue())
@@ -281,8 +281,8 @@ public class GUI extends Application {
         });
     }
 
-    // EFFECTS: Compiles the keyboard with the choices found in the choice boxes
     // MODIFIES: keyboard
+    // EFFECTS: Compiles the keyboard with the choices found in the choice boxes
     private void getChoice(ChoiceBox<String> choiceBox) {
         String caseSize = caseSizeChoice.getValue();
         String caseMaterial = caseMaterialChoice.getValue();
