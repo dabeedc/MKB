@@ -32,7 +32,7 @@ public class InformationMenu {
         Stage window = new Stage();
 
         window.setTitle("Information");
-        window.setMinWidth(350);
+        window.setMinWidth(500);
 
         caseInfo = new Button("         Case        ");
         caseInfo.setOnAction(event -> infoHeader.setText(Information.CASE_INFO));

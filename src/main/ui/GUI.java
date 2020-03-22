@@ -6,28 +6,24 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
-import javafx.scene.text.TextBuilder;
 import javafx.stage.Stage;
 import model.Keyboard;
 import persistence.Reader;
 import persistence.Writer;
 import ui.gui.*;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
+import java.io.*;
 import java.util.List;
 
 
 // Keyboard builder application
 // EFFECTS: starts the GUI class
 public class GUI extends Application {
-    //    private Keyboard keyboard = new Keyboard(); //todo keyboard placeholder
     private Keyboard keyboard;
     private static final String ACCOUNTS_FILE = "./data/keyboard.txt";
     private static final int SCENE_WIDTH = 800;
@@ -90,8 +86,13 @@ public class GUI extends Application {
     }
 
     private void displayMainMenu() {
-        Text header = TextBuilder.create().text("Welcome to MK Parts Picker...").build();
-//        keyboard.getKeyboardCase().setCaseMaterial("brass"); //todo keyboard placeholder
+        ImageView imageView = null;
+        try {
+            Image image = new Image(new FileInputStream("data/Photos/mainImage.jpg"));
+            imageView = new ImageView(image);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
 
         mainWindow.setTitle("Mechanical Keyboard Parts Picker");
         mainWindow.setOnCloseRequest(event -> {
@@ -118,7 +119,7 @@ public class GUI extends Application {
 
         BorderPane mainMenuLayout = new BorderPane();
         mainMenuLayout.setTop(displayMenuBar());
-        mainMenuLayout.setCenter(header);
+        mainMenuLayout.setCenter(imageView);
         mainMenuLayout.setLeft(buttonMenuLayout);
 
         menuScene = new Scene(mainMenuLayout, SCENE_WIDTH, SCENE_HEIGHT);
@@ -198,6 +199,23 @@ public class GUI extends Application {
         });
         buttonConfirmation = new Button("    _Confirm Build    ");
         buttonConfirmation.setOnAction(event -> {
+            checkCompatibility();
+        });
+
+        componentButtonsLayout.getChildren().addAll(buttonCase, buttonKeycaps, buttonPlate, buttonPcb, buttonSwitches,
+                buttonConfirmation);
+        componentButtonsLayout.setPadding(new Insets(0, 0, 20, 0));
+        componentButtonsLayout.setAlignment(Pos.CENTER);
+    }
+
+    private void checkCompatibility() {
+        if (caseSizeChoice.getValue() != plateSizeChoice.getValue()
+                || pcbSizeChoice.getValue() != plateSizeChoice.getValue()
+                || pcbSizeChoice.getValue() != caseSizeChoice.getValue()) {
+            AlertBox notCompatibleAlert = new AlertBox();
+            notCompatibleAlert.displayAlert("Not Compatible", "Your PCB and plate must be the same "
+                    + "size as your case! Please reselect your sizes!");
+        } else {
             ExitConfirmationBox finishBuildBox = new ExitConfirmationBox();
             Boolean answerToCompleteBuild = finishBuildBox.displayConfirmation("Confirm Build",
                     "Is this your finished build? ");
@@ -206,12 +224,7 @@ public class GUI extends Application {
                 keyboard.rateKeyboard();
                 mainWindow.setScene(menuScene);
             }
-        });
-
-        componentButtonsLayout.getChildren().addAll(buttonCase, buttonKeycaps, buttonPlate, buttonPcb, buttonSwitches,
-                buttonConfirmation);
-        componentButtonsLayout.setPadding(new Insets(0, 0, 20, 0));
-        componentButtonsLayout.setAlignment(Pos.CENTER);
+        }
     }
 
     private void getChoice(ChoiceBox<String> choiceBox) {
@@ -339,6 +352,4 @@ public class GUI extends Application {
             displayMainMenu();
         }
     }
-
-
 }
