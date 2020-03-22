@@ -14,7 +14,7 @@ public class PrintBox {
         Stage window = new Stage();
 
         window.setTitle(title);
-        window.setMinWidth(350);
+        window.setMinWidth(300);
 
         Label label = new Label();
         label.setText(message);

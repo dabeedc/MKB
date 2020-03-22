@@ -28,6 +28,12 @@ public class GUI extends Application {
     private static final String ACCOUNTS_FILE = "./data/keyboard.txt";
     private static final int SCENE_WIDTH = 800;
     private static final int SCENE_HEIGHT = 450;
+    private static final String MENU_IMAGE = "data/Photos/mainImage.jpg";
+    private static final String CASE_IMAGE = "data/Photos/caseImage.jpg";
+    private static final String KEYCAPS_IMAGE = "data/Photos/keycapsImage.jpg";
+    private static final String PLATE_IMAGE = "data/Photos/plateImage.jpg";
+    private static final String PCB_IMAGE = "data/Photos/pcbImage.jpg";
+    private static final String SWITCHES_IMAGE = "data/Photos/switchesImage.gif";
 
     // Stages and Scenes
     private Stage mainWindow;
@@ -64,12 +70,7 @@ public class GUI extends Application {
     ChoiceBox<String> switchTypeChoice = new ChoiceBox<>();
 
     ImageView imageView = null;
-    private static final String MENU_IMAGE = "data/Photos/mainImage.jpg";
-    private static final String CASE_IMAGE = "data/Photos/caseImage.jpg";
-    private static final String KEYCAPS_IMAGE = "data/Photos/keycapsImage.jpg";
-    private static final String PLATE_IMAGE = "data/Photos/plateImage.jpg";
-    private static final String PCB_IMAGE = "data/Photos/pcbImage.jpg";
-    private static final String SWITCHES_IMAGE = "data/Photos/switchesImage.gif";
+
 
     // EFFECTS: runs the builder application
     public static void main(String[] args) {
@@ -138,6 +139,16 @@ public class GUI extends Application {
         }
     }
 
+    public Node imageHolder() {
+        try {
+            Image holderImage = new Image(new FileInputStream("data/Photos/infoImage.jpg"));
+            imageView = new ImageView(holderImage);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        return imageView;
+    }
+
     private void displayBuildScene() {
         BorderPane buildMenuLayout = new BorderPane();
         buildScene = new Scene(buildMenuLayout, SCENE_WIDTH, SCENE_HEIGHT);
@@ -145,7 +156,7 @@ public class GUI extends Application {
         VBox dropDownMenuLayout = new VBox(5);
 
         buildMenuLayout.setTop(displayHelpMenu());
-        buildMenuLayout.setCenter(new VBox());
+        buildMenuLayout.setCenter(imageHolder());
         buildMenuLayout.setLeft(dropDownMenuLayout);
         HBox componentButtonsLayout = new HBox(25);
         buildMenuLayout.setBottom(componentButtonsLayout);
@@ -219,9 +230,7 @@ public class GUI extends Application {
 
         });
         buttonConfirmation = new Button("    _Confirm Build    ");
-        buttonConfirmation.setOnAction(event -> {
-            checkCompatibility();
-        });
+        buttonConfirmation.setOnAction(event -> checkCompatibility());
 
         componentButtonsLayout.getChildren().addAll(buttonCase, buttonKeycaps, buttonPlate, buttonPcb, buttonSwitches,
                 buttonConfirmation);
@@ -230,15 +239,15 @@ public class GUI extends Application {
     }
 
     private void checkCompatibility() {
-        if (caseSizeChoice.getValue() != plateSizeChoice.getValue()
-                || pcbSizeChoice.getValue() != plateSizeChoice.getValue()
-                || pcbSizeChoice.getValue() != caseSizeChoice.getValue()) {
+        if (!caseSizeChoice.getValue().equals(plateSizeChoice.getValue())
+                || !pcbSizeChoice.getValue().equals(plateSizeChoice.getValue())
+                || !caseSizeChoice.getValue().equals(pcbSizeChoice.getValue())) {
             AlertBox notCompatibleAlert = new AlertBox();
             notCompatibleAlert.displayAlert("Not Compatible", "Your PCB and plate must be the same "
                     + "size as your case! Please reselect your sizes!");
         } else {
             ExitConfirmationBox finishBuildBox = new ExitConfirmationBox();
-            Boolean answerToCompleteBuild = finishBuildBox.displayConfirmation("Confirm Build",
+            boolean answerToCompleteBuild = finishBuildBox.displayConfirmation("Confirm Build",
                     "Is this your finished build? ");
             if (answerToCompleteBuild) {
                 parseKeyboard();
@@ -288,7 +297,8 @@ public class GUI extends Application {
                     + keyboard.getKeyboardPlate().getPlateMaterial() + "\n   "
                     + keyboard.getKeyboardPlate().getPlateSize() + "\n\nPCB Specifications: \n   "
                     + keyboard.getKeyboardPrintedCircuitBoard().getPcbSize() + "\n\nKey Switch Specifications: \n   "
-                    + keyboard.getKeyboardSwitches().getSwitchType());
+                    + keyboard.getKeyboardSwitches().getSwitchType() + "\n   Silent Switches? "
+                    + keyboard.getKeyboardSwitches().isSilentSwitches());
         } catch (NullPointerException e) {
             AlertBox printFailedAlert = new AlertBox();
             printFailedAlert.displayAlert("Print Unsuccessful!", "There is no build to show! "
