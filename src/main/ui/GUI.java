@@ -33,6 +33,7 @@ public class GUI extends Application {
     private static final String PLATE_IMAGE = "data/Photos/plateImage.jpg";
     private static final String PCB_IMAGE = "data/Photos/pcbImage.jpg";
     private static final String SWITCHES_IMAGE = "data/Photos/switchesImage.gif";
+    private static final int DIALOG_SIZE = 350;
 
     // Stages and Scenes
     private Stage mainWindow;
@@ -182,9 +183,9 @@ public class GUI extends Application {
             componentButtonsLayout.setPadding(new Insets(0, 0, 20, 0));
             componentButtonsLayout.setAlignment(Pos.CENTER);
         } catch (IllegalArgumentException e) {
-            AlertBox repeatBuild = new AlertBox();
-            repeatBuild.displayAlert("Build Completed", "Build is already complete, please restart to "
-                    + "start a new build.");
+            DialogBox repeatBuild = new AlertBox();
+            repeatBuild.displayDialog("Build Completed", "Build is already complete, please restart to "
+                    + "start a new build.", DIALOG_SIZE);
         }
     }
 
@@ -195,9 +196,9 @@ public class GUI extends Application {
             if (!caseSizeChoice.getValue().equals(plateSizeChoice.getValue())
                     || !pcbSizeChoice.getValue().equals(plateSizeChoice.getValue())
                     || !caseSizeChoice.getValue().equals(pcbSizeChoice.getValue())) {
-                AlertBox notCompatibleAlert = new AlertBox();
-                notCompatibleAlert.displayAlert("Not Compatible", "Your PCB and plate must be the same "
-                        + "size as your case! Please reselect your sizes!");
+                DialogBox notCompatibleAlert = new AlertBox();
+                notCompatibleAlert.displayDialog("Not Compatible", "Your PCB and plate must be the same "
+                        + "size as your case! Please reselect your sizes!", DIALOG_SIZE);
             } else {
                 ExitConfirmationBox finishBuildBox = new ExitConfirmationBox();
                 boolean answerToCompleteBuild = finishBuildBox.displayConfirmation("Confirm Build",
@@ -209,9 +210,9 @@ public class GUI extends Application {
                 }
             }
         } catch (NullPointerException e) {
-            AlertBox nullBuildAlert = new AlertBox();
-            nullBuildAlert.displayAlert("No selections!", "No components have been selected yet, try"
-                    + " starting with a case!");
+            DialogBox nullBuildAlert = new AlertBox();
+            nullBuildAlert.displayDialog("No selections!", "No components have been selected yet, try"
+                    + " starting with a case!", DIALOG_SIZE);
         }
     }
 
@@ -334,8 +335,8 @@ public class GUI extends Application {
     // EFFECTS: Prints the build to a dialog box, if available, else tells the user to load or start a build
     private void displayPrint() {
         try {
-            PrintBox rateBox = new PrintBox();
-            rateBox.displayPrint("Keyboard Specifications", "Here is your keyboard!\n\n"
+            DialogBox rateBox = new PrintBox();
+            rateBox.displayDialog("Keyboard Specifications", "Here is your keyboard!\n\n"
                     + "Case Specifications: \n   " + keyboard.getKeyboardCase().getCaseSize() + "\n   "
                     + keyboard.getKeyboardCase().getCaseMaterial() + "\n\n" + "Keycaps Specifications: \n   "
                     + keyboard.getKeyboardKeycaps().getKeycapsMaterial() + "\n\nPlate Specifications: \n   "
@@ -343,27 +344,27 @@ public class GUI extends Application {
                     + keyboard.getKeyboardPlate().getPlateSize() + "\n\nPCB Specifications: \n   "
                     + keyboard.getKeyboardPrintedCircuitBoard().getPcbSize() + "\n\nKey Switch Specifications: \n   "
                     + keyboard.getKeyboardSwitches().getSwitchType() + "\n   Silent Switches? "
-                    + keyboard.getKeyboardSwitches().isSilentSwitches());
+                    + keyboard.getKeyboardSwitches().isSilentSwitches(), 310);
         } catch (NullPointerException e) {
-            AlertBox printFailedAlert = new AlertBox();
-            printFailedAlert.displayAlert("Print Unsuccessful!", "There is no build to show! "
-                    + "Please load a keyboard or start a build.");
+            DialogBox printFailedAlert = new AlertBox();
+            printFailedAlert.displayDialog("Print Unsuccessful!", "There is no build to show! "
+                    + "Please load a keyboard or start a build.", DIALOG_SIZE);
         }
     }
 
     // EFFECTS: Prints the rating to a dialog box, if available, else tells the user to load or start a build
     private void displayRate() {
         try {
-            RateBox rateBox = new RateBox();
-            rateBox.displayRating("Keyboard Rating", "On a scale from 1 to 10: 1 being quiet, soft, and"
+            DialogBox rateBox = new RateBox();
+            rateBox.displayDialog("Keyboard Rating", "On a scale from 1 to 10: 1 being quiet, soft, and"
                     + " light; 10 being loud, hard, \nand heavy for the typing sound, feel, and weight of the "
                     + "keyboard, respectively. \n\nThis is your keyboard's rating:\nSound Level: "
                     + keyboard.getSoundRating() + "\nTyping Feel: " + keyboard.getFeelRating() + "\nWeight: "
-                    + keyboard.getWeightRating());
+                    + keyboard.getWeightRating(), DIALOG_SIZE);
         } catch (NullPointerException e) {
-            AlertBox rateFailedAlert = new AlertBox();
-            rateFailedAlert.displayAlert("Rate Unsuccessful!", "There is no build to rate! "
-                    + "Please load a keyboard or start a build.");
+            DialogBox rateFailedAlert = new AlertBox();
+            rateFailedAlert.displayDialog("Rate Unsuccessful!", "There is no build to rate! "
+                    + "Please load a keyboard or start a build.", DIALOG_SIZE);
         }
     }
 
@@ -401,19 +402,19 @@ public class GUI extends Application {
 
     // EFFECTS: saves built keyboard to ACCOUNTS_FILE
     private void saveKeyboard() {
-        AlertBox saveAlert = new AlertBox();
-        AlertBox saveFailedAlert = new AlertBox();
+        DialogBox saveAlert = new AlertBox();
+        DialogBox saveFailedAlert = new AlertBox();
         try {
             Writer writer = new Writer(new File(ACCOUNTS_FILE));
             writer.write(keyboard);
             writer.close();
-            saveAlert.displayAlert("Save Successful!", "Keyboard saved to file " + ACCOUNTS_FILE);
+            saveAlert.displayDialog("Save Successful!", "Keyboard saved to file " + ACCOUNTS_FILE, DIALOG_SIZE);
         } catch (FileNotFoundException e) {
-            saveFailedAlert.displayAlert("Save Unsuccessful!", "Unable to save keyboard to file "
-                    + ACCOUNTS_FILE);
+            saveFailedAlert.displayDialog("Save Unsuccessful!", "Unable to save keyboard to file "
+                    + ACCOUNTS_FILE,DIALOG_SIZE);
         } catch (NullPointerException e) {
-            saveFailedAlert.displayAlert("Save Unsuccessful!", "No keyboard found to save to file  "
-                    + ACCOUNTS_FILE);
+            saveFailedAlert.displayDialog("Save Unsuccessful!", "No keyboard found to save to file  "
+                    + ACCOUNTS_FILE, DIALOG_SIZE);
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
@@ -422,11 +423,11 @@ public class GUI extends Application {
     // MODIFIES: this
     // EFFECTS: loads keyboard from ACCOUNTS_FILE, if that file exists; otherwise initializes keyboard build
     private void loadKeyboard() {
-        AlertBox loadAlert = new AlertBox();
+        DialogBox loadAlert = new AlertBox();
         try {
             List<Object> keyboards = Reader.getKeyboardParts(new File(ACCOUNTS_FILE));
             keyboard = (Keyboard) keyboards.get(0);
-            loadAlert.displayAlert("Load Successful!", "Keyboard loaded from " + ACCOUNTS_FILE);
+            loadAlert.displayDialog("Load Successful!", "Keyboard loaded from " + ACCOUNTS_FILE, DIALOG_SIZE);
         } catch (IOException e) {
             displayMainMenu();
         }

@@ -1,9 +1,14 @@
 package model.components;
 
+import model.Rateable;
+
 // Represents a case of a keyboard that indicates what material it is made out of as well as the size of the case.
-public class Case {
+public class Case implements Rateable {
     private String caseMaterial;
     private String caseSize;
+    private int soundRating;
+    private int feelRating;
+    private int weightRating;
 
     // EFFECTS: Constructs a case with no caseMaterial and no caseSize
     public Case() {
@@ -33,5 +38,38 @@ public class Case {
     // EFFECTS: sets the size of the case
     public void setCaseSize(String caseSize) {
         this.caseSize = caseSize;
+    }
+
+    @Override
+    public void rate() {
+        if (getCaseMaterial().equals("Aluminum")) {
+            soundRating += 1;
+        } else if (getCaseMaterial().equals("Plastic")) {
+            soundRating -= 1;
+        }
+
+        if (getCaseMaterial().equals("Aluminum")) {
+            feelRating += 1;
+        } else if (getCaseMaterial().equals("Plastic")) {
+            feelRating -= 1;
+        }
+
+        if (getCaseMaterial().equals("Aluminum")) {
+            weightRating += 2;
+        } else if (getCaseMaterial().equals("Plastic")) {
+            weightRating -= 2;
+        }
+    }
+
+    public int getSoundRating() {
+        return soundRating;
+    }
+
+    public int getFeelRating() {
+        return feelRating;
+    }
+
+    public int getWeightRating() {
+        return weightRating;
     }
 }

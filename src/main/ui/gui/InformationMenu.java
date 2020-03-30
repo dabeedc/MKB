@@ -54,7 +54,6 @@ public class InformationMenu {
         infoMenuLayout.setCenter(infoHeader);
         infoMenuLayout.setLeft(infoButtonsLayout);
 
-        //Display window and wait for it to be closed before returning
         infoScene = new Scene(infoMenuLayout, 600, 350);
         window.setScene(infoScene);
         window.showAndWait();

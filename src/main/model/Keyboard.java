@@ -57,14 +57,16 @@ public class Keyboard implements Saveable {
     // MODIFIES: this
     // EFFECTS: returns the rating of the keyboard based on components
     public void rateKeyboard() {
-        rateCaseSound();
+        this.soundRating = this.soundRating + getKeyboardCase().getSoundRating();
+        this.feelRating = getKeyboardCase().getFeelRating();
+        this.weightRating = getKeyboardCase().getWeightRating();
         rateKeycapsSound();
         ratePlateSound();
         rateSwitchesSound();
-        rateCaseFeel();
+
         ratePlateFeel();
         rateSwitchesFeel();
-        rateCaseWeight();
+
         ratePlateWeight();
         if (getSoundRating() <= 0) {
             setSoundRating(1);
@@ -74,16 +76,16 @@ public class Keyboard implements Saveable {
         }
     }
 
-    // MODIFIES: this
-    // EFFECTS: rates the sound of the keyboard based on the case's properties
-    public int rateCaseSound() {
-        if (getKeyboardCase().getCaseMaterial().equals("Aluminum")) {
-            soundRating += 1;
-        } else if (keyboardCase.getCaseMaterial().equals("Plastic")) {
-            soundRating -= 1;
-        }
-        return soundRating;
-    }
+//    // MODIFIES: this
+//    // EFFECTS: rates the sound of the keyboard based on the case's properties
+//    public int rateCaseSound() {
+//        if (getKeyboardCase().getCaseMaterial().equals("Aluminum")) {
+//            soundRating += 1;
+//        } else if (keyboardCase.getCaseMaterial().equals("Plastic")) {
+//            soundRating -= 1;
+//        }
+//        return soundRating;
+//    }
 
     // MODIFIES: this
     // EFFECTS: rates the sound of the keyboard based on the keycaps' properties
@@ -125,16 +127,16 @@ public class Keyboard implements Saveable {
         return soundRating;
     }
 
-    // MODIFIES: this
-    // EFFECTS: rates the typing feel of the keyboard based on the case's properties
-    public int rateCaseFeel() {
-        if (getKeyboardCase().getCaseMaterial().equals("Aluminum")) {
-            feelRating += 1;
-        } else if (getKeyboardCase().getCaseMaterial().equals("Plastic")) {
-            feelRating -= 1;
-        }
-        return feelRating;
-    }
+//    // MODIFIES: this
+//    // EFFECTS: rates the typing feel of the keyboard based on the case's properties
+//    public int rateCaseFeel() {
+//        if (getKeyboardCase().getCaseMaterial().equals("Aluminum")) {
+//            feelRating += 1;
+//        } else if (getKeyboardCase().getCaseMaterial().equals("Plastic")) {
+//            feelRating -= 1;
+//        }
+//        return feelRating;
+//    }
 
     // MODIFIES: this
     // EFFECTS: rates the typing feel of the keyboard based on the plate's properties
@@ -162,16 +164,16 @@ public class Keyboard implements Saveable {
         return feelRating;
     }
 
-    // MODIFIES: this
-    // EFFECTS: rates the keyboard's weight based on the case's properties
-    public int rateCaseWeight() {
-        if (getKeyboardCase().getCaseMaterial().equals("Aluminum")) {
-            weightRating += 2;
-        } else if (getKeyboardCase().getCaseMaterial().equals("Plastic")) {
-            weightRating -= 2;
-        }
-        return weightRating;
-    }
+//    // MODIFIES: this
+//    // EFFECTS: rates the keyboard's weight based on the case's properties
+//    public int rateCaseWeight() {
+//        if (getKeyboardCase().getCaseMaterial().equals("Aluminum")) {
+//            weightRating += 2;
+//        } else if (getKeyboardCase().getCaseMaterial().equals("Plastic")) {
+//            weightRating -= 2;
+//        }
+//        return weightRating;
+//    }
 
     // MODIFIES: this
     // EFFECTS: rates the keyboard's weight based on the plate's properties

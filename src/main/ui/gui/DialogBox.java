@@ -1,21 +1,18 @@
 package ui.gui;
 
-import javafx.stage.*;
-import javafx.scene.*;
-import javafx.scene.layout.*;
-import javafx.scene.control.*;
-import javafx.geometry.*;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
-// Represents an alert box that alerts the user
-public class AlertBox extends DialogBox {
-
+public abstract class DialogBox {
     // EFFECTS: Displays the alert box to user
-    @Override
     public void displayDialog(String title, String message, int width) {
         Stage window = new Stage();
 
-        //This blocks the events to other windows
-        window.initModality(Modality.APPLICATION_MODAL);
         window.setTitle(title);
         window.setMinWidth(width);
 
@@ -33,9 +30,4 @@ public class AlertBox extends DialogBox {
         window.setScene(scene);
         window.showAndWait();
     }
-
-
-
-
-
 }
