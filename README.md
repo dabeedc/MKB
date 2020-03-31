@@ -47,3 +47,8 @@ choices).
 - You can save the state of my application by clicking "File" in the menu bar at the main menu.
 
 - You can reload the state of my application by clicking "File" in the menu bar at the main menu.
+## Phase 4: Task 2
+I have chosen to go with Option #2: including type hierarchies in my code. I decided to set up two type hierarchies to 
+abstract a couple of methods and to increase cohesion in my model class.
+Specifically, in ui.gui: the classes apart of the first type hierarchy are DialogBox, PrintBox, RateBox, AlertBox, and 
+ExitConfirmationBox. My second type hierarchy includes: Rateable, Keyboard, Case, Keycaps, Plate, and Switches.
