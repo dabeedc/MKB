@@ -40,6 +40,8 @@ public class Case implements Rateable {
         this.caseSize = caseSize;
     }
 
+    // MODIFIES: this
+    // EFFECTS: rates the Case based on the properties
     @Override
     public void rate() {
         if (getCaseMaterial().equals("Aluminum")) {
@@ -61,14 +63,17 @@ public class Case implements Rateable {
         }
     }
 
+    // EFFECTS: returns the sound rating
     public int getSoundRating() {
         return soundRating;
     }
 
+    // EFFECTS: returns the feel rating
     public int getFeelRating() {
         return feelRating;
     }
 
+    // EFFECTS: returns the weight rating
     public int getWeightRating() {
         return weightRating;
     }

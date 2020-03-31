@@ -251,7 +251,7 @@ public class BuilderApp {
         System.out.println("\nOn a scale of 1 to 10: 1 being quiet, soft, and light; 10 being loud, "
                 + "hard, and heavy for the typing sound, feel, and weight of the keyboard, respectively.");
         System.out.println("This is your keyboard rating:");
-        keyboard.rateKeyboard();
+        keyboard.rate();
         System.out.println("Sound level: " + keyboard.getSoundRating());
         System.out.println("Typing feel: " + keyboard.getFeelRating());
         System.out.println("Weight: " + keyboard.getWeightRating());

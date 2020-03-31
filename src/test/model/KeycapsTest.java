@@ -33,4 +33,24 @@ public class KeycapsTest {
         testKeycaps.setKeycapsMaterial("PBT");
         assertEquals("PBT", testKeycaps.getKeycapsMaterial());
     }
+
+    @Test
+    void testRateKeycapsSoundABS() {
+        assertEquals("", testKeycaps.getKeycapsMaterial());
+        assertEquals(0, testKeycaps.getSoundRating());
+        testKeycaps.setKeycapsMaterial("ABS");
+        assertEquals("ABS", testKeycaps.getKeycapsMaterial());
+        testKeycaps.rate();
+        assertEquals(1, testKeycaps.getSoundRating());
+    }
+
+    @Test
+    void testRateKeycapsSoundPBT() {
+        assertEquals("", testKeycaps.getKeycapsMaterial());
+        assertEquals(0, testKeycaps.getSoundRating());
+        testKeycaps.setKeycapsMaterial("PBT");
+        assertEquals("PBT", testKeycaps.getKeycapsMaterial());
+        testKeycaps.rate();
+        assertEquals(-1, testKeycaps.getSoundRating());
+    }
 }

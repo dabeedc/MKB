@@ -205,7 +205,7 @@ public class GUI extends Application {
                         "Is this your finished build? ");
                 if (answerToCompleteBuild) {
                     parseKeyboard();
-                    keyboard.rateKeyboard();
+                    keyboard.rate();
                     mainWindow.setScene(menuScene);
                 }
             }

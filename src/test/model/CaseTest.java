@@ -57,4 +57,61 @@ public class CaseTest {
         assertEquals("aluminum", testCase.getCaseMaterial());
         assertEquals("small", testCase.getCaseSize());
     }
+
+    @Test
+    void testRateCaseSoundAluminum() {
+        assertEquals("", testCase.getCaseMaterial());
+        assertEquals(0, testCase.getSoundRating());
+        testCase.setCaseMaterial("Aluminum");
+        assertEquals("Aluminum", testCase.getCaseMaterial());
+        testCase.rate();
+        assertEquals(1,testCase.getSoundRating());
+    }
+
+    @Test
+    void testRateCaseSoundPolycarbonate() {
+        assertEquals("", testCase.getCaseMaterial());
+        assertEquals(0, testCase.getSoundRating());
+        testCase.setCaseMaterial("Polycarbonate");
+        assertEquals("Polycarbonate", testCase.getCaseMaterial());
+        testCase.rate();
+        assertEquals(0, testCase.getSoundRating());
+    }
+
+    @Test
+    void testRateCaseSoundPlastic() {
+        assertEquals("", testCase.getCaseMaterial());
+        assertEquals(0, testCase.getSoundRating());
+        testCase.setCaseMaterial("Plastic");
+        assertEquals("Plastic", testCase.getCaseMaterial());
+        assertEquals(0, testCase.getSoundRating());
+    }
+
+    @Test
+    void testRateCaseFeelAluminum() {
+        testCase.setCaseMaterial("Aluminum");
+        testCase.rate();
+        assertEquals(1, testCase.getFeelRating());
+    }
+
+    @Test
+    void testRateCaseFeelPlastic() {
+        testCase.setCaseMaterial("Plastic");
+        testCase.rate();
+        assertEquals(-1, testCase.getFeelRating());
+    }
+
+    @Test
+    void testRateCaseWeightAluminum() {
+        testCase.setCaseMaterial("Aluminum");
+        testCase.rate();
+        assertEquals(1, testCase.getFeelRating());
+    }
+
+    @Test
+    void testRateCaseWeightPlastic() {
+        testCase.setCaseMaterial("Plastic");
+        testCase.rate();
+        assertEquals(-1, testCase.getFeelRating());
+    }
 }

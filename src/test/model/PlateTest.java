@@ -57,4 +57,70 @@ public class PlateTest {
         assertEquals("brass", testPlate.getPlateMaterial());
         assertEquals("small", testPlate.getPlateSize());
     }
+
+    @Test
+    void testRatePlateSoundBrass() {
+        testPlate.setPlateMaterial("Brass");
+        testPlate.rate();
+        assertEquals(2, testPlate.getSoundRating());
+    }
+
+    @Test
+    void testRatePlateSoundAluminum() {
+        testPlate.setPlateMaterial("Aluminum");
+        testPlate.rate();
+        assertEquals(1, testPlate.getSoundRating());
+    }
+
+    @Test
+    void testRatePlateSoundPolycarbonate() {
+        testPlate.setPlateMaterial("Polycarbonate");
+        testPlate.rate();
+        assertEquals(-1, testPlate.getSoundRating());
+    }
+
+    @Test
+    void testRatePlateFeelBrass() {
+        testPlate.setPlateMaterial("Brass");
+        testPlate.rate();
+        assertEquals(2, testPlate.getFeelRating());
+    }
+
+    @Test
+    void testRatePlateFeelAluminum() {
+        testPlate.setPlateMaterial("Aluminum");
+        testPlate.rate();
+        assertEquals(1, testPlate.getFeelRating());
+
+    }
+
+    @Test
+    void testRatePlateFeelPolycarbonate() {
+        testPlate.setPlateMaterial("Polycarbonate");
+        testPlate.rate();
+        assertEquals(-1, testPlate.getFeelRating());
+
+
+    }
+
+    @Test
+    void testRatePlateWeightBrass() {
+        testPlate.setPlateMaterial("Brass");
+        testPlate.rate();
+        assertEquals(2, testPlate.getWeightRating());
+    }
+
+    @Test
+    void testRatePlateWeightAluminum() {
+        testPlate.setPlateMaterial("Aluminum");
+        testPlate.rate();
+        assertEquals(1, testPlate.getWeightRating());
+    }
+
+    @Test
+    void testRatePlateWeightPolycarbonate() {
+        testPlate.setPlateMaterial("Polycarbonate");
+        testPlate.rate();
+        assertEquals(-1, testPlate.getWeightRating());
+    }
 }
