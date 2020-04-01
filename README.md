@@ -52,3 +52,12 @@ I have chosen to go with Option #2: including type hierarchies in my code. I dec
 abstract a couple of methods and to increase cohesion in my model class.
 Specifically, in ui.gui: the classes apart of the first type hierarchy are DialogBox, PrintBox, RateBox, AlertBox, and 
 ExitConfirmationBox. My second type hierarchy includes: Rateable, Keyboard, Case, Keycaps, Plate, and Switches.
+## Phase 4: Task 3
+My Keyboard class was one area where there was very poor cohesion because the Keyboard class has methods that rated the
+individual components. To increase cohesion in this area, I introduced a type hierarchy with Rateable and therefore 
+increased cohesion by making each individual component rateable. The individual components now may be rated separate 
+from one another, and the keyboard also has its own rate method.
+
+I also removed PrintBox and RateBox as they were essentially the same (I was able to abstract this into DialogBox, and 
+adding a new parameter to account for the width differences). I extended AlertBox and ExitConfirmationBox to this new
+DialogBox, as they are similar except with an added modality of persisting until closed.

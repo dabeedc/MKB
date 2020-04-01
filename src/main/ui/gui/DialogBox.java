@@ -8,7 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public abstract class DialogBox {
+public class DialogBox {
     // EFFECTS: Displays the alert box to user
     public void displayDialog(String title, String message, int width) {
         Stage window = new Stage();

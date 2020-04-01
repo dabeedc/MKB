@@ -16,30 +16,6 @@ public class Plate implements Rateable {
         plateSize = "";
     }
 
-    // Getters
-    // EFFECTS: returns the material of the plate
-    public String getPlateMaterial() {
-        return plateMaterial;
-    }
-
-    // EFFECTS: returns the size of the plate
-    public String getPlateSize() {
-        return plateSize;
-    }
-
-    // Setters
-    // MODIFIES: this
-    // EFFECTS: sets material of the plate
-    public void setPlateMaterial(String plateMaterial) {
-        this.plateMaterial = plateMaterial;
-    }
-
-    // MODIFIES: this
-    // EFFECTS: sets the size of the plate
-    public void setPlateSize(String plateSize) {
-        this.plateSize = plateSize;
-    }
-
     // MODIFIES: this
     // EFFECTS: rates the Plate based on the properties
     @Override
@@ -69,6 +45,17 @@ public class Plate implements Rateable {
         }
     }
 
+    // Getters
+    // EFFECTS: returns the material of the plate
+    public String getPlateMaterial() {
+        return plateMaterial;
+    }
+
+    // EFFECTS: returns the size of the plate
+    public String getPlateSize() {
+        return plateSize;
+    }
+
     // EFFECTS: returns the sound rating
     public int getSoundRating() {
         return soundRating;
@@ -82,5 +69,18 @@ public class Plate implements Rateable {
     // EFFECTS: returns the weight rating
     public int getWeightRating() {
         return weightRating;
+    }
+
+    // Setters
+    // MODIFIES: this
+    // EFFECTS: sets material of the plate
+    public void setPlateMaterial(String plateMaterial) {
+        this.plateMaterial = plateMaterial;
+    }
+
+    // MODIFIES: this
+    // EFFECTS: sets the size of the plate
+    public void setPlateSize(String plateSize) {
+        this.plateSize = plateSize;
     }
 }

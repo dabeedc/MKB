@@ -16,30 +16,6 @@ public class Case implements Rateable {
         caseSize = "";
     }
 
-    // Getters
-    // EFFECTS: returns the material of the case
-    public String getCaseMaterial() {
-        return caseMaterial;
-    }
-
-    // EFFECTS: returns the size of the case
-    public String getCaseSize() {
-        return caseSize;
-    }
-
-    // Setters
-    // MODIFIES: this
-    // EFFECTS: sets the material of the case
-    public void setCaseMaterial(String caseMaterial) {
-        this.caseMaterial = caseMaterial;
-    }
-
-    // MODIFIES: this
-    // EFFECTS: sets the size of the case
-    public void setCaseSize(String caseSize) {
-        this.caseSize = caseSize;
-    }
-
     // MODIFIES: this
     // EFFECTS: rates the Case based on the properties
     @Override
@@ -63,6 +39,17 @@ public class Case implements Rateable {
         }
     }
 
+    // Getters
+    // EFFECTS: returns the material of the case
+    public String getCaseMaterial() {
+        return caseMaterial;
+    }
+
+    // EFFECTS: returns the size of the case
+    public String getCaseSize() {
+        return caseSize;
+    }
+
     // EFFECTS: returns the sound rating
     public int getSoundRating() {
         return soundRating;
@@ -76,5 +63,18 @@ public class Case implements Rateable {
     // EFFECTS: returns the weight rating
     public int getWeightRating() {
         return weightRating;
+    }
+
+    // Setters
+    // MODIFIES: this
+    // EFFECTS: sets the material of the case
+    public void setCaseMaterial(String caseMaterial) {
+        this.caseMaterial = caseMaterial;
+    }
+
+    // MODIFIES: this
+    // EFFECTS: sets the size of the case
+    public void setCaseSize(String caseSize) {
+        this.caseSize = caseSize;
     }
 }

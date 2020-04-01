@@ -15,30 +15,6 @@ public class Switches implements Rateable {
         silentSwitches = false;
     }
 
-    // Getters
-    // EFFECTS: returns the switch type
-    public String getSwitchType() {
-        return switchType;
-    }
-
-    // EFFECTS: returns true if switches are silent
-    public boolean isSilentSwitches() {
-        return this.silentSwitches;
-    }
-
-    // Setters
-    // MODIFIES: this
-    // EFFECTS: sets the switch type
-    public void setSwitchType(String switchType) {
-        this.switchType = switchType;
-    }
-
-    // MODIFIES: this
-    // EFFECTS: sets if the switches are silent or not
-    public void setSilentSwitches(boolean silentSwitches) {
-        this.silentSwitches = silentSwitches;
-    }
-
     // MODIFIES: this
     // EFFECTS: rates the Keycaps based on the properties
     @Override
@@ -63,6 +39,17 @@ public class Switches implements Rateable {
         }
     }
 
+    // Getters
+    // EFFECTS: returns the switch type
+    public String getSwitchType() {
+        return switchType;
+    }
+
+    // EFFECTS: returns true if switches are silent
+    public boolean isSilentSwitches() {
+        return this.silentSwitches;
+    }
+
     // EFFECTS: returns the sound rating
     public int getSoundRating() {
         return soundRating;
@@ -72,4 +59,19 @@ public class Switches implements Rateable {
     public int getFeelRating() {
         return feelRating;
     }
+
+    // Setters
+    // MODIFIES: this
+    // EFFECTS: sets the switch type
+    public void setSwitchType(String switchType) {
+        this.switchType = switchType;
+    }
+
+    // MODIFIES: this
+    // EFFECTS: sets if the switches are silent or not
+    public void setSilentSwitches(boolean silentSwitches) {
+        this.silentSwitches = silentSwitches;
+    }
+
+
 }

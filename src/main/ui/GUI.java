@@ -335,7 +335,7 @@ public class GUI extends Application {
     // EFFECTS: Prints the build to a dialog box, if available, else tells the user to load or start a build
     private void displayPrint() {
         try {
-            DialogBox rateBox = new PrintBox();
+            DialogBox rateBox = new DialogBox();
             rateBox.displayDialog("Keyboard Specifications", "Here is your keyboard!\n\n"
                     + "Case Specifications: \n   " + keyboard.getKeyboardCase().getCaseSize() + "\n   "
                     + keyboard.getKeyboardCase().getCaseMaterial() + "\n\n" + "Keycaps Specifications: \n   "
@@ -355,7 +355,7 @@ public class GUI extends Application {
     // EFFECTS: Prints the rating to a dialog box, if available, else tells the user to load or start a build
     private void displayRate() {
         try {
-            DialogBox rateBox = new RateBox();
+            DialogBox rateBox = new DialogBox();
             rateBox.displayDialog("Keyboard Rating", "On a scale from 1 to 10: 1 being quiet, soft, and"
                     + " light; 10 being loud, hard, \nand heavy for the typing sound, feel, and weight of the "
                     + "keyboard, respectively. \n\nThis is your keyboard's rating:\nSound Level: "
@@ -432,5 +432,4 @@ public class GUI extends Application {
             displayMainMenu();
         }
     }
-
 }
