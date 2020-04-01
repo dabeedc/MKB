@@ -15,7 +15,7 @@ The application will focus on two things: providing information and rating a key
 in building their first keyboard will be able to use this application as a single reference, as it contains information
 and allows the user to plan a future build. The application will take inputs and provide information about various 
 components of a keyboard; it will also be able to store chosen components to give the user and idea of how the keyboard
-will feel and sound. 
+will feel and sound.
 
 This project is important to me because I have built computers and keyboards before; I have always wished that there 
 was a simple application that would allow me to learn about and choose components for my project. 
@@ -61,3 +61,8 @@ from one another, and the keyboard also has its own rate method.
 I also removed PrintBox and RateBox as they were essentially the same (I was able to abstract this into DialogBox, and 
 adding a new parameter to account for the width differences). I extended AlertBox and ExitConfirmationBox to this new
 DialogBox, as they are similar except with an added modality of persisting until closed.
+
+The final area identified that could use improvements in cohesion was found in the GUI class. There were a couple of 
+methods like displayPrint and displayRate that retrieved information about the keyboard which were moved into a 
+refactored class called InformationHandler, which deals with information about the keyboard; this lead to an increased 
+cohesion within the information class.

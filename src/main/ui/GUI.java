@@ -33,13 +33,13 @@ public class GUI extends Application {
     private static final String PLATE_IMAGE = "data/Photos/plateImage.jpg";
     private static final String PCB_IMAGE = "data/Photos/pcbImage.jpg";
     private static final String SWITCHES_IMAGE = "data/Photos/switchesImage.gif";
-    private static final int DIALOG_SIZE = 350;
+    public static final int DIALOG_SIZE = 350;
 
     // Stages and Scenes
     private Stage mainWindow;
     private Scene menuScene;
     private Scene buildScene;
-    private InformationMenu infoWindow;
+    private InformationHandler infoWindow;
     BorderPane buildMenuLayout = new BorderPane();
     VBox dropDownMenuLayout = new VBox(5);
     VBox buttonMenuLayout = new VBox(30);
@@ -52,6 +52,11 @@ public class GUI extends Application {
     private Button buttonCase;
     private Button buttonKeycaps;
     private Button buttonPlate;
+
+    public Keyboard getKeyboard() {
+        return keyboard;
+    }
+
     private Button buttonPcb;
     private Button buttonSwitches;
     private Button buttonConfirmation;
@@ -82,7 +87,7 @@ public class GUI extends Application {
     @Override
     public void start(Stage primaryStage) {
         mainWindow = primaryStage;
-        infoWindow = new InformationMenu();
+        infoWindow = new InformationHandler();
         displayMainMenu();
     }
 
@@ -112,8 +117,8 @@ public class GUI extends Application {
             keyboard = new Keyboard();
             displayBuildScene();
         });
-        buttonPrint.setOnAction(event -> displayPrint());
-        buttonRate.setOnAction(event -> displayRate());
+        buttonPrint.setOnAction(event -> infoWindow.displayPrint(keyboard));
+        buttonRate.setOnAction(event -> infoWindow.displayRate(keyboard));
 
         buttonMenuLayout.setPadding(new Insets(0, -50, 0, 75));
         buttonMenuLayout.getChildren().addAll(buttonInfo, buttonBuild, buttonPrint, buttonRate);
@@ -329,42 +334,6 @@ public class GUI extends Application {
         getChoice(switchTypeChoice);
         if (wantSilent.isSelected()) {
             keyboard.getKeyboardSwitches().setSilentSwitches(true);
-        }
-    }
-
-    // EFFECTS: Prints the build to a dialog box, if available, else tells the user to load or start a build
-    private void displayPrint() {
-        try {
-            DialogBox rateBox = new DialogBox();
-            rateBox.displayDialog("Keyboard Specifications", "Here is your keyboard!\n\n"
-                    + "Case Specifications: \n   " + keyboard.getKeyboardCase().getCaseSize() + "\n   "
-                    + keyboard.getKeyboardCase().getCaseMaterial() + "\n\n" + "Keycaps Specifications: \n   "
-                    + keyboard.getKeyboardKeycaps().getKeycapsMaterial() + "\n\nPlate Specifications: \n   "
-                    + keyboard.getKeyboardPlate().getPlateMaterial() + "\n   "
-                    + keyboard.getKeyboardPlate().getPlateSize() + "\n\nPCB Specifications: \n   "
-                    + keyboard.getKeyboardPrintedCircuitBoard().getPcbSize() + "\n\nKey Switch Specifications: \n   "
-                    + keyboard.getKeyboardSwitches().getSwitchType() + "\n   Silent Switches? "
-                    + keyboard.getKeyboardSwitches().isSilentSwitches(), 310);
-        } catch (NullPointerException e) {
-            DialogBox printFailedAlert = new AlertBox();
-            printFailedAlert.displayDialog("Print Unsuccessful!", "There is no build to show! "
-                    + "Please load a keyboard or start a build.", DIALOG_SIZE);
-        }
-    }
-
-    // EFFECTS: Prints the rating to a dialog box, if available, else tells the user to load or start a build
-    private void displayRate() {
-        try {
-            DialogBox rateBox = new DialogBox();
-            rateBox.displayDialog("Keyboard Rating", "On a scale from 1 to 10: 1 being quiet, soft, and"
-                    + " light; 10 being loud, hard, \nand heavy for the typing sound, feel, and weight of the "
-                    + "keyboard, respectively. \n\nThis is your keyboard's rating:\nSound Level: "
-                    + keyboard.getSoundRating() + "\nTyping Feel: " + keyboard.getFeelRating() + "\nWeight: "
-                    + keyboard.getWeightRating(), DIALOG_SIZE);
-        } catch (NullPointerException e) {
-            DialogBox rateFailedAlert = new AlertBox();
-            rateFailedAlert.displayDialog("Rate Unsuccessful!", "There is no build to rate! "
-                    + "Please load a keyboard or start a build.", DIALOG_SIZE);
         }
     }
 
