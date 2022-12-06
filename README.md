@@ -32,3 +32,9 @@ was a simple application that would allow me to learn about and choose component
 - As a user, I want to be able to save my keyboard build to a file
 
 - As a user, I want to be able to optionally load my keyboard build from file when the program starts
+
+![mainMenu](https://github.com/dabeedc/Mechanical-Keyboard-Builder/blob/master/Screenshots/Screenshot%202022-12-06%20024225.jpg)
+![information](https://github.com/dabeedc/Mechanical-Keyboard-Builder/blob/master/Screenshots/Screenshot%202022-12-06%20024500.jpg)
+![build](https://github.com/dabeedc/Mechanical-Keyboard-Builder/blob/master/Screenshots/Screenshot%202022-12-06%20024426.jpg)
+![print](https://github.com/dabeedc/Mechanical-Keyboard-Builder/blob/master/Screenshots/Screenshot%202022-12-06%20024332.jpg)
+![rating](https://github.com/dabeedc/Mechanical-Keyboard-Builder/blob/master/Screenshots/Screenshot%202022-12-06%20024316.jpg)
